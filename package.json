@@ -1,0 +1,26 @@
+{
+  "name": "ak-service",
+  "version": "1.0.0",
+  "description": "The aim is to create an app that resembles property page,  summary and navigation bar of property page of Zillow",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/7-xillow/AK-service.git"
+  },
+  "keywords": [
+    "front-end",
+    "proxy-server"
+  ],
+  "author": "Albert Kim",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/7-xillow/AK-service/issues"
+  },
+  "homepage": "https://github.com/7-xillow/AK-service#readme",
+  "dependencies": {
+    "mongoose": "^5.8.9"
+  }
+}
