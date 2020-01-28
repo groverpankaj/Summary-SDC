@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest",
     "seed_database": "node database/db_seed.js",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "dev": "webpack-dev-server --open --mode development",
   },
   "repository": {
     "type": "git",
@@ -40,12 +41,14 @@
     "jest-environment-enzyme": "^7.1.2",
     "jest-enzyme": "^7.1.2",
     "webpack": "^4.41.5",
-    "webpack-cli": "^3.3.10"
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.10.1"
   },
   "jest": {
     "setupFilesAfterEnv": ["jest-enzyme"],
     "testEnvironment": "enzyme",
     "testEnvironmentOptions": {
       "enzymeAdapter": "react16"
+    }
   }
 }
