@@ -64,7 +64,7 @@ promiseAll.then(() => { // check if every property document is saved in collecti
       console.log('START: writing JSON file for sample data');
 
       data = JSON.stringify(data);
-      fs.writeFile(path.join(__dirname, './sampe_data.json'), data, (err) => { // write data into json file
+      fs.writeFile(path.join(__dirname, './sample_data.json'), data, (err) => { // write data into json file
         if(err) {console.log(err);}
         else {
           console.log('END: writing JSON file for sample data'); 
