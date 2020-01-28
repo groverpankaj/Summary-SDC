@@ -7,7 +7,7 @@
     "test": "jest",
     "seed_database": "node database/db_seed.js",
     "build": "webpack --mode production",
-    "dev": "webpack-dev-server --open --mode development",
+    "dev": "webpack-dev-server --open --mode development"
   },
   "repository": {
     "type": "git",
