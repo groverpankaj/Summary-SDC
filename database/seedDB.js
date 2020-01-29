@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 const faker = require('faker');       // module to generate fake information
 
 const dbName = '7-xillow'       // database name
-const collectionName ='summary' // table(collection) name
 const nData = 100;              // number of data(document) to be seeded
 
 mongoose.connect(`mongodb://localhost:27017/${dbName}`, {useNewUrlParser: true, useUnifiedTopology: true})
