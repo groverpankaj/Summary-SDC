@@ -1,5 +1,5 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-// import App from './App.jsx';
+import MainPanel from './MainPanel.jsx';
 
-ReactDOM.render(<div>App.jsx Testing</div>, document.getElementById('app'));
+ReactDOM.render(<MainPanel />, document.getElementById('app'));

@@ -1,13 +1,14 @@
 {
   "name": "ak-service",
   "version": "1.0.0",
-  "description": "The aim is to create an app that resembles property page,  summary and navigation bar of property page of Zillow",
+  "description": "The aim is to create an app that resembles property page, summary and navigation bar of property page of Zillow",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "build": "webpack",
+    "dev": "webpack-dev-server --open",
     "seed_database": "node database/db_seed.js",
-    "build": "webpack --mode production",
-    "dev": "webpack-dev-server --open --mode development"
+    "test": "jest",
+    "watch": "webpack --watch"
   },
   "repository": {
     "type": "git",
