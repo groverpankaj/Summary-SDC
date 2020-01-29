@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 const collectionName = 'summary' // table(collection) name
 
-// define Schema for table(collection)
-const propertySchema = new mongoose.Schema({
+// define schema for table(collection)
+const schema = new mongoose.Schema({
     id: Number,           // id number
     price: Number,        // price
     bd: Number,           // #bedroom
@@ -17,7 +17,6 @@ const propertySchema = new mongoose.Schema({
 );
 
 // create table(collection) called 'summary' with schema described above
-const House = mongoose.model(collectionName, propertySchema);
+const House = mongoose.model(collectionName, schema);
 
 module.exports = House;
-
