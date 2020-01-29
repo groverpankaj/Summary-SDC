@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack",
     "dev": "webpack-dev-server --open",
-    "seed_database": "node database/db_seed.js",
+    "seedDB": "node database/seedDB.js",
     "test": "jest",
     "watch": "webpack --watch"
   },
