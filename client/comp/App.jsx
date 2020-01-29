@@ -5,7 +5,7 @@ import NavigationBar from './NavigationBar.jsx';
 
 var App = (props) =>{
   return (
-    <div id="main_panel">
+    <div>
       <Summary property={sample[0]}/>
       <NavigationBar />
       <div>Detail Panel</div>
