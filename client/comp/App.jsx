@@ -8,16 +8,34 @@ import DetailPanel from './DetailPanel.jsx';
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.pRef = React.createRef();
   }
 
-  scrollOnClick(e) {
-    var scrollToClass = e.target.className;
-    // console.log(typeof this.pRef.current);
-    // window.scrollTo(0,150);
-    // console.log(scrollToClass)
-    var offset = $(`h3.${scrollToClass}`)[0].offsetTop - $('#detailpanel').offset().top;
-    $('#detailpanel')[0].scrollTo({left: 0, top: offset, behavior: 'smooth'});
+  // function to scroll up and down through detail panel when navigation bar is clicked
+  scrollOnClick(e) { 
+    var clicked = e.target.className; // get classname of clicked one
+  
+    var scrollTopValue = $(`div.${clicked}`)[0].offsetTop - $('#detailpanel')[0].offsetTop;
+    // compute how much needed to be scrolled down within the panel
+
+    $('#detailpanel')[0].scrollTo({left: 0, top: scrollTopValue, behavior: 'smooth'}); // scroll down the panel
+  }
+
+  // functon to slide navigation bar when user scroll through the detail panel
+  slideOnScroll(e) { 
+    var scrollTopValue = e.target.scrollTop // get how much is scrolled down from the top
+    var offsetTopValue = scrollTopValue + $('#detailpanel')[0].offsetTop; // get pixel distance from the top of the page
+
+    var moduleID = ['ov', 'ff', 'hv', 'pth', 'mc', 'rv', 'ns', 'ct', 'nh', 'hfy', 'sh', 'dummy'];
+
+    for(let i=1; i<moduleID.length; i++) {
+     if (offsetTopValue < $(`div.${moduleID[i]}`)[0].offsetTop) { // find where panel is at
+        var scrollLeftValue = $(`span.${moduleID[i-1]}`)[0].offsetLeft - $('#navbar')[0].offsetLeft;
+
+        $('#navbar')[0].scrollTo({left: scrollLeftValue, top:0, behavior: 'smooth'})
+  
+        break;
+      }
+    }
   }
 
   render() {
@@ -25,7 +43,7 @@ class App extends React.Component {
       <div style={{overflow:'hidden'}}>
         <Summary property={sample[0]}/>
         <NavigationBar pRef={this.pRef}scrollOnClick={this.scrollOnClick.bind(this)}/>
-        <DetailPanel />
+        <DetailPanel slideOnScroll={this.slideOnScroll}/>
       </div>
     )
   }

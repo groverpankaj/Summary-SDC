@@ -47,7 +47,7 @@ let NavigationBar = ({pRef, scrollOnClick}) => {
         <div id='leftarrow' style={{position:'absolute', zIndex:1}}>&lt;</div>
         <div id='rightarrow' style={{position:'absolute', left: '484px', zIndex:1}}>&gt;</div>
         <nav id='navbar' style={navbarStyle}>
-          <span className='ov' ref={pRef} style={spanStyle} onClick={scrollOnClick}>Overview</span>
+          <span className='ov' style={spanStyle} onClick={scrollOnClick}>Overview</span>
           <span className='ff' style={spanStyle} onClick={scrollOnClick}>Facts and features</span>
           <span className='hv' style={spanStyle} onClick={scrollOnClick}>Home value</span>
           <span className='pth' style={spanStyle} onClick={scrollOnClick}>Price and tax history</span>
