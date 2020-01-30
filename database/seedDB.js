@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 const faker = require('faker');       // module to generate fake information
 
 const dbName = '7-xillow'       // database name
-const collectionName ='summary' // table(collection) name
 const nData = 100;              // number of data(document) to be seeded
 
 mongoose.connect(`mongodb://localhost:27017/${dbName}`, {useNewUrlParser: true, useUnifiedTopology: true})
@@ -34,10 +33,10 @@ var saveNData = (n) => { //helper function for seeding n data into database
         bd: Math.ceil(Math.random()*6),
         ba: Math.ceil(Math.random()*7)/2,
         sqft: faker.fake("{{random.number}}"),
-        address: faker.fake("{{address.streetAddress}} {{address.secondaryAddress}}, {{address.city}}, {{address.stateAbbr}} {{address.zipCode}}"),
-        status: (randomVal < 2/3) ? 'For sale' :
-                (randomVal < 5/6) ? 'For rent' : 'Sold',
-        tour_button: faker.fake("{{random.boolean}}"),
+        address: faker.fake("{{address.streetAddress}} {{address.secondaryAddress}}, {{address.city}}, {{address.stateAbbr}}") + " " + faker.fake("{{address.zipCode}}").substring(0,5),
+        status: (randomVal < 5/6) ? 'For sale' :
+                (randomVal < 11/12) ? 'For rent' : 'Sold',
+        tour_button: (Math.random() < 0.85),
         zestimate : faker.fake("{{commerce.price}}"),   
         estPayment: faker.fake("{{commerce.price}}")    
       });  
