@@ -1,65 +1,61 @@
 import React from 'react';
+import styled from 'styled-components';
 
-/* Example for Hiding Vertical Scroll Bar
-<div style={{
-      height: '500px',
-      width: '100%',
-      overflow: 'hidden'
-    }}>
-      <div style={{
-        width: '100%',
-        height: '99%',
-        overflow: 'auto',
-        paddingRight: '15px'
-      }}>
-      </div>
-    </div>   
+/*
+  START: define styled component 
 */
 
-const containerStyle = {
-  width: '468px',
-  height: '35px',
-  overflow: 'hidden',
-  margin:'0px 16px',
-  borderBottom: '1px solid #D1D1D5'
-}
-const navbarStyle = {
-  display: 'flex',
-  overflowX: 'auto',
-  overflowY: 'hidden',
-  width: '100%',
-  height: '60px',
-  margin: '0px',
-  // paddingBottom: '18px',
-};
+// div to hide horizontal scroll bar of navigation bar
+const ContainerToHideScroll = styled.div`
+  width: 468px;
+  height: 35px;
+  overflow: hidden;
+  margin: 0px 16px;
+  border-bottom: 1px solid #D1D1D5;
+`;
 
-const spanStyle = {
-  flexShrink: '0',
-  margin: '0px',
-  padding: '3px 6px',
-  textAlign: 'center'
-};
+// div that has scroll bar and contain contents' tiles
+const Styled_NavBar = styled.div`
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  width: 100%;
+  height: 60px;
+  margin: 0px;
+`; 
 
-let NavigationBar = ({pRef, scrollOnClick}) => {
+// span that holds contents' tile string
+const NavName = styled.span`
+  flex-shrink: 0;
+  margin: 0px;
+  padding: 3px 6px;
+  text-align: center;
+`;
+
+/*
+  END: define styled component 
+*/
+// <span className='ov' style={spanStyle} onClick={scrollOnClick}>Overview</span>
+let NavigationBar = ({scrollOnClick}) => {
   var renderVal = (
      <div style={{width: '500px'}}>
-      <div id='container' style={containerStyle}>  
+      <ContainerToHideScroll>
         <div id='leftarrow' style={{position:'absolute', zIndex:1}}>&lt;</div>
         <div id='rightarrow' style={{position:'absolute', left: '484px', zIndex:1}}>&gt;</div>
-        <nav id='navbar' style={navbarStyle}>
-          <span className='ov' style={spanStyle} onClick={scrollOnClick}>Overview</span>
-          <span className='ff' style={spanStyle} onClick={scrollOnClick}>Facts and features</span>
-          <span className='hv' style={spanStyle} onClick={scrollOnClick}>Home value</span>
-          <span className='pth' style={spanStyle} onClick={scrollOnClick}>Price and tax history</span>
-          <span className='mc' style={spanStyle} onClick={scrollOnClick}>Monthly Cost</span>
-          <span className='rv' style={spanStyle} onClick={scrollOnClick}>Rental Value</span>
-          <span className='ns' style={spanStyle} onClick={scrollOnClick}>Nearby schools</span>
-          <span className='ct' style={spanStyle} onClick={scrollOnClick}>Commute time</span>
-          <span className='nh' style={spanStyle} onClick={scrollOnClick}>Neighborhood</span>
-          <span className='hfy' style={spanStyle} onClick={scrollOnClick}>Home for you</span>
-          <span className='sh' style={spanStyle} onClick={scrollOnClick}>Simlar Homes</span>
-        </nav>
-      </div>
+        <Styled_NavBar id='navbar'>
+          <NavName className='ov' onClick={scrollOnClick}>Overview</NavName>
+          <NavName className='ff' onClick={scrollOnClick}>Facts and features</NavName>
+          <NavName className='hv' onClick={scrollOnClick}>Home value</NavName>
+          <NavName className='pth' onClick={scrollOnClick}>Price and tax history</NavName>
+          <NavName className='mc' onClick={scrollOnClick}>Monthly Cost</NavName>
+          <NavName className='rv' onClick={scrollOnClick}>Rental Value</NavName>
+          <NavName className='ns' onClick={scrollOnClick}>Nearby schools</NavName>
+          <NavName className='ct' onClick={scrollOnClick}>Commute time</NavName>
+          <NavName className='nh' onClick={scrollOnClick}>Neighborhood</NavName>
+          <NavName className='hfy' onClick={scrollOnClick}>Home for you</NavName>
+          <NavName className='sh' onClick={scrollOnClick}>Simlar Homes</NavName>
+        </Styled_NavBar>
+      </ContainerToHideScroll>
     </div>
   );
 
