@@ -3,7 +3,7 @@ import React from 'react';
 const DetailPanel = ({ slideOnScroll }) => (
 // this react element is merely to provide panel in which user can scroll up and down
 // the position within this panel will be referenced in other modules
-  <div id="detailpanel" style={{ height: '600px', overflowY: 'scroll' }} onScroll={slideOnScroll}>
+  <div id="detailpanel" style={{ height: '400px', overflowY: 'scroll' }} onScroll={slideOnScroll}>
     <div className="ov">
       <h5>Overview</h5>
         some detail
@@ -282,6 +282,106 @@ const DetailPanel = ({ slideOnScroll }) => (
     </div>
     <div className="sh">
       <h5>Simlar Homes</h5>
+        some detail
+      <br/>
+        some detail
+      <br/>
+        some detail
+      <br/>
+        some detail
+      <br/>
+        some detail
+      <br/>
+        some detail
+      <br/>
+    </div>
+    <div className="lpb">
+      <h5>Listing provided by</h5>
+        some detail
+      <br/>
+        some detail
+      <br/>
+        some detail
+      <br/>
+        some detail
+      <br/>
+        some detail
+      <br/>
+        some detail
+      <br/>
+    </div>
+    <div >
+      <h5>Realy Long Footer Here</h5>
+        some detail
+      <br/>
+        some detail
+      <br/>
+        some detail
+      <br/>
+        some detail
+      <br/>
+        some detail
+      <br/>
+        some detail
+      <br/>
+      some detail
+      <br/>
+        some detail
+      <br/>
+        some detail
+      <br/>
+        some detail
+      <br/>
+        some detail
+      <br/>
+        some detail
+      <br/>
+        some detail
+      <br/>
+        some detail
+      <br/>
+        some detail
+      <br/>
+        some detail
+      <br/>
+        some detail
+      <br/>
+        some detail
+      <br/>
+        some detail
+      <br/>
+        some detail
+      <br/>
+        some detail
+      <br/>
+        some detail
+      <br/>
+        some detail
+      <br/>
+        some detail
+      <br/>some detail
+      <br/>
+        some detail
+      <br/>
+        some detail
+      <br/>
+        some detail
+      <br/>
+        some detail
+      <br/>
+        some detail
+      <br/>some detail
+      <br/>
+        some detail
+      <br/>
+        some detail
+      <br/>
+        some detail
+      <br/>
+        some detail
+      <br/>
+        some detail
+      <br/>
         some detail
       <br/>
         some detail
