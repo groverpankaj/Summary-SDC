@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack",
+    "watchbuild": "webpack --watch",
     "server": "nodemon server/index.js",
     "seedDB": "node database/seedDB.js",
-    "test": "jest",
-    "watch": "webpack --watch"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
