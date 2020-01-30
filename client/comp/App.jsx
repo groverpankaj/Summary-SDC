@@ -42,7 +42,7 @@ class App extends React.Component {
     return (
       <div style={{overflow:'hidden'}}>
         <Summary property={sample[0]}/>
-        <NavigationBar pRef={this.pRef}scrollOnClick={this.scrollOnClick.bind(this)}/>
+        <NavigationBar scrollOnClick={this.scrollOnClick.bind(this)}/>
         <DetailPanel slideOnScroll={this.slideOnScroll}/>
       </div>
     )
