@@ -24,5 +24,13 @@ module.exports = {
   },
   resolve: {
     extensions: ["*", ".js", ".jsx"]
-  }
+  },
+  externals: {
+    "jquery": 'jQuery',
+    "styled-components": {
+     commonjs: "styled-components",
+     commonjs2: "styled-components",
+     amd: "styled-components",
+   },
+ },
 };
