@@ -1,9 +1,17 @@
 import React from 'react';
+import styled from 'styled-components';
 
-const DetailPanel = ({ slideOnScroll }) => (
 // this react element is merely to provide panel in which user can scroll up and down
 // the position within this panel will be referenced in other modules
-  <div id="detailpanel" style={{ height: '400px', overflowY: 'scroll' }} onScroll={slideOnScroll}>
+
+const DivDP = styled.div`
+  height: 400px;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+`;
+
+const DetailPanel = ({ slideOnScroll }) => (
+  <DivDP id="detailpanel" onScroll={slideOnScroll}>
     <div className="ov">
       <h5>Overview</h5>
         some detail
@@ -395,7 +403,7 @@ const DetailPanel = ({ slideOnScroll }) => (
         some detail
       <br/>
     </div>
-  </div>
+  </DivDP>
 );
 
 export default DetailPanel;
