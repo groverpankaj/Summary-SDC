@@ -64,10 +64,11 @@ class App extends React.Component {
   
   showHideOnSlide() { // to show and hide arrows when slide through navigation bar
     this.setState((state) => {
-      // left arrow
-      state.showarrow.left = ($('#navbar')[0].scrollLeft > $('span.ov')[0].scrollWidth/5) ? 'visible' : 'hidden';
-      // right arrow: 798 is the maximum pixel value that navigation bar can slide
-      state.showarrow.right = ($('#navbar')[0].scrollLeft < 798 - $('span.sh')[0].scrollWidth/5) ? 'visible' : 'hidden';
+      // left arrow: 16 is left margin value of navigation bar
+      state.showarrow.left = ($('#navbar')[0].scrollLeft > 16) ? 'visible' : 'hidden';
+      // right arrow: 16 is right margin value of navigation bar
+      const maxScroll = $('#navbar')[0].scrollWidth - $('#navbar')[0].clientWidth;
+      state.showarrow.right = ($('#navbar')[0].scrollLeft < maxScroll - 16) ? 'visible' : 'hidden';
 
       return state;
     })
