@@ -46,7 +46,7 @@ class App extends React.Component {
     scroll implies vertical scroll within detail panel
   */
   scrollOnClick(e) { // to scroll up and down through detail panel when navigation bar is clicked
-    const clicked = e.target.classList[2];    // get assgined classname of clicked one   
+    const clicked = e.target.classList[2]; // get assgined classname of clicked one 
 
     // compute how much needed to be scrolled down within the panel
     const scrollTopValue = $(`div.${clicked}`)[0].offsetTop - $('#detailpanel')[0].offsetTop;
@@ -57,7 +57,7 @@ class App extends React.Component {
   }
 
   slideOnClick(e) { // to slide navigation bar when arrow on navigation bar is clicked
-    const clicked = e.target.id
+    const clicked = e.target.id;
     const scrollAmount = (clicked.startsWith('l')) ? -250 : 250;
     $('#navbar')[0].scrollLeft += scrollAmount;
   }
@@ -96,7 +96,7 @@ class App extends React.Component {
             for (let key in state.onview) { 
               state.onview[key] = (key === navNameInitials[i-1]) ? true : false;
             }
-            return state
+            return state;
           });
 
           break;
