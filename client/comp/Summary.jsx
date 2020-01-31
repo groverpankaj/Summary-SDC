@@ -1,6 +1,11 @@
 import React from 'react';
 
-const vDivider = <span className="vDivider" style={{'margin': '0px 3px'}}> | </span>;
+
+const Vdivider = styled.span`
+  margin-left: 3px;
+  margin-right: 3px;
+`;
+
 
 var Summary = ({property}) => {
   const button = property.tour_button ? 
@@ -14,16 +19,16 @@ var Summary = ({property}) => {
         <span id="summary_price">$ {property.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</span>
         {vDivider}
         <span id="summary_bed">{property.bd} bd</span>
-        {vDivider}
+        <Vdivider/>
         <span id="summary_bath">{property.ba} ba</span>
-        {vDivider}
+        <Vdivider/>
         <span id="summary_sqft">{property.sqft.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} sqft</span>
       </div>
       <div className="line2" id="summary_address">{property.address}</div>
       <div className="line3">
         <div>
           <span id="summary_status">{property.status}</span>
-          {vDivider}
+          <Vdivider/>
           <span>Zestimate: </span>
           <span id="summary_zestimate">$ {property.zestimate.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</span>
         </div>
