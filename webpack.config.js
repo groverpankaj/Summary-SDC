@@ -7,22 +7,21 @@ module.exports = {
     filename: 'bundle.js',
     path: path.resolve(__dirname, './client/dist'),
   },
-  devtool: 'inline-source-map',
-  devServer: {
-    contentBase: './client/dist',
-  },
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/,
         exclude: /(node_modules|bower_components)/,
         use: {
-          loader: 'babel-loader',
+          loader: 'babel-loader'
         }
       }
     ]
   },
   resolve: {
     extensions: ["*", ".js", ".jsx"]
+  },
+  externals: {
+    "jquery": 'jQuery'
   }
 };

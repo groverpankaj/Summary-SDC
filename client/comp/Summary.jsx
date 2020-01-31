@@ -1,18 +1,12 @@
 import React from 'react';
 
+const vDivider = <span className="vDivider" style={{'margin': '0px 3px'}}> | </span>;
+
 var Summary = ({property}) => {
-  console.log(property);
-
-  const vDivider_style = {
-    'marginLeft': '3px',
-    'marginRight': '3px'
-  };
-  const vDivider = <span className="vDivider" style={vDivider_style}> | </span>;
-
   const button = property.tour_button ? 
-                  (<form><button type="button">Contact Agent</button></form>) :
-                  (<form><button type="button">Contact Agent</button>
-                  <button type="button">Take a tour</button></form>);
+                (<form><button type="button">Contact Agent</button></form>) :
+                (<form><button type="button">Contact Agent</button>
+                <button type="button">Take a tour</button></form>);
 
   return (
     <div className="summary">
