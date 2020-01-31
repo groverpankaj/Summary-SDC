@@ -1,9 +1,16 @@
 import React from 'react';
+import styled from 'styled-components';
 import $ from 'jquery';
+
 import sample from '../sample/sample.js';
 import Summary from './Summary.jsx';
 import NavigationBar from './NavigationBar.jsx';
 import DetailPanel from './DetailPanel.jsx';
+
+const StyledApp = styled.div`
+  font-family: 'Open Sans', sans-serif;
+  overflow: hidden;
+`;
 
 class App extends React.Component {
   constructor(props) {
@@ -103,7 +110,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div style={{ overflow: 'hidden' }}>
+      <StyledApp>
         <Summary property={sample[0]} />
         <NavigationBar onview={this.state.onview}
                         showarrow={this.state.showarrow}
@@ -111,7 +118,7 @@ class App extends React.Component {
                         slideOnClick={this.slideOnClick}
                         showHideOnSlide={this.showHideOnSlide} />
         <DetailPanel slideOnScroll={this.slideOnScroll} />
-      </div>
+      </StyledApp>
     );
   }
 }

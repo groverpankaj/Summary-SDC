@@ -15,7 +15,6 @@ const ContainerToHideScroll = styled.div`
   margin: 0px 10px;
   border-top: 1px solid #D1D1D5;
   border-bottom: 1px solid #D1D1D5;
-
 `;
 
 // div that has scroll bar and contain contents' tiles
@@ -27,7 +26,6 @@ const StyledNavBar = styled.div`
   height: ${hControl+15}px;
   margin: 0px;
   scroll-behavior: smooth;
-  font-family: "Open Sans",Gotham,gotham,Tahoma,Geneva,sans-serif;
   font-size: 85%
 `;
 
@@ -37,7 +35,8 @@ const StyledArrow = styled.i`
   color: #006aff;
   background-color: white;
   padding-top: 12px;
-  font-size: 28px;
+  font-size: 36px;
+  cursor: pointer;
 `;
 
 // span that holds contents' tile string
@@ -51,8 +50,8 @@ const NavTitle = styled.span`
                               border-bottom: 3px solid #006aff;`
                             :`&:hover {
                               color: #cfe6fd;
-                              }`
-              )}
+                              }`)
+  }
 `;
 
 /*
