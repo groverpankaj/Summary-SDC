@@ -166,8 +166,8 @@ export const StyledArrow = styled.i`
   zIndex: 1;
   color: #006aff;
   background-color: white;
-  padding-top: 12px;
-  font-size: 36px;
+  padding-top: 17px;
+  font-size: 24px;
   cursor: pointer;
 `;
 
