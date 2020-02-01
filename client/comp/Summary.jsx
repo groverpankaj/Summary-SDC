@@ -25,7 +25,7 @@ class Summary extends React.Component {
           <span id="summary_address">{this.props.house.address}</span>
         </LineWrapper>
 
-        <SummaryLine3 id="summaryLine3" saleStatus={this.props.house.saleStatus} zestimate={this.props.house.zestimate}/>
+        <SummaryLine3 id="summaryLine3" ref={this.props.sl3Ref} saleStatus={this.props.house.saleStatus} zestimate={this.props.house.zestimate} />
 
         <LineWrapper className="line4" fontsize='14px' style={{position: 'relative', top: '-10px'}}>
           <span id="summary_estPayment"><b>Est. payment</b>: ${this.props.house.estPayment}/mo</span>
@@ -39,7 +39,8 @@ class Summary extends React.Component {
 }
 
 Summary.propTypes = {
-  house: PropTypes.object
+  house: PropTypes.object,
+  sl3Ref: PropTypes.object,
 }
 
 export default Summary;

@@ -1,16 +1,15 @@
+// npm packages
 import React from 'react';
 import styled from 'styled-components';
 import $ from 'jquery';
-
+// module: data
 import sample from '../sample/sample.js';
+// module react components
 import Summary from './Summary.jsx';
 import NavigationBar from './NavigationBar.jsx';
 import DetailPanel from './DetailPanel.jsx';
-
-const StyledApp = styled.div`
-  font-family: 'Open Sans', sans-serif;
-  overflow: hidden;
-`;
+// module: styled-components
+import { StyledApp } from './style.js'
 
 class App extends React.Component {
   constructor(props) {
@@ -31,7 +30,8 @@ class App extends React.Component {
         'sh': false
       }
     }
-    
+    this.sl3Ref = React.createRef();
+
     // bind functions
     this.scrollOnClick = this.scrollOnClick.bind(this);
     this.slideOnClick = this.slideOnClick.bind(this);
@@ -39,6 +39,10 @@ class App extends React.Component {
     this.showHideOnSlide = this.showHideOnSlide.bind(this);
   }
 
+  componentDidMount(){
+    console.log('Log from App:');
+    console.log(this.sl3Ref);
+  }
   /*
     START: Define Event Listner
     
@@ -112,7 +116,7 @@ class App extends React.Component {
   render() {
     return (
       <StyledApp>
-        <Summary house={sample[0]} />
+        <Summary house={sample[0]} sl3Ref={this.sl3Ref}/>
         <NavigationBar onview={this.state.onview}
                         showarrow={this.state.showarrow}
                         scrollOnClick={this.scrollOnClick}
