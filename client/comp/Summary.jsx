@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import SummaryLine1 from './SummaryLine1.jsx'
 import SummaryLine3 from './SummaryLine3.jsx'
-import { SummaryWrapper, LineWrapper, Vdivider, SaleStatus, Zestimate, DollarIconWrapper, ButtonCA, ButtonTT } from './style.js'
+import { SummaryWrapper, LineWrapper, DollarIconWrapper, ButtonCA, ButtonTT } from './style.js'
 
 class Summary extends React.Component {
   constructor(props) {
