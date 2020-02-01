@@ -7,14 +7,18 @@ import styled from 'styled-components';
 
 const hControl = 55; // variable to controll height of navigation bar
 
+// div to Contain Everything
+const Container = styled.div`
+  box-sizing: border-box;
+  border-bottom: 1px solid #D1D1D1;
+  width: 500px;
+`;
+
 // div to hide horizontal scroll bar of navigation bar
 const ContainerToHideScroll = styled.div`
-  width: 468px;
   height: ${hControl}px;
   overflow: hidden;
   margin: 0px 10px;
-  border-top: 1px solid #D1D1D5;
-  border-bottom: 1px solid #D1D1D5;
 `;
 
 // div that has scroll bar and contain contents' tiles
@@ -73,7 +77,7 @@ const navTitle = [ // array that holds string value of title, used to render tit
 
 const NavigationBar = ({ onview, showarrow, scrollOnClick, slideOnClick, showHideOnSlide }) => {
   const renderVal = (
-    <div style={{ width: '500px' }}>
+    <Container>
       <ContainerToHideScroll>
         <StyledArrow id="leftarrow" 
                       className="material-icons"
@@ -93,7 +97,7 @@ const NavigationBar = ({ onview, showarrow, scrollOnClick, slideOnClick, showHid
           })}
         </StyledNavBar>
       </ContainerToHideScroll>
-    </div>
+    </Container>
   );
 
   return renderVal;
