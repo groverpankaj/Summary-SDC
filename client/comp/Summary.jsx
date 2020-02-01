@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+// import BathPopup from './BathPopup.jsx'
 
 /*
   START: define styled-components
@@ -28,6 +29,16 @@ const SpanBath = styled.span`
   cursor: help;
   padding-bottom: 2px;
   border-bottom: 1px dashed #CCCCCC;
+`;
+
+const BathPopup = styled.div`
+  background-color: #ffffff;
+  text-align: center;
+  padding: 10px 15px;
+  border-radius: 3px;
+  position: absolute;
+  z-index: 1;
+  box-shadow: 1px 2px 5px grey;
 `;
 
 const SpanStatus = styled.span`
@@ -99,47 +110,81 @@ const ButtonTT = styled.button`
 */
 
 class Summary extends React.Component {
-  constructor(props){
-    super(propes);
+  constructor(props) {
+    super(props);
+
     this.property = props.property;
+    
+    // popup related properties and function binding
     this.bathRef = React.createRef();
+    this.bathPopUpRef = React.createRef();
+    this.popupText = Number.isInteger(this.property.ba) ? `${this.property.ba} full bath` : `${this.property.ba - 0.5} full bath + 1 half bath `;
+    this.showPopupOnMouseEnter = this.showPopupOnMouseEnter.bind(this);
+    this.hidePopuOnMouseLeave = this.hidePopuOnMouseLeave.bind(this);
   }
-}
-const Summary = ({ property }) => {
-  const button = this.property.tour_button ? 
+
+  componentDidMount() {
+    // set up location of the popup about bath
+    this.bathPopUpRef.current.innerHTML = this.popupText;
+    const popupPositionLeft = this.bathRef.current.offsetLeft - this.bathPopUpRef.current.clientWidth / 2;
+    const popupPositionTop = this.bathRef.current.offsetTop + this.bathRef.current.offsetHeight + 10;
+    this.bathPopUpRef.current.style.left = `${popupPositionLeft}px`;
+    this.bathPopUpRef.current.style.top = `${popupPositionTop}px`;
+    
+    // hide the popup about bath
+    this.bathPopUpRef.current.innerHTML = '';
+    this.bathPopUpRef.current.style.display = "none";
+  }
+
+  showPopupOnMouseEnter() {
+    this.bathPopUpRef.current.innerHTML = this.popupText;
+    this.bathPopUpRef.current.style.display = "block";
+  }
+
+  hidePopuOnMouseLeave() {
+    this.bathPopUpRef.current.style.display = "none";
+    this.bathPopUpRef.current.innerHTML = '';
+  }
+
+  render() {
+    const button = this.property.tour_button ? 
                 (<form>
                   <ButtonCA type="button" tourButton={true}>Contact Agent</ButtonCA>
                   <ButtonTT type="button">Take a tour</ButtonTT>
                 </form>) :
                 (<form><ButtonCA type="button">Contact Agent</ButtonCA></form>);
 
-  return (
-    <SummaryWrapper className="summary">
-      <LineWrapper className='line1' fontsize='15px'>
-        <SpanPrice id="summary_price">${this.property.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</SpanPrice>
-        <span id="summary_bed"><b>{this.property.bd}</b> bd</span>
-        <Vdivider/>
-        <SpanBath id="summary_bath"><b>{this.property.ba}</b> ba</SpanBath>
-        <Vdivider/>
-        <span id="summary_sqft"><b>{this.property.sqft.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</b> sqft</span>
-      </LineWrapper>
-      <LineWrapper className="line2" id="summary_address" fontsize='14px' style={{fontWeight: 'bold'}}>{this.property.address}</LineWrapper>
-      <LineWrapper className="line3" fontsize='13px'>
-          <SpanStatus id="summary_status" status={this.property.status}><b>{this.property.status}</b></SpanStatus>
+    return (
+      <SummaryWrapper className="summary">
+        <LineWrapper className='line1' fontsize='15px'>
+          <SpanPrice id="summary_price">${this.property.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</SpanPrice>
+          <span id="summary_bed"><b>{this.property.bd}</b> bd</span>
           <Vdivider/>
-          <span id="summary_zestimate">
-            <SpanZestimate>Zestimate<sup>®</sup>: </SpanZestimate>
-            ${this.property.zestimate.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-          </span>
-      </LineWrapper>
-      <LineWrapper className="line4" fontsize='14px' style={{position: 'relative', top: '-10px'}}>
-        <span id="summary_estPayment"><b>Est. payment</b>: ${this.property.estPayment}/mo</span>
-        <DollarIconWrapper><i className="material-icons">monetization_on</i></DollarIconWrapper>
-        <span style={{color: '#0074e4'}}><b>Get pre-qualified</b></span>
-      </LineWrapper>
-      {button}
-    </SummaryWrapper>
-  );
+          <SpanBath id="summary_bath" ref={this.bathRef} onMouseEnter={this.showPopupOnMouseEnter} onMouseLeave={this.hidePopuOnMouseLeave}>
+            <b>{Math.ceil(this.property.ba)}</b> ba
+          </SpanBath>
+          <BathPopup ref={this.bathPopUpRef} />
+          <Vdivider/>
+          <span id="summary_sqft"><b>{this.property.sqft.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</b> sqft</span>
+        </LineWrapper>
+        <LineWrapper className="line2" id="summary_address" fontsize='14px' style={{fontWeight: 'bold'}}>{this.property.address}</LineWrapper>
+        <LineWrapper className="line3" fontsize='13px'>
+            <SpanStatus id="summary_status" status={this.property.status}><b>{this.property.status}</b></SpanStatus>
+            <Vdivider/>
+            <span id="summary_zestimate">
+              <SpanZestimate>Zestimate<sup>®</sup>: </SpanZestimate>
+              ${this.property.zestimate.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+            </span>
+        </LineWrapper>
+        <LineWrapper className="line4" fontsize='14px' style={{position: 'relative', top: '-10px'}}>
+          <span id="summary_estPayment"><b>Est. payment</b>: ${this.property.estPayment}/mo</span>
+          <DollarIconWrapper><i className="material-icons">monetization_on</i></DollarIconWrapper>
+          <span style={{color: '#0074e4'}}><b>Get pre-qualified</b></span>
+        </LineWrapper>
+        {button}
+      </SummaryWrapper>
+    );
+  }
 }
 
 export default Summary;
