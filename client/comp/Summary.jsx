@@ -19,15 +19,15 @@ class Summary extends React.Component {
 
     return (
       <SummaryWrapper className="summary">
-        <SummaryLine1 id="summaryLine1"  price={this.props.house.price} bd={this.props.house.bd} ba={this.props.house.ba} sqft={this.props.house.sqft}/>
+        <SummaryLine1 price={this.props.house.price} bd={this.props.house.bd} ba={this.props.house.ba} sqft={this.props.house.sqft}/>
 
-        <LineWrapper id="summaryLine2" fontsize='14px' style={{fontWeight: 'bold'}}>
+        <LineWrapper id="summaryLine1" fontsize='14px' style={{fontWeight: 'bold'}}>
           <span id="summary_address">{this.props.house.address}</span>
         </LineWrapper>
 
-        <SummaryLine3 id="summaryLine3" ref={this.props.sl3Ref} saleStatus={this.props.house.saleStatus} zestimate={this.props.house.zestimate} />
+        <SummaryLine3 ref={this.props.sl3Ref} saleStatus={this.props.house.saleStatus} zestimate={this.props.house.zestimate} />
 
-        <LineWrapper className="line4" fontsize='14px' style={{position: 'relative', top: '-10px'}}>
+        <LineWrapper className="summaryLine4" fontsize='14px' style={{position: 'relative', top: '-10px'}}>
           <span id="summary_estPayment"><b>Est. payment</b>: ${this.props.house.estPayment}/mo</span>
           <DollarIconWrapper><i className="material-icons">monetization_on</i></DollarIconWrapper>
           <span style={{color: '#0074e4'}}><b>Get pre-qualified</b></span>
