@@ -20,18 +20,18 @@ const NavigationBar = React.forwardRef(
       <Container>
         <ContainerToHideScroll>
           <StyledArrow id="leftarrow" 
-                        className="material-icons"
-                        left="2px"
-                        display={showarrow.left}
-                        onClick={slideOnClick}>
-                        chevron_left
+                      className="material-icons"
+                      left="2px"
+                      display={showarrow.left}
+                      onClick={slideOnClick}>
+            chevron_left
           </StyledArrow>
           <StyledArrow id="rightarrow"
-                        className="material-icons"
-                        left="475px"
-                        display={showarrow.right}
-                        onClick={slideOnClick}>
-                        chevron_right
+                      className="material-icons"
+                      left="490px"
+                      display={showarrow.right}
+                      onClick={slideOnClick}>
+            chevron_right
           </StyledArrow>
           <StyledNavBar id="navbar" onScroll={showHideOnSlide} ref={ref}>
             {Object.keys(onview).map((name, ind) => {
