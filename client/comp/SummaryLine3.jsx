@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import { LineWrapper, Vdivider, SaleStatus, Zestimate } from './style.js'
 import Popup from './ZestimatePopup.jsx';
 
-// const Popup = 'Working on dividing';
-
 class SummaryLine3 extends React.Component {
   constructor(props){
     super(props);
@@ -34,11 +32,17 @@ class SummaryLine3 extends React.Component {
 
     // make other parts of app to close popup when clicked;
     const target = document.getElementById('app');
-    target.addEventListener('click', this.hidePopupOnClick, {once: true});
+    target.addEventListener('click', this.hidePopupOnClick);
   }
 
-  hidePopupOnClick() {
-    this.popupRef.current.hidden = true;
+  hidePopupOnClick(e) {
+    if (e.target.id === "closeIcon") { // close button clicked
+      this.popupRef.current.hidden = true;  
+    } else if (this.popupRef.current.contains(e.target)) { // popup other than close button clicked
+      /*  do not hide by doing nothing  */
+    } else { // outside of popup clicked
+      this.popupRef.current.hidden = true;  
+    }    
   }
 
   render() {
