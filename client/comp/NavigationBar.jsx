@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Container, ContainerToHideScroll, StyledNavBar, StyledArrow, NavTitle } from './style.js'
 
 const navTitle = [ // array that holds string value of title, used to render titles on navigation bar with the use of map
@@ -43,5 +44,13 @@ const NavigationBar = React.forwardRef(
     );
   }
 );
+
+NavigationBar.propTypes = {
+  onview: PropTypes.object,
+  showarrow: PropTypes.object,
+  scrollOnClick: PropTypes.func,
+  slideOnClick: PropTypes.func,
+  showHideOnSlide: PropTypes.func,
+}
 
 export default NavigationBar;
