@@ -17,7 +17,7 @@ export const SummaryWrapper = styled.div`
   border-bottom: 1px solid #D1D1D1;
 `;
 
-// Common
+/*  Common  */
 export const LineWrapper = styled.div`
   padding: 2px 0px;
   font-size: ${props => props.fontsize};
@@ -123,7 +123,13 @@ export const ButtonTT = styled.button`
     color: #006aff;
   }
 `
-
 /*
   END: Style for Summary module
 */
+
+/*  Detail Panel  */
+export const DP = styled.div`
+  height: 300px;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+`;
