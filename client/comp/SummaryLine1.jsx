@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { LineWrapper, Price, SpanBath, Vdivider, BathPopup } from './style.js'
+import { LineWrapper, Vdivider, Price, Bath, BathPopup } from './style.js'
 
 class SummaryLine1 extends React.Component {
   constructor(props){
@@ -54,21 +54,21 @@ class SummaryLine1 extends React.Component {
 
         <Vdivider/>
 
-        <SpanBath id="summary_bath" ref={this.bathRef} onMouseEnter={this.showPopupOnMouseEnter} onMouseLeave={this.hidePopuOnMouseLeave}>
+        <Bath id="summary_bath" ref={this.bathRef} onMouseEnter={this.showPopupOnMouseEnter} onMouseLeave={this.hidePopuOnMouseLeave}>
           <b>{Math.ceil(this.props.ba)}</b> ba
-        </SpanBath>
+        </Bath>
 
         <BathPopup ref={this.bathPopUpRef} />
 
         <Vdivider/>
-        
+
         <span id="summary_sqft"><b>{this.props.sqft.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</b> sqft</span>
       </LineWrapper>
     );
   }
 }
 
-
+// prop type check up
 SummaryLine1.propTypes = {
   price: PropTypes.number,
   bd: PropTypes.number,

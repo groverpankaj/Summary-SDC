@@ -22,14 +22,14 @@ export const Vdivider = styled.span`
   border-right: 1px solid #d1d1d5;
 `;
 
-// Line 1
+/*  Summary Line 1  */
 export const Price = styled.span`
   font-size: 28px;
   font-weight: bold;
   padding-right: 20px;
 `;
 
-export const SpanBath = styled.span`
+export const Bath = styled.span`
   cursor: help;
   padding-bottom: 2px;
   border-bottom: 1px dashed #CCCCCC;
@@ -55,7 +55,8 @@ export const BathPopup = styled.div`
   }
 `;
 
-export const SpanStatus = styled.span`
+/*  Summary Line 3  */
+export const SaleStatus = styled.span`
   &::before{
     display:inline-block;
     margin-right: 8px;
@@ -68,7 +69,8 @@ export const SpanStatus = styled.span`
   }
 `;
 
-export const SpanZestimate = styled.span`
+/*  Summary Line 4  */
+export const Zestimate = styled.span`
   cursor: pointer;
   padding-bottom: 2px;
   border-bottom: 1px dashed #CCCCCC;
@@ -83,6 +85,7 @@ export const DollarIconWrapper = styled.span`
   color: #0074e4;
 `;
 
+/*  Summary Buttons 3  */
 export const ButtonCA = styled.button`
   margin-right: ${props => props.tourButton ? '8px' : '0px'};
   border: 1px solid #aaaaaa;

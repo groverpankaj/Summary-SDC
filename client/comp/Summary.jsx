@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import SummaryLine1 from './SummaryLine1.jsx'
-import { SummaryWrapper, LineWrapper, SaleStatus, Vdivider, SpanZestimate, DollarIconWrapper, ButtonCA, ButtonTT} from './style.js'
+import { SummaryWrapper, LineWrapper, Vdivider, SaleStatus, Zestimate, DollarIconWrapper, ButtonCA, ButtonTT} from './style.js'
 
 class Summary extends React.Component {
   constructor(props) {
@@ -26,7 +26,7 @@ class Summary extends React.Component {
             <SaleStatus id="summary_status" status={this.props.house.saleStatus}><b>{this.props.house.saleStatus}</b></SaleStatus>
             <Vdivider/>
             <span id="summary_zestimate">
-              <SpanZestimate>Zestimate<sup>®</sup>: </SpanZestimate>
+              <Zestimate>Zestimate<sup>®</sup>: </Zestimate>
               ${this.props.house.zestimate.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
             </span>
         </LineWrapper>
