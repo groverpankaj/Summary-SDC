@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import SummaryLine1 from './SummaryLine1.jsx'
-import { SummaryWrapper, LineWrapper, SpanStatus, Vdivider, SpanZestimate, DollarIconWrapper, ButtonCA, ButtonTT} from './style.js'
+import { SummaryWrapper, LineWrapper, SaleStatus, Vdivider, SpanZestimate, DollarIconWrapper, ButtonCA, ButtonTT} from './style.js'
 
 class Summary extends React.Component {
   constructor(props) {
@@ -23,7 +23,7 @@ class Summary extends React.Component {
         <LineWrapper className="summary_line2" id="summary_address" fontsize='14px' style={{fontWeight: 'bold'}}>{this.props.house.address}</LineWrapper>
 
         <LineWrapper className="line3" fontsize='13px'>
-            <SpanStatus id="summary_status" status={this.props.house.status}><b>{this.props.house.status}</b></SpanStatus>
+            <SaleStatus id="summary_status" status={this.props.house.saleStatus}><b>{this.props.house.saleStatus}</b></SaleStatus>
             <Vdivider/>
             <span id="summary_zestimate">
               <SpanZestimate>Zestimate<sup>®</sup>: </SpanZestimate>
