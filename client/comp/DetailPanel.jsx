@@ -6,9 +6,9 @@ import { DP } from './style.js'
 // the position within this panel is referenced in other modules
 
 const DetailPanel = React.forwardRef(
-  function dp({ slideOnScroll }, ref) {
+  function dp({ twoActionsOnScroll }, ref) {
     return (
-      <DP id="detailpanel" ref={ref} onScroll={slideOnScroll}>
+      <DP id="detailpanel" ref={ref} onScroll={twoActionsOnScroll}>
         <div className="ov">
           <h3>Overview</h3>
             some detail
@@ -406,7 +406,7 @@ const DetailPanel = React.forwardRef(
 )
 
 DetailPanel.propTypes = {
-  slideOnScroll: PropTypes.func
+  twoActionsOnScroll: PropTypes.func
 }
 
 export default DetailPanel;

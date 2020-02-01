@@ -34,15 +34,24 @@ class App extends React.Component {
     this.navbarRef = React.createRef();
     this.dpRef = React.createRef();
 
+    // variables for dynamically rendering summary line 3
+    this.sl3Height = 0;
+
     // bind functions
     this.scrollOnClick = this.scrollOnClick.bind(this);
     this.slideOnClick = this.slideOnClick.bind(this);
-    this.slideOnScroll = this.slideOnScroll.bind(this);
     this.showHideOnSlide = this.showHideOnSlide.bind(this);
+    this.twoActionsOnScroll = this.twoActionsOnScroll.bind(this);
+    this.slideOnScroll = this.slideOnScroll.bind(this);
+    this.renderOnScroll = this.renderOnScroll.bind(this);
+  }
+
+  componentDidMount() {
+    this.sl3Height = this.sl3Ref.current.scrollHeight;
   }
 
   /*
-    START: Define Event Listner
+    START: Event Listners
     
     slide implies horizontal scroll within navigation bar
     scroll implies vertical scroll within detail panel
@@ -80,6 +89,10 @@ class App extends React.Component {
     })
   }
 
+  twoActionsOnScroll(e) {
+    this.slideOnScroll(e);
+    this.renderOnScroll(e);
+  }
 
   slideOnScroll(e) { //to slide navigation bar when user scroll through the detail panel
     // set react refs as variable
@@ -117,6 +130,19 @@ class App extends React.Component {
       }
     }
   }
+
+  renderOnScroll(e) {
+    const standard = this.dpRef.current.firstChild.clientHeight * 0.6;
+    const where = e.target.scrollTop;
+
+    // compute proportion 
+    const p = (where < standard) ? (where / standard) : 1;
+
+    // where = scrollTop at 0 => full height & 0 opacity
+    // where = scrollTop at standard or more => 0 height & 1 opacity
+    this.sl3Ref.current.style.height = `${this.sl3Height * (1 - p)}px`;
+    this.sl3Ref.current.style.opacity = (1 - p);
+  }
   /*
     END: Define Event Listner
   */
@@ -131,7 +157,7 @@ class App extends React.Component {
                       scrollOnClick={this.scrollOnClick}
                       slideOnClick={this.slideOnClick}
                       showHideOnSlide={this.showHideOnSlide} />
-        <DetailPanel ref={this.dpRef} slideOnScroll={this.slideOnScroll} />
+        <DetailPanel ref={this.dpRef} twoActionsOnScroll={this.twoActionsOnScroll} />
       </StyledApp>
     );
   }
