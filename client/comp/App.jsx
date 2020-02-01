@@ -49,8 +49,8 @@ class App extends React.Component {
     const clicked = e.target.classList[2]; // get assgined classname of clicked one 
 
     // compute how much needed to be scrolled down within the panel
-    const scrollTopValue = $(`div.${clicked}`)[0].offsetTop - $('#detailpanel')[0].offsetTop;
-    $('#detailpanel')[0].scrollTop = scrollTopValue  // scroll down the panel
+    const scrollAmount = $(`div.${clicked}`)[0].offsetTop - $('#detailpanel')[0].offsetTop;
+    $('#detailpanel')[0].scrollTop = scrollAmount  // scroll down the panel
 
     // scrollIntoView does not work for some reason
     // $(`div.${clicked}`)[0].scrollIntoView();
@@ -112,7 +112,7 @@ class App extends React.Component {
   render() {
     return (
       <StyledApp>
-        <Summary property={sample[0]} />
+        <Summary house={sample[0]} />
         <NavigationBar onview={this.state.onview}
                         showarrow={this.state.showarrow}
                         scrollOnClick={this.scrollOnClick}

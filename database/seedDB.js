@@ -36,7 +36,7 @@ var saveNData = (n) => { //helper function for seeding n data into database
         address: faker.fake("{{address.streetAddress}} {{address.secondaryAddress}}, {{address.city}}, {{address.stateAbbr}}") + " " + faker.fake("{{address.zipCode}}").substring(0,5),
         status: (randomVal < 5/6) ? 'For sale' :
                 (randomVal < 11/12) ? 'For rent' : 'Sold',
-        tour_button: (Math.random() < 0.85),
+        tourButton: (Math.random() < 0.85),
         zestimate : faker.fake("{{commerce.price}}"),   
         estPayment: faker.fake("{{commerce.price}}")    
       });  
