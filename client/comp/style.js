@@ -75,7 +75,6 @@ export const SaleStatus = styled.span`
   }
 `;
 
-/*  Summary Line 4  */
 export const Zestimate = styled.span`
   cursor: pointer;
   padding-bottom: 2px;
@@ -83,6 +82,56 @@ export const Zestimate = styled.span`
   font-weight: bold;
 `;
 
+/* Line 3 - Style within Popups  */
+export const ZestimatePopup = styled.div`
+  position: absolute;
+  top: 0px;
+  z-index: 1;
+  padding: 0px 8px 5px 6px;
+  border-radius: 6px;
+  background-color: #3f3f47;
+  color: #ffffff;
+
+  &::before{
+    content: "";
+    position: absolute;
+    top: 30%;
+    left: -20px;
+    border-width: 10px;
+    border-style: solid;
+    border-color: transparent #3f3f47 transparent transparent ;
+  }
+`;
+
+export const LinkInPopup = styled.a`
+  &:link{
+    color: #0662E6;
+    text-decoration: none;
+  }
+
+  &:visited{
+    color: #6F43C0;
+  }
+
+  &:hover{
+    color: #5389C3;
+    text-decoration: underline;
+  }
+`;
+// (link and visited), hover, active
+
+export const CloseButton = styled.i`
+  position: absolute;
+  right: 0px;
+  top: 0px;
+
+  &:hover{
+    cursor: pointer;
+    color: #5389C3;
+  }
+`;
+
+/*  Summary Line 4  */
 export const DollarIconWrapper = styled.span`
   position: relative;
   top: 7px;
@@ -91,7 +140,14 @@ export const DollarIconWrapper = styled.span`
   color: #0074e4;
 `;
 
-/*  Summary Buttons 3  */
+export const PreQualLink = styled.a`
+  cursor: pointer;
+  color: #0074e4;
+  font-weight: bold;
+  text-decoration: none;
+`;
+
+/*  Summary Buttons  */
 export const ButtonCA = styled.button`
   margin-right: ${props => props.tourButton ? '8px' : '0px'};
   border: 1px solid #aaaaaa;
@@ -105,7 +161,7 @@ export const ButtonCA = styled.button`
   &:hover{
     border-color: #3f8fff;
   }
-`
+`;
 
 export const ButtonTT = styled.button`
   margin-left: 8x;
@@ -122,7 +178,7 @@ export const ButtonTT = styled.button`
     background-color: #ffffff;
     color: #006aff;
   }
-`
+`;
 /*
   END: Style for Summary module
 */
