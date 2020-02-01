@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-// import BathPopup from './BathPopup.jsx'
+import BathPopup from './BathPopup.jsx'
 
 /*
   START: define styled-components
@@ -30,16 +30,6 @@ const SpanBath = styled.span`
   cursor: help;
   padding-bottom: 2px;
   border-bottom: 1px dashed #CCCCCC;
-`;
-
-const BathPopup = styled.div`
-  background-color: #ffffff;
-  text-align: center;
-  padding: 10px 15px;
-  border-radius: 3px;
-  position: absolute;
-  z-index: 1;
-  box-shadow: 1px 2px 5px grey;
 `;
 
 const SpanStatus = styled.span`
@@ -115,7 +105,7 @@ class Summary extends React.Component {
     super(props);
 
     this.property = props.property;
-    
+
     // popup related properties and function binding
     this.bathRef = React.createRef();
     this.bathPopUpRef = React.createRef();
