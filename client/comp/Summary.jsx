@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import SummaryLine1 from './SummaryLine1.jsx'
-import { SummaryWrapper, LineWrapper, Vdivider, SaleStatus, Zestimate, DollarIconWrapper, ButtonCA, ButtonTT} from './style.js'
+import SummaryLine3 from './SummaryLine3.jsx'
+import { SummaryWrapper, LineWrapper, Vdivider, SaleStatus, Zestimate, DollarIconWrapper, ButtonCA, ButtonTT } from './style.js'
 
 class Summary extends React.Component {
   constructor(props) {
@@ -18,18 +19,14 @@ class Summary extends React.Component {
 
     return (
       <SummaryWrapper className="summary">
-        <SummaryLine1 id="summary_line1" price={this.props.house.price} bd={this.props.house.bd} ba={this.props.house.ba} sqft={this.props.house.sqft}/>
+        <SummaryLine1 id="summaryLine1"  price={this.props.house.price} bd={this.props.house.bd} ba={this.props.house.ba} sqft={this.props.house.sqft}/>
 
-        <LineWrapper className="summary_line2" id="summary_address" fontsize='14px' style={{fontWeight: 'bold'}}>{this.props.house.address}</LineWrapper>
-
-        <LineWrapper className="line3" fontsize='13px'>
-            <SaleStatus id="summary_status" status={this.props.house.saleStatus}><b>{this.props.house.saleStatus}</b></SaleStatus>
-            <Vdivider/>
-            <span id="summary_zestimate">
-              <Zestimate>Zestimate<sup>®</sup>: </Zestimate>
-              ${this.props.house.zestimate.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-            </span>
+        <LineWrapper id="summaryLine2" fontsize='14px' style={{fontWeight: 'bold'}}>
+          <span id="summary_address">{this.props.house.address}</span>
         </LineWrapper>
+
+        <SummaryLine3 id="summaryLine3" saleStatus={this.props.house.saleStatus} zestimate={this.props.house.zestimate}/>
+
         <LineWrapper className="line4" fontsize='14px' style={{position: 'relative', top: '-10px'}}>
           <span id="summary_estPayment"><b>Est. payment</b>: ${this.props.house.estPayment}/mo</span>
           <DollarIconWrapper><i className="material-icons">monetization_on</i></DollarIconWrapper>
@@ -42,7 +39,7 @@ class Summary extends React.Component {
 }
 
 Summary.propTypes = {
-  property: PropTypes.object
+  house: PropTypes.object
 }
 
 export default Summary;

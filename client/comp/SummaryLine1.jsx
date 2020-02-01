@@ -48,7 +48,7 @@ class SummaryLine1 extends React.Component {
   render() {
     return (
       <LineWrapper id='line1' fontsize='15px'>
-        <Price>${this.props.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</Price>
+        <Price id="summary_price">${this.props.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</Price>
 
         <span><b>{this.props.bd}</b> bd</span>
 
