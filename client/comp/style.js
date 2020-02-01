@@ -1,5 +1,11 @@
 import styled from 'styled-components';
 
+/*  App  */
+export const StyledApp = styled.div`
+  font-family: 'Open Sans', sans-serif;
+  overflow: hidden;
+`;
+
 /*
   START: Style for Summary module
 */
