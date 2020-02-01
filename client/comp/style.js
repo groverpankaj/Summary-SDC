@@ -127,6 +127,66 @@ export const ButtonTT = styled.button`
   END: Style for Summary module
 */
 
+/*
+  START: Style for Navigation Bar
+*/
+
+const hControl = 55; // variable to controll height of navigation bar
+
+//  Container for all subparts of Navigation Bar
+export const Container = styled.div`
+  box-sizing: border-box;
+  border-bottom: 1px solid #D1D1D1;
+  width: 500px;
+`;
+
+// div to hide horizontal scroll bar of navigation bar
+export const ContainerToHideScroll = styled.div`
+  height: ${hControl}px;
+  overflow: hidden;
+  margin: 0px 10px;
+`;
+
+// div that has scroll bar and contain contents' tiles
+export const StyledNavBar = styled.div`
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  width: 100%;
+  height: ${hControl+15}px;
+  margin: 0px;
+  scroll-behavior: smooth;
+  font-size: 85%
+`;
+
+export const StyledArrow = styled.i`
+  position: absolute;
+  zIndex: 1;
+  color: #006aff;
+  background-color: white;
+  padding-top: 12px;
+  font-size: 36px;
+  cursor: pointer;
+`;
+
+// span that holds contents' title string
+export const NavTitle = styled.span`
+  flex-shrink: 0;
+  margin: 0px;
+  padding: ${hControl/3}px 15px 3px 15px;
+  text-align: center;
+  cursor: pointer;
+  ${props => (props.onview ? `color: #006aff;
+                              border-bottom: 3px solid #006aff;`
+                            :`&:hover {
+                              color: #cfe6fd;
+                              }`)
+  }
+`;
+/*
+  END: Style for Navigation Bar
+*/
+
 /*  Detail Panel  */
 export const DP = styled.div`
   height: 300px;
