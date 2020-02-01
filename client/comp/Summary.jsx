@@ -98,8 +98,15 @@ const ButtonTT = styled.button`
   END: define styled-components
 */
 
+class Summary extends React.Component {
+  constructor(props){
+    super(propes);
+    this.property = props.property;
+    this.bathRef = React.createRef();
+  }
+}
 const Summary = ({ property }) => {
-  const button = property.tour_button ? 
+  const button = this.property.tour_button ? 
                 (<form>
                   <ButtonCA type="button" tourButton={true}>Contact Agent</ButtonCA>
                   <ButtonTT type="button">Take a tour</ButtonTT>
@@ -109,24 +116,24 @@ const Summary = ({ property }) => {
   return (
     <SummaryWrapper className="summary">
       <LineWrapper className='line1' fontsize='15px'>
-        <SpanPrice id="summary_price">${property.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</SpanPrice>
-        <span id="summary_bed"><b>{property.bd}</b> bd</span>
+        <SpanPrice id="summary_price">${this.property.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</SpanPrice>
+        <span id="summary_bed"><b>{this.property.bd}</b> bd</span>
         <Vdivider/>
-        <SpanBath id="summary_bath"><b>{property.ba}</b> ba</SpanBath>
+        <SpanBath id="summary_bath"><b>{this.property.ba}</b> ba</SpanBath>
         <Vdivider/>
-        <span id="summary_sqft"><b>{property.sqft.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</b> sqft</span>
+        <span id="summary_sqft"><b>{this.property.sqft.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</b> sqft</span>
       </LineWrapper>
-      <LineWrapper className="line2" id="summary_address" fontsize='14px' style={{fontWeight: 'bold'}}>{property.address}</LineWrapper>
+      <LineWrapper className="line2" id="summary_address" fontsize='14px' style={{fontWeight: 'bold'}}>{this.property.address}</LineWrapper>
       <LineWrapper className="line3" fontsize='13px'>
-          <SpanStatus id="summary_status" status={property.status}><b>{property.status}</b></SpanStatus>
+          <SpanStatus id="summary_status" status={this.property.status}><b>{this.property.status}</b></SpanStatus>
           <Vdivider/>
           <span id="summary_zestimate">
             <SpanZestimate>Zestimate<sup>®</sup>: </SpanZestimate>
-            ${property.zestimate.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+            ${this.property.zestimate.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
           </span>
       </LineWrapper>
       <LineWrapper className="line4" fontsize='14px' style={{position: 'relative', top: '-10px'}}>
-        <span id="summary_estPayment"><b>Est. payment</b>: ${property.estPayment}/mo</span>
+        <span id="summary_estPayment"><b>Est. payment</b>: ${this.property.estPayment}/mo</span>
         <DollarIconWrapper><i className="material-icons">monetization_on</i></DollarIconWrapper>
         <span style={{color: '#0074e4'}}><b>Get pre-qualified</b></span>
       </LineWrapper>
