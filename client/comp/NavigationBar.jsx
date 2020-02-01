@@ -21,13 +21,15 @@ const NavigationBar = React.forwardRef(
         <ContainerToHideScroll>
           <StyledArrow id="leftarrow" 
                         className="material-icons"
-                        style={{left: '2px', visibility: `${showarrow.left}`}}
+                        left="2px"
+                        display={showarrow.left}
                         onClick={slideOnClick}>
                         chevron_left
           </StyledArrow>
           <StyledArrow id="rightarrow"
                         className="material-icons"
-                        style={{ left: '475px', visibility: `${showarrow.right}`}}
+                        left="475px"
+                        display={showarrow.right}
                         onClick={slideOnClick}>
                         chevron_right
           </StyledArrow>
