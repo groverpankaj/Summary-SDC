@@ -6,12 +6,9 @@ class SummaryLine1 extends React.Component {
   constructor(props){
     super(props);
 
-    // Refernces related to Popup
-    this.bathRef = React.createRef();
-    this.bathPopUpRef = React.createRef();
-
-    // Text for Popup
-    this.popupText = Number.isInteger(this.props.ba) ? `${this.props.ba} full bath` : `${this.props.ba - 0.5} full bath + 1 half bath `;
+    // Refernces
+    this.bathRef = React.createRef();       // bath text
+    this.bathPopUpRef = React.createRef();  // popup 
 
     // bind function about Popup
     this.showPopupOnMouseEnter = this.showPopupOnMouseEnter.bind(this);
@@ -19,9 +16,6 @@ class SummaryLine1 extends React.Component {
   }
 
   componentDidMount() {
-    // populate the bath popup with text for computation for location
-    this.bathPopUpRef.current.innerHTML = this.popupText;
-
     // compute left, top value where the bath popup appear
     const popupPositionLeft = this.bathRef.current.offsetLeft - this.bathPopUpRef.current.clientWidth / 2;
     const popupPositionTop = this.bathRef.current.offsetTop + this.bathRef.current.offsetHeight + 10;
@@ -30,25 +24,22 @@ class SummaryLine1 extends React.Component {
     this.bathPopUpRef.current.style.left = `${popupPositionLeft}px`;
     this.bathPopUpRef.current.style.top = `${popupPositionTop}px`;
     
-    // hide the bath popup and delete populated text
-    this.bathPopUpRef.current.innerHTML = '';
-    this.bathPopUpRef.current.style.display = "none";
+    // hide the bath popup
+    this.bathPopUpRef.current.hidden = true;
   }
 
   showPopupOnMouseEnter() {
-    this.bathPopUpRef.current.innerHTML = this.popupText;
-    this.bathPopUpRef.current.style.display = "block";
+    this.bathPopUpRef.current.hidden = false;
   }
 
   hidePopuOnMouseLeave() {
-    this.bathPopUpRef.current.style.display = "none";
-    this.bathPopUpRef.current.innerHTML = '';
+    this.bathPopUpRef.current.hidden = true;
   }
 
   render() {
     return (
-      <LineWrapper id='line1' fontsize='15px'>
-        <Price>${this.props.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</Price>
+      <LineWrapper id="summaryLine1" fontsize='15px'>
+        <Price id="summary_price">${this.props.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</Price>
 
         <span><b>{this.props.bd}</b> bd</span>
 
@@ -58,7 +49,9 @@ class SummaryLine1 extends React.Component {
           <b>{Math.ceil(this.props.ba)}</b> ba
         </Bath>
 
-        <BathPopup ref={this.bathPopUpRef} />
+        <BathPopup ref={this.bathPopUpRef}>
+          {Number.isInteger(this.props.ba) ? `${this.props.ba} full bath` : `${this.props.ba - 0.5} full bath + 1 half bath `}
+        </BathPopup>
 
         <Vdivider/>
 

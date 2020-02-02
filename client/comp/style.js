@@ -1,5 +1,11 @@
 import styled from 'styled-components';
 
+/*  App  */
+export const StyledApp = styled.div`
+  font-family: 'Open Sans', sans-serif;
+  overflow: hidden;
+`;
+
 /*
   START: Style for Summary module
 */
@@ -11,7 +17,7 @@ export const SummaryWrapper = styled.div`
   border-bottom: 1px solid #D1D1D1;
 `;
 
-// Common
+/*  Common  */
 export const LineWrapper = styled.div`
   padding: 2px 0px;
   font-size: ${props => props.fontsize};
@@ -69,7 +75,6 @@ export const SaleStatus = styled.span`
   }
 `;
 
-/*  Summary Line 4  */
 export const Zestimate = styled.span`
   cursor: pointer;
   padding-bottom: 2px;
@@ -77,6 +82,67 @@ export const Zestimate = styled.span`
   font-weight: bold;
 `;
 
+/* Line 3 - Style within Popups  */
+export const ZestimatePopup = styled.div`
+  position: absolute;
+  top: 0px;
+  z-index: 1;
+  padding: 0px 8px 5px 6px;
+  border-radius: 6px;
+  background-color: #3f3f47;
+  color: #ffffff;
+
+  &::before{
+    content: "";
+    position: absolute;
+    top: 30%;
+    left: -20px;
+    border-width: 10px;
+    border-style: solid;
+    border-color: transparent #3f3f47 transparent transparent ;
+  }
+`;
+
+export const LinkInPopup = styled.a`
+  &:link{
+    color: #0662E6;
+    text-decoration: none;
+  }
+
+  &:visited{
+    color: #6F43C0;
+  }
+
+  &:hover{
+    color: #5389C3;
+    text-decoration: underline;
+  }
+`;
+// (link and visited), hover, active
+
+export const CloseButton = styled.i`
+  position: absolute;
+  right: 0px;
+  top: 0px;
+
+  &:hover{
+    cursor: pointer;
+    color: #5389C3;
+  }
+`;
+
+export const PopupIconLineI = styled.i`
+  display: inline-block;
+
+  width: 10%;
+`;
+
+export const PopupIconLineT = styled.span`
+  display: inline-block;
+  width: 40%;
+`;
+
+/*  Summary Line 4  */
 export const DollarIconWrapper = styled.span`
   position: relative;
   top: 7px;
@@ -85,7 +151,14 @@ export const DollarIconWrapper = styled.span`
   color: #0074e4;
 `;
 
-/*  Summary Buttons 3  */
+export const PreQualLink = styled.a`
+  cursor: pointer;
+  color: #0074e4;
+  font-weight: bold;
+  text-decoration: none;
+`;
+
+/*  Summary Buttons  */
 export const ButtonCA = styled.button`
   margin-right: ${props => props.tourButton ? '8px' : '0px'};
   border: 1px solid #aaaaaa;
@@ -99,7 +172,7 @@ export const ButtonCA = styled.button`
   &:hover{
     border-color: #3f8fff;
   }
-`
+`;
 
 export const ButtonTT = styled.button`
   margin-left: 8x;
@@ -116,8 +189,75 @@ export const ButtonTT = styled.button`
     background-color: #ffffff;
     color: #006aff;
   }
-`
-
+`;
 /*
   END: Style for Summary module
 */
+
+/*
+  START: Style for Navigation Bar
+*/
+
+const hControl = 55; // variable to controll height of navigation bar
+
+//  Container for all subparts of Navigation Bar
+export const Container = styled.div`
+  box-sizing: border-box;
+  border-bottom: 1px solid #D1D1D1;
+  width: 500px;
+`;
+
+// div to hide horizontal scroll bar of navigation bar
+export const ContainerToHideScroll = styled.div`
+  height: ${hControl}px;
+  overflow: hidden;
+  margin: 0px 10px;
+`;
+
+// div that has scroll bar and contain contents' tiles
+export const StyledNavBar = styled.div`
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  width: 100%;
+  height: ${hControl+15}px;
+  margin: 0px;
+  scroll-behavior: smooth;
+  font-size: 85%
+`;
+
+export const StyledArrow = styled.i`
+  position: absolute;
+  left: ${props => props.left};
+  zIndex: 1;
+  color: #006aff;
+  background-color: white;
+  padding-top: 17px;
+  font-size: 24px;
+  cursor: pointer;
+`;
+
+// span that holds contents' title string
+export const NavTitle = styled.span`
+  flex-shrink: 0;
+  margin: 0px;
+  padding: ${hControl/3}px 15px 3px 15px;
+  text-align: center;
+  cursor: pointer;
+  ${props => (props.onview ? `color: #006aff;
+                              border-bottom: 3px solid #006aff;`
+                            :`&:hover {
+                              color: #cfe6fd;
+                              }`)
+  }
+`;
+/*
+  END: Style for Navigation Bar
+*/
+
+/*  Detail Panel  */
+export const DP = styled.div`
+  height: 300px;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+`;

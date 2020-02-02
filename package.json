@@ -27,7 +27,6 @@
   "dependencies": {
     "express": "^4.17.1",
     "faker": "^4.1.0",
-    "jquery": "^3.4.1",
     "material-design-icons": "^3.0.1",
     "mongoose": "^5.8.9",
     "prop-types": "^15.7.2",
