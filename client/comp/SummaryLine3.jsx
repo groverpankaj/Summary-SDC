@@ -37,7 +37,7 @@ class SummaryLine3 extends React.Component {
   }
 
   hidePopupOnClick(e) {
-    if (e.target.id === "closeIcon") { // close button clicked
+    if (e.target.classList[3] === "closeIcon") { // close button clicked
       this.popupRef.current.hidden = true;  
     } else if (this.popupRef.current.contains(e.target)) { // popup other than close button clicked
       // do not hide, but make app part clickable again
@@ -45,7 +45,7 @@ class SummaryLine3 extends React.Component {
       target.addEventListener('click', this.hidePopupOnClick, {once: true});
     } else { // outside of popup clicked
       this.popupRef.current.hidden = true;  
-    }    
+    }
   }
 
   render() {
