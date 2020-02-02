@@ -7,8 +7,9 @@ class SummaryLine3 extends React.Component {
   constructor(props){
     super(props);
 
-    this.zestRef = React.createRef();
-    this.popupRef = React.createRef();
+    // References
+    this.zestRef = React.createRef();   // zestimate text
+    this.popupRef = React.createRef();  // popup
 
     this.showPopupOnClick = this.showPopupOnClick.bind(this);
     this.hidePopupOnClick = this.hidePopupOnClick.bind(this);
@@ -32,14 +33,16 @@ class SummaryLine3 extends React.Component {
 
     // make other parts of app to close popup when clicked;
     const target = document.getElementById('app');
-    target.addEventListener('click', this.hidePopupOnClick);
+    target.addEventListener('click', this.hidePopupOnClick, {once: true});
   }
 
   hidePopupOnClick(e) {
     if (e.target.id === "closeIcon") { // close button clicked
       this.popupRef.current.hidden = true;  
     } else if (this.popupRef.current.contains(e.target)) { // popup other than close button clicked
-      /*  do not hide by doing nothing  */
+      // do not hide, but make app part clickable again
+      const target = document.getElementById('app');
+      target.addEventListener('click', this.hidePopupOnClick, {once: true});
     } else { // outside of popup clicked
       this.popupRef.current.hidden = true;  
     }    

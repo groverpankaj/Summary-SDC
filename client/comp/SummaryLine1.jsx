@@ -6,7 +6,7 @@ class SummaryLine1 extends React.Component {
   constructor(props){
     super(props);
 
-    // Refernces related to Popup
+    // Refernces
     this.bathRef = React.createRef();       // bath text
     this.bathPopUpRef = React.createRef();  // popup 
 
