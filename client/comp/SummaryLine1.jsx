@@ -7,8 +7,8 @@ class SummaryLine1 extends React.Component {
     super(props);
 
     // Refernces related to Popup
-    this.bathRef = React.createRef();
-    this.bathPopUpRef = React.createRef();
+    this.bathRef = React.createRef();       // bath text
+    this.bathPopUpRef = React.createRef();  // popup 
 
     // bind function about Popup
     this.showPopupOnMouseEnter = this.showPopupOnMouseEnter.bind(this);
