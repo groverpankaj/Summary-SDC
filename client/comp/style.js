@@ -131,6 +131,17 @@ export const CloseButton = styled.i`
   }
 `;
 
+export const PopupIconLineI = styled.i`
+  display: inline-block;
+
+  width: 10%;
+`;
+
+export const PopupIconLineT = styled.span`
+  display: inline-block;
+  width: 40%;
+`;
+
 /*  Summary Line 4  */
 export const DollarIconWrapper = styled.span`
   position: relative;
