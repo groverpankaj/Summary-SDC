@@ -159,7 +159,7 @@ export const PreQualLink = styled.a`
 `;
 
 /*  Summary Buttons  */
-export const Grey = styled.div`
+export const GreyOverlay = styled.div`
   position: absolute;
   left: 0px;
   top: 0px;
@@ -200,12 +200,15 @@ export const WhiteButton = styled.button`
 `;
 
 /*  Modal of Summary Buttons  */
+  // height: ${props => innerHeight - parseInt(props.h).substring(0,props.props.h.length-2)}px;
 // common
 export const Modal = styled.div`
   position: absolute;
   z-index: 3;
-  width: ${props => props.w ? props.w : '300px'};
-  height: ${props => props.h ? props.h : '400px'};
+  left: ${props => ((innerWidth - props.w.substring(0,props.w.length-2)) / 2)}px;
+  height: ${props => ((innerWidth - props.h.substring(0,props.h.length-2)) / 2)}px;
+  width: ${props => props.w};
+  height: ${props => props.h};
   padding: 8px 0px;
   border: 1px solid #000000;
   border-radius: 10px;
@@ -215,7 +218,7 @@ export const Modal = styled.div`
 export const ModalCloseButton = styled.i`
   position: relative;
   left: ${props => props.w ? 
-                  (parseInt(props.w.substring(0,props.w.length-2))-24).toString()+'px'
+                  (parseInt(props.w.substring(0,props.w.length-2))-24-8).toString()+'px'
                   : '276px'};
   font-size: 24px;
   color: #535353;
@@ -272,6 +275,7 @@ export const ArrowButton = styled.button`
   width: 12.5%;
   height: 80px;
   background-color: white;
+  cursor: pointer;
   color: ${props => props.canmove ? '#006aff' : '#bfd9fe'};
   border: none;
 `;
@@ -284,6 +288,7 @@ export const DateButton = styled.button`
   background-color: ${props => props.clicked? '#f2faff': '#ffffff'};
   border: ${props => props.clicked? '2px solid #006aff': '1px solid #a7A7a7'};
   border-radius: 3px;
+  cursor: pointer;
   color: #006aff;
 
   &:hover{
@@ -306,6 +311,7 @@ export const StyledSelect = styled.select`
   margin-bottom: 20px;
   margin-left: 10%;
   width: 80%;
+  cursor: pointer;
 `;
 /*
   END: Style for Summary module

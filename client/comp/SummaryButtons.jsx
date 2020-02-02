@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import ModalCA from './ModalCA.jsx';
 import ModalTT from './ModalTT.jsx';
 // style
-import { Grey, WhiteButton, BlueButton } from './style.jsx'
+import { GreyOverlay, WhiteButton, BlueButton } from './style.jsx'
 
 
 class SummaryButtons extends React.Component {
@@ -14,38 +14,17 @@ class SummaryButtons extends React.Component {
     
     this.state = { modalType: 0 };
 
-    // References
-    this.caRef = React.createRef();   // Contact modal
-    this.ttRef = React.createRef();   // Take a Tour modal
-    this.greyRef = React.createRef();  // div that colors out whole page when modal opens up
-
     this.showModalOnclick = this.showModalOnclick.bind(this);
     this.hideModalOnclick = this.hideModalOnclick.bind(this);
   }
 
-  componentDidMount() {
-    // hide the modal and grey  
-    this.greyRef.current.style.display = 'none';
-    this.caRef.current.hidden = true;
-    this.ttRef.current.hidden = true;
-  }
-
   showModalOnclick(e) {
-    // compute the coverage of grey
-    this.greyRef.current.style.width = `${innerWidth}px`;
-    this.greyRef.current.style.height = `${innerHeight}px`;
-    this.greyRef.current.style.display = 'block';
-
-
-    // decide which modal to show  
-    let modalToShow = e.target.innerHTML.startsWith('C') ? this.caRef.current : this.ttRef.current;
-        
-    //  show modal
-    modalToShow.hidden = false;
+    console.log(e.target)
+    // decide which modal to show 
+    const whichModal = e.target.innerHTML.startsWith('C') ? 1 : 2;
     
-    // set the modal location at center
-    modalToShow.style.left = `${(innerWidth - modalToShow.clientWidth) / 2}px`;
-    modalToShow.style.top = `${(innerHeight - modalToShow.clientHeight) / 2}px`; 
+    //  show modal
+    this.setState ({ modalType: whichModal });
 
     // make other parts of the app clickable
     const target = document.getElementById('app');
@@ -54,17 +33,13 @@ class SummaryButtons extends React.Component {
 
   hideModalOnclick(e) {
     if (e.target.classList[3] === "closeIcon") { // close button clicked
-      this.caRef.current.hidden = true;
-      this.ttRef.current.hidden = true;
-      this.greyRef.current.style.display = 'none';
-    } else if (this.caRef.current.contains(e.target) || this.ttRef.current.contains(e.target)) { // popup other than close button clicked
+      this.setState ({ modalType: 0 });
+    } else if (document.getElementById('summaryModal').contains(e.target)) { // modal other than close button clicked
       // do not hide, but make app part clickable again
       const target = document.getElementById('app');
       target.addEventListener('click', this.hideModalOnclick, {once: true});
     } else { // outside of popup clicked
-      this.caRef.current.hidden = true;
-      this.ttRef.current.hidden = true;
-      this.greyRef.current.style.display = 'none';
+      this.setState ({ modalType: 0 });
     } 
   }
 
@@ -75,13 +50,28 @@ class SummaryButtons extends React.Component {
                     <BlueButton type="button" tourButton onClick={this.showModalOnclick}>Take a tour</BlueButton>
                   </form>) :
                   (<form><BlueButton type="button" onClick={this.showModalOnclick}>Contact Agent</BlueButton></form>);
+    let modal;
+    switch(this.state.modalType) {
+      case 1: 
+        modal = (<span>
+                  <ModalCA hideModalOnclick={this.hideModalOnclick}/>
+                  <GreyOverlay id="greyOverlay"/>
+                </span>);
+        break;
+      case 2:
+        modal = (<span>
+                  <ModalTT hideModalOnclick={this.hideModalOnclick}/>
+                  <GreyOverlay id="greyOverlay" style={{width: innerWidth, height: innerHeight}}/>
+                </span>);
+        break;
+      default:
+        modal = <div></div>;
+    }
 
     return (
       <div id="summaryButtons">
-        <Grey ref={this.greyRef} />
         {buttons}
-        <ModalCA caRef={this.caRef}/>
-        <ModalTT ttRef={this.ttRef} hideModalOnclick={this.hideModalOnclick}/>
+        {modal}
       </div>
     );
   }

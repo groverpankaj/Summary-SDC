@@ -1,8 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Modal, ModalCloseButton, ModalTitle, ArrowButton, DateButton, DateButtonDay, DateButtonDate, StyledSelect, BlueButton } from './style.jsx'
 
 
-const availableTime = [
+const availableTime = [ // time text to be shown in select element
   '9:00 AM',
   '9:30 AM',
   '10:00 AM',
@@ -107,9 +108,9 @@ class ModalTT extends React.Component {
 
   render() {
     return (
-      <Modal w='400px' h='280px' ref={this.props.ttRef}>
+      <Modal id='summaryModal' w='400px' h='280px'>
         <ModalCloseButton className='material-icons closeIcon' w='400px' onClick={this.props.hideModalOnclick}>close</ModalCloseButton>
-        <ModalTitle>Take a Tour!</ModalTitle>
+        <ModalTitle>Visit this home</ModalTitle>
         <div style={{padding: '0px 20px 20px 20px'}}>
           <div style={{marginRight: '10%', marginLeft: '10%', width: '80%'}}>
             <ArrowButton canmove={this.state.leftArrow} onClick={this.newDatesOnClick}><i className='material-icons'>chevron_left</i></ArrowButton>
@@ -132,6 +133,10 @@ class ModalTT extends React.Component {
       </Modal>
     );
   }
+}
+
+ModalTT.propTypes = {
+  hideModalOnclick: PropTypes.func
 }
 
 export default ModalTT;
