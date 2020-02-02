@@ -191,27 +191,114 @@ export const WhiteButton = styled.button`
   }
 `;
 
-// Modal of Summary Buttons
-export const ModalWrapper = styled.div`
-  width: 500px;
-  height: 500px;
+/*  Modal of Summary Buttons  */
+// common
+export const Modal = styled.div`
+  position: absolute;
+  z-index: 2;
+  width: ${props => props.w ? props.w : '300px'};
+  height: ${props => props.h ? props.h : '400px'};
+  padding: 8px 0px;
   border: 1px solid #000000;
-  border-radius: 3px;
+  border-radius: 10px;
   background-color: #ffffff;
 `;
+
 export const ModalCloseButton = styled.i`
-  position: absolute;
-  right: 0px;
-  top: 0px;
+  position: relative;
+  left: ${props => props.w ? 
+                  (parseInt(props.w.substring(0,props.w.length-2))-24).toString()+'px'
+                  : '276px'};
+  font-size: 24px;
   color: #535353;
 
   &:hover{
     cursor: pointer;
-    background-color: ##F1F1F4;
+    background-color: #f1f1f1;
     border-radius: 50%;
   }
 `;
 
+export const ModalTitle = styled.div`
+  padding-bottom: 15px;
+  width: 100%;
+  border-bottom: 1px solid #f1f1f1;
+  font-size: 16px;
+  fontWeight: bold;
+  text-align: center;
+`;
+
+export const ModalInputWrapper = styled.div`
+  margin-bottom: 10px;
+  border: 1px solid #f1f1f1;
+  height: 30px;
+
+  &:hover{
+    border: 1px solid #3f8fff;
+  }
+  &:focus{
+    border: 1px solid #3f8fff;
+  }
+`;
+
+// Contact Agent 
+export const ModalIcon = styled.i`
+  padding: 5px 6px 0px 5px;
+`;
+
+export const ModalTextInput = styled.input`
+  position: relative;
+  top: -9px;
+  width: 217px;
+  height: 27px;
+  outline: none;
+  border: none;
+`;
+
+
+// Take a Tour
+export const ArrowButton = styled.button`
+  box-sizing: border-box;
+  position: relative;
+  top: 20px;
+  width: 12.5%;
+  height: 80px;
+  background-color: white;
+  color: ${props => props.canmove ? '#006aff' : '#bfd9fe'};
+  border: none;
+`;
+
+export const DateButton = styled.button`
+  margin-right: 2%;
+  margin-left: 2%;
+  width: 21%;
+  height: 85px;
+  background-color: ${props => props.clicked? '#f2faff': '#ffffff'};
+  border: ${props => props.clicked? '2px solid #006aff': '1px solid #a7A7a7'};
+  border-radius: 3px;
+  color: #006aff;
+
+  &:hover{
+    border: ${props => props.clicked? '2px solid #006aff': '1px solid #006aff'};
+  }
+`;
+
+export const DateButtonDay = styled.p`
+  font-size: 14px;
+  font-weight: bold;
+`;
+
+export const DateButtonDate = styled.p`
+  font-size: 12px;
+`;
+
+export const StyledSelect = styled.select`
+  margin-top: 20px;
+  margin-right: 10%;
+  margin-bottom: 20px;
+  margin-left: 10%;
+  width: 80%;
+`;
 /*
   END: Style for Summary module
 */

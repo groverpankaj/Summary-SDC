@@ -11,19 +11,52 @@ import { WhiteButton, BlueButton } from './style.jsx'
 class SummaryButtons extends React.Component {
   constructor(props) {
     super(props);
-
+    
     this.state = { modalType: 0 };
+
+    this.caRef = React.createRef();
+    this.ttRef = React.createRef();
+
     this.showModalOnclick = this.showModalOnclick.bind(this);
+    this.hideModalOnclick = this.hideModalOnclick.bind(this);
+  }
+
+  componentDidMount() {
+    let left = (innerWidth - this.caRef.current.clientWidth) / 2;
+    let top = (innerHeight - this.caRef.current.clientHeight) / 2;
+    this.caRef.current.style.left = `${left}px`;
+    this.caRef.current.style.top = `${top}px`;
+    this.caRef.current.hidden = true;
+    // compute where Take a tour model should apper
+    left = (innerWidth - this.ttRef.current.clientWidth) / 2;
+    top = (innerHeight - this.ttRef.current.clientHeight) / 2;
+    this.ttRef.current.style.left = `${left}px`;
+    this.ttRef.current.style.top = `${top}px`;
+    this.ttRef.current.hidden = true;
   }
 
   showModalOnclick(e) {
     if(e.target.innerHTML.startsWith('C')) {
-      this.setState({ modalType: 1 });
+      this.caRef.current.hidden = false;
     } else {
-      this.setState({ modalType: 2 });
+      this.ttRef.current.hidden = false;
     }
-    // console.log(document);
-    // const body 
+    const target = document.getElementById('app');
+    target.addEventListener('click', this.hideModalOnclick, {once: true});
+  }
+
+  hideModalOnclick(e) {
+    if (e.target.classList[3] === "closeIcon") { // close button clicked
+      this.caRef.current.hidden = true;
+      this.ttRef.current.hidden = true;
+    } else if (this.caRef.current.contains(e.target) || this.ttRef.current.contains(e.target)) { // popup other than close button clicked
+      // do not hide, but make app part clickable again
+      const target = document.getElementById('app');
+      target.addEventListener('click', this.hideModalOnclick, {once: true});
+    } else { // outside of popup clicked
+      this.caRef.current.hidden = true;
+      this.ttRef.current.hidden = true;
+    }
   }
 
   render() {
@@ -34,22 +67,11 @@ class SummaryButtons extends React.Component {
                   </form>) :
                   (<form><BlueButton type="button" onClick={this.showModalOnclick}>Contact Agent</BlueButton></form>);
 
-    let modal = <span></span>;
-    switch(this.state.modalType) {
-      case 1:
-        modal = <ModalCA />;
-        break;
-      case 2:
-        modal = <ModalTT />;
-        break;
-      default:
-        modal = <span></span>;
-    }
-
     return (
       <div id="summaryButtons">
         {buttons}
-        {modal}
+        <ModalCA caRef={this.caRef}/>
+        <ModalTT ttRef={this.ttRef} hideModalOnclick={this.hideModalOnclick}/>
       </div>
     );
   }
