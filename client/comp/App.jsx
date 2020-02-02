@@ -13,7 +13,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showarrow: {left: 'none', right: 'block'},
+      showarrow: {left: false, right: true},
       onview: {
         'ov': true,
         'ff': false,
@@ -80,10 +80,10 @@ class App extends React.Component {
     this.setState((state) => {
       const navbar = this.navbarRef.current;
       // left arrow
-      state.showarrow.left = (navbar.scrollLeft > navbar.firstChild.clientWidth/5) ? 'block' : 'none';
+      state.showarrow.left = (navbar.scrollLeft > navbar.firstChild.clientWidth/5)
       // right arrow
       const maxScroll = navbar.scrollWidth - navbar.clientWidth;
-      state.showarrow.right = (navbar.scrollLeft < maxScroll - navbar.lastChild.clientWidth/5) ? 'block' : 'none';
+      state.showarrow.right = (navbar.scrollLeft < maxScroll - navbar.lastChild.clientWidth/5)
 
       return state;
     })
@@ -110,7 +110,7 @@ class App extends React.Component {
 
         this.setState((state) => {
           for (let key in state.onview) { // chnage rendering option
-              state.onview[key] = (key === navbar.lastChild.classList[2]) ? true : false;
+              state.onview[key] = (key === navbar.lastChild.classList[2]);
           }
           return state;
         });
@@ -120,7 +120,7 @@ class App extends React.Component {
 
           this.setState((state) => { // chnage rendering option by updating state
             for (let key in state.onview) { 
-              state.onview[key] = (key === dp.children[i-1].classList[0]) ? true : false;
+              state.onview[key] = (key === dp.children[i-1].classList[0]);
             }
             return state;
           });

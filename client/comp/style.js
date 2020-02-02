@@ -227,7 +227,6 @@ export const StyledNavBar = styled.div`
 `;
 
 export const StyledArrow = styled.i`
-  display: ${props => props.display};
   position: absolute;
   left: ${props => props.left};
   zIndex: 1;
