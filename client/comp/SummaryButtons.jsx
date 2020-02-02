@@ -1,6 +1,11 @@
+// modules
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ButtonCA, ButtonTT } from './style.js'
+// child elements
+import ModalCA from './ModalCA.jsx';
+import ModalTT from './ModalTT.jsx';
+// style
+import { WhiteButton, BlueButton } from './style.jsx'
 
 
 class SummaryButtons extends React.Component {
@@ -17,31 +22,32 @@ class SummaryButtons extends React.Component {
     } else {
       this.setState({ modalType: 2 });
     }
-    console.log(document);
+    // console.log(document);
     // const body 
   }
 
   render() {
+    let buttons = this.props.tourButton ?
+                  (<form>
+                    <WhiteButton type="button" onClick={this.showModalOnclick}>Contact Agent</WhiteButton>
+                    <BlueButton type="button" tourButton onClick={this.showModalOnclick}>Take a tour</BlueButton>
+                  </form>) :
+                  (<form><BlueButton type="button" onClick={this.showModalOnclick}>Contact Agent</BlueButton></form>);
+
     let modal = <span></span>;
     switch(this.state.modalType) {
       case 1:
-        modal = <div>Contact Agent!</div>;
+        modal = <ModalCA />;
         break;
       case 2:
-        modal = <div>Reserve Tour!</div>;
+        modal = <ModalTT />;
         break;
       default:
         modal = <span></span>;
     }
 
-    let buttons = this.props.tourButton ?
-                  (<form>
-                    <ButtonCA type="button" tourButton={true} onClick={this.showModalOnclick}>Contact Agent</ButtonCA>
-                    <ButtonTT type="button" onClick={this.showModalOnclick}>Take a tour</ButtonTT>
-                  </form>) :
-                  (<form><ButtonCA type="button" onClick={this.showModalOnclick}>Contact Agent</ButtonCA></form>);
     return (
-      <div>
+      <div id="summaryButtons">
         {buttons}
         {modal}
       </div>

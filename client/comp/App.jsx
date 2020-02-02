@@ -7,7 +7,7 @@ import Summary from './Summary.jsx';
 import NavigationBar from './NavigationBar.jsx';
 import DetailPanel from './DetailPanel.jsx';
 // module: styled-components
-import { StyledApp } from './style.js'
+import { StyledApp } from './style.jsx'
 
 class App extends React.Component {
   constructor(props) {

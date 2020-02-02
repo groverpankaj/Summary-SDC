@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { LineWrapper, Vdivider, SaleStatus, Zestimate } from './style.js'
+import { LineWrapper, Vdivider, SaleStatus, Zestimate } from './style.jsx'
 import Popup from './ZestimatePopup.jsx';
 
 class SummaryLine3 extends React.Component {

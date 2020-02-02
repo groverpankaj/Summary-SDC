@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ZestimatePopup, LinkInPopup, CloseButton, PopupIconLineI, PopupIconLineT } from './style.js';
+import { ZestimatePopup, LinkInPopup, PopupCloseButton, PopupIconLineI, PopupIconLineT } from './style.jsx';
 
 const Popup = React.forwardRef(
   function zpu ({ hidePopupOnClick }, ref) {
     return (
       <ZestimatePopup ref={ref}>
-        <CloseButton id="closeIcon" className="material-icons" onClick={hidePopupOnClick}>close</CloseButton>
+        <PopupCloseButton id="closeIcon" className="material-icons" onClick={hidePopupOnClick}>close</PopupCloseButton>
 
         <p>The Zestimate is Zillow&apos;s best estimate of this home&apos;s market value. It is not an appraisal and it should be used as a starting point. <LinkInPopup href="https://www.zillow.com/zestimate/">Learn more</LinkInPopup>.</p>
         <p>If your facts are wrong, your Zestimate may be incorrect. <LinkInPopup href="#">Update them here</LinkInPopup>.</p>

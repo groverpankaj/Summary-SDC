@@ -120,7 +120,7 @@ export const LinkInPopup = styled.a`
 `;
 // (link and visited), hover, active
 
-export const CloseButton = styled.i`
+export const PopupCloseButton = styled.i`
   position: absolute;
   right: 0px;
   top: 0px;
@@ -159,26 +159,11 @@ export const PreQualLink = styled.a`
 `;
 
 /*  Summary Buttons  */
-export const ButtonCA = styled.button`
+export const BlueButton = styled.button`
   margin-right: ${props => props.tourButton ? '8px' : '0px'};
-  border: 1px solid #aaaaaa;
-  border-radius: 3px;
-  width: ${props => props.tourButton ? '48%' : '100%'};
-  height: 40px;
-  background-color: #ffffff;
-  color: #006aff;
-  font-size: 15px;
-
-  &:hover{
-    border-color: #3f8fff;
-  }
-`;
-
-export const ButtonTT = styled.button`
-  margin-left: 8x;
   border: 1px solid #006aff;
   border-radius: 3px;
-  width: 48%;
+  width: ${props => props.tourButton ? '48%' : '100%'};
   height: 40px;
   background-color: #006aff;
   color: #ffffff;
@@ -190,6 +175,43 @@ export const ButtonTT = styled.button`
     color: #006aff;
   }
 `;
+
+export const WhiteButton = styled.button`
+  margin-right: 8px;
+  border: 1px solid #aaaaaa;
+  border-radius: 3px;
+  width: 48%;
+  height: 40px;
+  background-color: #ffffff;
+  color: #006aff;
+  font-size: 15px;
+
+  &:hover{
+    border-color: #3f8fff;
+  }
+`;
+
+// Modal of Summary Buttons
+export const ModalWrapper = styled.div`
+  width: 500px;
+  height: 500px;
+  border: 1px solid #000000;
+  border-radius: 3px;
+  background-color: #ffffff;
+`;
+export const ModalCloseButton = styled.i`
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  color: #535353;
+
+  &:hover{
+    cursor: pointer;
+    background-color: ##F1F1F4;
+    border-radius: 50%;
+  }
+`;
+
 /*
   END: Style for Summary module
 */

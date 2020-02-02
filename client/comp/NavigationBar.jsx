@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Container, ContainerToHideScroll, StyledNavBar, StyledArrow, NavTitle } from './style.js'
+import { Container, ContainerToHideScroll, StyledNavBar, StyledArrow, NavTitle } from './style.jsx'
 
 const navTitle = [ // array that holds string value of title, used to render titles on navigation bar with the use of map
       'Overview', 
