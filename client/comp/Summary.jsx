@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import SummaryLine1 from './SummaryLine1.jsx'
-import SummaryLine3 from './SummaryLine3.jsx'
-import { SummaryWrapper, LineWrapper, DollarIconWrapper, ButtonCA, ButtonTT, PreQualLink } from './style.js'
+import SummaryLine1 from './SummaryLine1.jsx';
+import SummaryLine3 from './SummaryLine3.jsx';
+import SummaryButtons from './SummaryButtons.jsx';
+import { SummaryWrapper, LineWrapper, DollarIconWrapper, PreQualLink } from './style.js'
 
 class Summary extends React.Component {
   constructor(props) {
@@ -10,13 +11,6 @@ class Summary extends React.Component {
   }
 
   render() {
-    const button = this.props.house.tourButton ? 
-                (<form>
-                  <ButtonCA type="button" tourButton={true}>Contact Agent</ButtonCA>
-                  <ButtonTT type="button">Take a tour</ButtonTT>
-                </form>) :
-                (<form><ButtonCA type="button">Contact Agent</ButtonCA></form>);
-
     return (
       <SummaryWrapper className="summary">
         <SummaryLine1 price={this.props.house.price} bd={this.props.house.bd} ba={this.props.house.ba} sqft={this.props.house.sqft}/>
@@ -32,7 +26,8 @@ class Summary extends React.Component {
           <DollarIconWrapper><i className="material-icons">monetization_on</i></DollarIconWrapper>
           <PreQualLink href="https://www.zillow.com/pre-qualify/#/first-time">Get pre-qualified</PreQualLink>
         </LineWrapper>
-        {button}
+        
+        <SummaryButtons tourButton={this.props.house.tourButton}/>
       </SummaryWrapper>
     );
   }
