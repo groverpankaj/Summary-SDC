@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import ModalCA from './ModalCA.jsx';
 import ModalTT from './ModalTT.jsx';
 // style
-import { WhiteButton, BlueButton } from './style.jsx'
+import { Grey, WhiteButton, BlueButton } from './style.jsx'
 
 
 class SummaryButtons extends React.Component {
@@ -14,33 +14,40 @@ class SummaryButtons extends React.Component {
     
     this.state = { modalType: 0 };
 
-    this.caRef = React.createRef();
-    this.ttRef = React.createRef();
+    // References
+    this.caRef = React.createRef();   // Contact modal
+    this.ttRef = React.createRef();   // Take a Tour modal
+    this.greyRef = React.createRef();  // div that colors out whole page when modal opens up
 
     this.showModalOnclick = this.showModalOnclick.bind(this);
     this.hideModalOnclick = this.hideModalOnclick.bind(this);
   }
 
   componentDidMount() {
-    let left = (innerWidth - this.caRef.current.clientWidth) / 2;
-    let top = (innerHeight - this.caRef.current.clientHeight) / 2;
-    this.caRef.current.style.left = `${left}px`;
-    this.caRef.current.style.top = `${top}px`;
+    // hide the modal and grey  
+    this.greyRef.current.style.display = 'none';
     this.caRef.current.hidden = true;
-    // compute where Take a tour model should apper
-    left = (innerWidth - this.ttRef.current.clientWidth) / 2;
-    top = (innerHeight - this.ttRef.current.clientHeight) / 2;
-    this.ttRef.current.style.left = `${left}px`;
-    this.ttRef.current.style.top = `${top}px`;
     this.ttRef.current.hidden = true;
   }
 
   showModalOnclick(e) {
-    if(e.target.innerHTML.startsWith('C')) {
-      this.caRef.current.hidden = false;
-    } else {
-      this.ttRef.current.hidden = false;
-    }
+    // compute the coverage of grey
+    this.greyRef.current.style.width = `${innerWidth}px`;
+    this.greyRef.current.style.height = `${innerHeight}px`;
+    this.greyRef.current.style.display = 'block';
+
+
+    // decide which modal to show  
+    let modalToShow = e.target.innerHTML.startsWith('C') ? this.caRef.current : this.ttRef.current;
+        
+    //  show modal
+    modalToShow.hidden = false;
+    
+    // set the modal location at center
+    modalToShow.style.left = `${(innerWidth - modalToShow.clientWidth) / 2}px`;
+    modalToShow.style.top = `${(innerHeight - modalToShow.clientHeight) / 2}px`; 
+
+    // make other parts of the app clickable
     const target = document.getElementById('app');
     target.addEventListener('click', this.hideModalOnclick, {once: true});
   }
@@ -49,6 +56,7 @@ class SummaryButtons extends React.Component {
     if (e.target.classList[3] === "closeIcon") { // close button clicked
       this.caRef.current.hidden = true;
       this.ttRef.current.hidden = true;
+      this.greyRef.current.style.display = 'none';
     } else if (this.caRef.current.contains(e.target) || this.ttRef.current.contains(e.target)) { // popup other than close button clicked
       // do not hide, but make app part clickable again
       const target = document.getElementById('app');
@@ -56,7 +64,8 @@ class SummaryButtons extends React.Component {
     } else { // outside of popup clicked
       this.caRef.current.hidden = true;
       this.ttRef.current.hidden = true;
-    }
+      this.greyRef.current.style.display = 'none';
+    } 
   }
 
   render() {
@@ -69,6 +78,7 @@ class SummaryButtons extends React.Component {
 
     return (
       <div id="summaryButtons">
+        <Grey ref={this.greyRef} />
         {buttons}
         <ModalCA caRef={this.caRef}/>
         <ModalTT ttRef={this.ttRef} hideModalOnclick={this.hideModalOnclick}/>

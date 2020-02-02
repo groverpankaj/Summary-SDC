@@ -159,6 +159,14 @@ export const PreQualLink = styled.a`
 `;
 
 /*  Summary Buttons  */
+export const Grey = styled.div`
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  background-color: rgba(0,0,0,0.6);
+  z-index: 2;
+`;
+
 export const BlueButton = styled.button`
   margin-right: ${props => props.tourButton ? '8px' : '0px'};
   border: 1px solid #006aff;
@@ -195,7 +203,7 @@ export const WhiteButton = styled.button`
 // common
 export const Modal = styled.div`
   position: absolute;
-  z-index: 2;
+  z-index: 3;
   width: ${props => props.w ? props.w : '300px'};
   height: ${props => props.h ? props.h : '400px'};
   padding: 8px 0px;
