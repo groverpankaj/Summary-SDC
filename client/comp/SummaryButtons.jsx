@@ -19,7 +19,6 @@ class SummaryButtons extends React.Component {
   }
 
   showModalOnclick(e) {
-    console.log(e.target)
     // decide which modal to show 
     const whichModal = e.target.innerHTML.startsWith('C') ? 1 : 2;
     

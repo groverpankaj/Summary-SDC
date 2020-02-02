@@ -111,7 +111,7 @@ class ModalTT extends React.Component {
       <Modal id='summaryModal' w='400px' h='280px'>
         <ModalCloseButton className='material-icons closeIcon' w='400px' onClick={this.props.hideModalOnclick}>close</ModalCloseButton>
         <ModalTitle>Visit this home</ModalTitle>
-        <div style={{padding: '0px 20px 20px 20px'}}>
+        <div style={{padding: '0px 20px 15px 20px'}}>
           <div style={{marginRight: '10%', marginLeft: '10%', width: '80%'}}>
             <ArrowButton canmove={this.state.leftArrow} onClick={this.newDatesOnClick}><i className='material-icons'>chevron_left</i></ArrowButton>
             

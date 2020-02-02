@@ -42,12 +42,12 @@ export const Bath = styled.span`
 `;
 
 export const BathPopup = styled.div`
-  background-color: #ffffff;
-  text-align: center;
-  padding: 10px 15px;
-  border-radius: 3px;
   position: absolute;
   z-index: 1;
+  padding: 10px 15px;
+  border-radius: 3px;
+  text-align: center;
+  background-color: #ffffff;
   box-shadow: 1px 2px 5px grey;
 
   &::before{
@@ -200,7 +200,6 @@ export const WhiteButton = styled.button`
 `;
 
 /*  Modal of Summary Buttons  */
-  // height: ${props => innerHeight - parseInt(props.h).substring(0,props.props.h.length-2)}px;
 // common
 export const Modal = styled.div`
   position: absolute;
@@ -218,7 +217,7 @@ export const Modal = styled.div`
 export const ModalCloseButton = styled.i`
   position: relative;
   left: ${props => props.w ? 
-                  (parseInt(props.w.substring(0,props.w.length-2))-24-8).toString()+'px'
+                  (props.w.substring(0,props.w.length-2)-24-8).toString()+'px'
                   : '276px'};
   font-size: 24px;
   color: #535353;
