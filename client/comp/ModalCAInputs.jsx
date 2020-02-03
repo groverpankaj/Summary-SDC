@@ -61,16 +61,17 @@ class ModalCAInputs extends React.Component {
     });
   }
 
-  checkBoxOnClick(){ // make text next to checkbox also clickable
+  checkBoxOnClick(e){ // make not only checkbox but also text next to checkbox clickable
     const target = document.getElementsByName('modalCACheckbox');
     
-    // check or uncheck the checkbox
-    target[0].checked = !target[0].checked;
+    // check or uncheck the checkbox if text is clicked
+    if(e.target.tagName !== target[0].tagName) {
+      target[0].checked = !target[0].checked;
+    }
 
     // bold or unbold the text next to the checkbox
     this.setState((state) => {
       state.focus.checkbox = !state.focus.checkbox
-
       return state;
     })
   }
@@ -106,9 +107,9 @@ class ModalCAInputs extends React.Component {
                             value={this.state.textInput.message}/>
         </ModalInputWrapper>
 
-        <ModalCheckboxWrapper fontweight={checkboxFontweight}>
+        <ModalCheckboxWrapper fontweight={checkboxFontweight} onClick={this.checkBoxOnClick}>
           <input type="checkbox" name="modalCACheckbox"/>
-          <label onClick={this.checkBoxOnClick}> I want financing information</label>
+          <label> I want financing information</label>
         </ModalCheckboxWrapper>
         
         
