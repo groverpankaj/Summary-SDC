@@ -26,20 +26,8 @@ class App extends React.Component {
         "zestimate": 0,
         "estPayment": 0
       },
-      showarrow: {left: false, right: true},
-      onview: { // state used for navigation bar rendering
-        'ov': true,
-        'ff': false,
-        'hv': false,
-        'pth': false,
-        'mc': false,
-        'rv': false,
-        'ns': false,
-        'ct': false,
-        'nh': false,
-        'hfy': false,
-        'sh': false
-      }
+      showarrow: {left: false, right: true}, // state used for navigation bar arrow button rendering
+      onView: 'ov' // state used for navigation bar rendering, which one to undline
     }
 
     // React Refs
@@ -49,7 +37,7 @@ class App extends React.Component {
 
     // Variable
     this.sl3Height = 0; // max height of summary line 3
-
+    
     // bind functions
     this.scrollOnClick = this.scrollOnClick.bind(this);
     this.slideOnClick = this.slideOnClick.bind(this);
@@ -133,24 +121,20 @@ class App extends React.Component {
 
     for (let i = 1; i < navbar.children.length + 1; i += 1) {
       if (i === navbar.children.length) { // handle case when the detail panel shows the last component 'similar homes'
+                                          // in case of components after it is too small to handle offset comparison correctly
+        // scroll
         navbar.lastChild.scrollIntoView();
 
-        this.setState((state) => {
-          for (let key in state.onview) { // chnage rendering of navigation bar
-              state.onview[key] = (key === navbar.lastChild.classList[2]);
-          }
-          return state;
-        });
-      } else { // handle when the detail panel shows the other components
-        if (offsetTopValue < dp.children[i].offsetTop) { // find where panel is at
-          navbar.children[i-1].scrollIntoView(); // scroll to the right title in navigation bar
+        // chnage rendering of navigation bar
+        this.setState({ onView: dp.children[i-1].classList[0] });
 
-          this.setState((state) => { // chnage rendering of navigation bar
-            for (let key in state.onview) { 
-              state.onview[key] = (key === dp.children[i-1].classList[0]);
-            }
-            return state;
-          });
+      } else { // handle when the detail panel shows the other components
+        if (offsetTopValue < dp.children[i].offsetTop) {  // find where panel is at
+          // scroll to the correct title in navigation bar
+          navbar.children[i-1].scrollIntoView();
+
+          // chnage rendering of navigation bar
+          this.setState({ onView: dp.children[i-1].classList[0] });
 
           break;
         }
@@ -180,7 +164,7 @@ class App extends React.Component {
       <StyledApp>
         <Summary house={this.state.house} sl3Ref={this.sl3Ref}/>
         <NavigationBar ref={this.navbarRef}
-                      onview={this.state.onview}
+                      onView={this.state.onView}
                       showarrow={this.state.showarrow}
                       scrollOnClick={this.scrollOnClick}
                       slideOnClick={this.slideOnClick}
