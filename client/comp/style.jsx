@@ -85,8 +85,10 @@ export const Zestimate = styled.span`
 /* Line 3 - Style within Popups  */
 export const ZestimatePopup = styled.div`
   position: absolute;
+  left: ${props => props.left};
   top: 0px;
   z-index: 1;
+  width: ${props => props.width};
   padding: 0px 8px 5px 6px;
   border-radius: 6px;
   background-color: #3f3f47;

@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { ZestimatePopup, LinkInPopup, PopupCloseButton, PopupIconLineI, PopupIconLineT } from './style.jsx';
 
 const Popup = React.forwardRef(
-  function zpu ({ hidePopupOnClick }, ref) {
+  function zpu ({ popupLeft, popupWidth, hidePopupOnClick }, ref) {
     return (
-      <ZestimatePopup ref={ref}>
+      <ZestimatePopup id="zestimatePopup" left={popupLeft} width={popupWidth} >
         <PopupCloseButton className="material-icons closeIcon" onClick={hidePopupOnClick}>close</PopupCloseButton>
 
         <p>The Zestimate is Zillow&apos;s best estimate of this home&apos;s market value. It is not an appraisal and it should be used as a starting point. <LinkInPopup href="https://www.zillow.com/zestimate/">Learn more</LinkInPopup>.</p>
@@ -30,6 +30,8 @@ const Popup = React.forwardRef(
 );
 
 Popup.propTypes = {
+  popupLeft: PropTypes.string,
+  popupWidth: PropTypes.string,
   hidePopupOnClick: PropTypes.func
 }
 
