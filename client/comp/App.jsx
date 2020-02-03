@@ -1,8 +1,8 @@
 // npm packages
 import React from 'react';
-// module: data
-import sample from '../sample/sample.js';
-// module react components
+import PropTypes from 'prop-types';
+import axios from 'axios';
+// module: children react components
 import Summary from './Summary.jsx';
 import NavigationBar from './NavigationBar.jsx';
 import DetailPanel from './DetailPanel.jsx';
@@ -12,7 +12,20 @@ import { StyledApp } from './style.jsx'
 class App extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
+      house: { // initial house data
+        "id": 0,
+        "price": 0,
+        "bd": 0,
+        "ba": 0,
+        "sqft": 0,
+        "address": "44 Tehama St, San Francisco, CA 94105",
+        "saleStatus": "For sale",
+        "tourButton": true,
+        "zestimate": 0,
+        "estPayment": 0
+      },
       showarrow: {left: false, right: true},
       onview: {
         'ov': true,
@@ -47,7 +60,22 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    // save the max height value of summary line 3
     this.sl3Height = this.sl3Ref.current.scrollHeight;
+
+    // get data from database
+    axios.get(`http://localhost:3002/api/data/${this.props.id}`)
+      .then((res) => {
+        this.setState(
+          (state) => {
+            state.house = Object.assign({}, res.data);
+            return state;
+          }
+        );
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   /*
@@ -149,7 +177,7 @@ class App extends React.Component {
   render() {
     return (
       <StyledApp>
-        <Summary house={sample[0]} sl3Ref={this.sl3Ref}/>
+        <Summary house={this.state.house} sl3Ref={this.sl3Ref}/>
         <NavigationBar ref={this.navbarRef}
                       onview={this.state.onview}
                       showarrow={this.state.showarrow}
@@ -160,6 +188,10 @@ class App extends React.Component {
       </StyledApp>
     );
   }
+}
+
+App.propTypes = {
+  id: PropTypes.number
 }
 
 export default App;

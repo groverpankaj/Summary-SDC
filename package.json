@@ -25,9 +25,9 @@
   },
   "homepage": "https://github.com/7-xillow/AK-service#readme",
   "dependencies": {
+    "axios": "^0.19.2",
     "express": "^4.17.1",
     "faker": "^4.1.0",
-    "material-design-icons": "^3.0.1",
     "mongoose": "^5.8.9",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
