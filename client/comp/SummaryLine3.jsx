@@ -61,7 +61,7 @@ class SummaryLine3 extends React.Component {
           <Zestimate ref={this.zestRef} onClick={this.showPopupOnClick}>
             Zestimate<sup>®</sup>: 
           </Zestimate>
-          ${this.props.zestimate.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+          &nbsp;${this.props.zestimate.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
         </span>
         {popup}
       </LineWrapper>
