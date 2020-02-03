@@ -278,6 +278,7 @@ export const ModalMessageInput = styled.textarea`
   outline: none;
   border: none;
   resize: none;
+  overflow-y: scroll;
   font-size: 14px;
 `;
 
@@ -372,7 +373,6 @@ export const StyledNavBar = styled.div`
 export const StyledArrow = styled.i`
   position: absolute;
   left: ${props => props.left};
-  z-index: 1;
   color: #006aff;
   background-color: white;
   padding-top: 17px;
