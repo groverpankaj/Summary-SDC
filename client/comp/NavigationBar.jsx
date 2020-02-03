@@ -19,7 +19,7 @@ const NavigationBar = React.forwardRef(
   function nv({ onview, showarrow, scrollOnClick, slideOnClick, showHideOnSlide }, ref) {
     // conditional rendering of arrows
     const letfArrow = showarrow.left ? (<StyledArrow id="leftarrow" className="material-icons" left="2px" onClick={slideOnClick}>chevron_left</StyledArrow>) : (<span></span>);
-    const rightArrow = showarrow.right ? (<StyledArrow id="leftarrow" className="material-icons" left="490px" onClick={slideOnClick}>chevron_rightt</StyledArrow>) : (<span></span>);
+    const rightArrow = showarrow.right ? (<StyledArrow id="rightarrow" className="material-icons" left="490px" onClick={slideOnClick}>chevron_rightt</StyledArrow>) : (<span></span>);
 
     return (
       <Container>
