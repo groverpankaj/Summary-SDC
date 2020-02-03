@@ -30,12 +30,12 @@ class App extends React.Component {
     }
 
     // React Refs
-    this.sl3Ref = React.createRef();
-    this.navbarRef = React.createRef();
-    this.dpRef = React.createRef();
+    this.sl3Ref = React.createRef();      // summary line 3
+    this.navbarRef = React.createRef();   // navigation bar
+    this.dpRef = React.createRef();       // detail panel
 
-    // variables for dynamically rendering summary line 3
-    this.sl3Height = 0;
+    // Variable
+    this.sl3Height = 0; // max height of summary line 3
 
     // bind functions
     this.scrollOnClick = this.scrollOnClick.bind(this);
@@ -101,15 +101,13 @@ class App extends React.Component {
 
     // get pixel distance from the top of the page
     const offsetTopValue = e.target.scrollTop + dp.offsetTop;
-    // console.log('offsetTopValue: ', offsetTopValue);
-
 
     for (let i = 1; i < navbar.children.length + 1; i += 1) {
       if (i === navbar.children.length) { // handle case when the detail panel shows the last component 'similar homes'
         navbar.lastChild.scrollIntoView();
 
         this.setState((state) => {
-          for (let key in state.onview) { // chnage rendering option
+          for (let key in state.onview) { // chnage rendering of navigation bar
               state.onview[key] = (key === navbar.lastChild.classList[2]);
           }
           return state;
@@ -118,7 +116,7 @@ class App extends React.Component {
         if (offsetTopValue < dp.children[i].offsetTop) { // find where panel is at
           navbar.children[i-1].scrollIntoView(); // scroll to the right title in navigation bar
 
-          this.setState((state) => { // chnage rendering option by updating state
+          this.setState((state) => { // chnage rendering of navigation bar
             for (let key in state.onview) { 
               state.onview[key] = (key === dp.children[i-1].classList[0]);
             }
@@ -131,7 +129,8 @@ class App extends React.Component {
     }
   }
 
-  renderOnScroll(e) {
+  renderOnScroll(e) { // to change rendering of summary line 3
+    // get values need for dynamic reandering
     const standard = this.dpRef.current.firstChild.clientHeight * 0.6;
     const where = e.target.scrollTop;
 

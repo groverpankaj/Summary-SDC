@@ -22,7 +22,6 @@ class ModalCAInputs extends React.Component {
     const address = document.getElementById('summary_address') ? document.getElementById('summary_address').innerHTML: '(address)';
     const newMsg = this.state.textInput.message + address;
     
-    
     // update message
     this.setState((state) =>{
       state.textInput.message = newMsg;
@@ -116,8 +115,8 @@ class ModalCAInputs extends React.Component {
         <BlueButton>Contact Agent</BlueButton>
 
         <p style={{fontSize: '10px', color: '#6D6D6D'}}>
-          By pressing Contact Agent, you agree that Zillow Group and 
-          <span style={{textDecoration: 'underline dashed #006aff', cursor: 'pointer'}}>real estate professionals</span> 
+          By pressing Contact Agent, you agree that Zillow Group and &nbsp;
+          <span style={{textDecoration: 'underline dashed #006aff', cursor: 'pointer'}}>real estate professionals</span> &nbsp;
           may call/text you about your inquiry, which may involve use of automated means and prerecorded/artificial voices. 
           You don&#39;t need to consent as a condition of buying any property, goods or services. Message/data rates may apply. 
           You also agree to our <a href="https://www.zillow.com/corp/Terms.htm">Terms of Use </a>. Zillow does not endorse any 
