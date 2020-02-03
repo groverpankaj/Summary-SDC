@@ -1,5 +1,8 @@
 import styled from 'styled-components';
 
+const AppZIndex = 0;  // index for app
+                      // z-index value for some elements will be set based on this value
+
 /*  App  */
 export const StyledApp = styled.div`
   font-family: 'Open Sans', sans-serif;
@@ -42,12 +45,12 @@ export const Bath = styled.span`
 `;
 
 export const BathPopup = styled.div`
-  background-color: #ffffff;
-  text-align: center;
+  position: absolute;
+  z-index: ${AppZIndex+1};
   padding: 10px 15px;
   border-radius: 3px;
-  position: absolute;
-  z-index: 1;
+  text-align: center;
+  background-color: #ffffff;
   box-shadow: 1px 2px 5px grey;
 
   &::before{
@@ -85,8 +88,10 @@ export const Zestimate = styled.span`
 /* Line 3 - Style within Popups  */
 export const ZestimatePopup = styled.div`
   position: absolute;
+  left: ${props => props.left};
   top: 0px;
-  z-index: 1;
+  z-index: ${AppZIndex+1};
+  width: ${props => props.width};
   padding: 0px 8px 5px 6px;
   border-radius: 6px;
   background-color: #3f3f47;
@@ -120,7 +125,7 @@ export const LinkInPopup = styled.a`
 `;
 // (link and visited), hover, active
 
-export const CloseButton = styled.i`
+export const PopupCloseButton = styled.i`
   position: absolute;
   right: 0px;
   top: 0px;
@@ -133,7 +138,6 @@ export const CloseButton = styled.i`
 
 export const PopupIconLineI = styled.i`
   display: inline-block;
-
   width: 10%;
 `;
 
@@ -159,26 +163,19 @@ export const PreQualLink = styled.a`
 `;
 
 /*  Summary Buttons  */
-export const ButtonCA = styled.button`
-  margin-right: ${props => props.tourButton ? '8px' : '0px'};
-  border: 1px solid #aaaaaa;
-  border-radius: 3px;
-  width: ${props => props.tourButton ? '48%' : '100%'};
-  height: 40px;
-  background-color: #ffffff;
-  color: #006aff;
-  font-size: 15px;
-
-  &:hover{
-    border-color: #3f8fff;
-  }
+export const GreyOverlay = styled.div`
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  background-color: rgba(0,0,0,0.6);
+  z-index: ${AppZIndex+2};
 `;
 
-export const ButtonTT = styled.button`
-  margin-left: 8x;
+export const BlueButton = styled.button`
+  margin-right: ${props => props.tourButton ? '8px' : '0px'};
   border: 1px solid #006aff;
   border-radius: 3px;
-  width: 48%;
+  width: ${props => props.tourButton ? '48%' : '100%'};
   height: 40px;
   background-color: #006aff;
   color: #ffffff;
@@ -189,6 +186,152 @@ export const ButtonTT = styled.button`
     background-color: #ffffff;
     color: #006aff;
   }
+`;
+
+export const WhiteButton = styled.button`
+  margin-right: 8px;
+  border: 1px solid #aaaaaa;
+  border-radius: 3px;
+  width: 48%;
+  height: 40px;
+  background-color: #ffffff;
+  color: #006aff;
+  font-size: 15px;
+
+  &:hover{
+    border-color: #3f8fff;
+  }
+`;
+
+/*  Common Parts of Modals of Summary Buttons  */
+export const Modal = styled.div`
+  position: absolute;
+  z-index: ${AppZIndex+3};
+  left: ${props => ((innerWidth - props.w.substring(0,props.w.length-2)) / 2)}px;
+  top: ${props => ((innerHeight - props.h.substring(0,props.h.length-2)) / 2)}px;
+  width: ${props => props.w};
+  height: ${props => props.h};
+  padding: 8px 0px;
+  border: 1px solid #000000;
+  border-radius: 10px;
+  background-color: #ffffff;
+`;
+
+export const ModalCloseButton = styled.i`
+  position: relative;
+  left: ${props => props.w ? 
+                  (props.w.substring(0, props.w.length-2)-24-8).toString()+'px'
+                  : '276px'};
+  font-size: 24px;
+  color: #535353;
+
+  &:hover{
+    cursor: pointer;
+    background-color: #f1f1f1;
+    border-radius: 50%;
+  }
+`;
+
+export const ModalTitle = styled.div`
+  padding-bottom: 15px;
+  width: 100%;
+  border-bottom: 1px solid #f1f1f1;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+`;
+
+/*  Modal: Contact Agent  */
+export const ModalAgentInfoWrapper = styled.div`
+  display: inline-block;
+  margin-left: 20px;
+  font-size: 12px;
+`;
+
+export const ModalInputWrapper = styled.div`
+  margin-bottom: 10px;
+  border: ${props => props.focus ? '2px solid #3f8fff' : '1px solid #f1f1f1'};
+  border-radisu: 3px;
+  height: 30px;
+
+  &:hover{
+    border: ${props => props.focus ? '2px solid #3f8fff' : '1px solid #3f8fff'};
+  }
+`;
+
+export const ModalIcon = styled.i`
+  padding: 5px 6px 0px 5px;
+`;
+
+export const ModalTextInput = styled.input`
+  position: relative;
+  top: -9px;
+  width: 80%;
+  outline: none;
+  border: none;
+  font-size: 14px;
+`;
+
+export const ModalMessageInput = styled.textarea`
+  width: 95%;
+  height: 90%;
+  outline: none;
+  border: none;
+  resize: none;
+  font-size: 14px;
+`;
+
+export const ModalCheckboxWrapper = styled.div`
+  margin-bottom: 15px;
+  font-size: 13px;
+  font-weight: ${props => props.fontweight};
+`;
+
+/*  Modal: Take a Tour  */
+export const ArrowButton = styled.button`
+  box-sizing: border-box;
+  position: relative;
+  top: 20px;
+  width: 12.5%;
+  height: 80px;
+  background-color: white;
+  cursor: pointer;
+  color: ${props => props.canmove ? '#006aff' : '#bfd9fe'};
+  border: none;
+`;
+
+export const DateButton = styled.button`
+  margin-right: 2%;
+  margin-left: 2%;
+  width: 21%;
+  height: 85px;
+  background-color: ${props => props.clicked? '#f2faff': '#ffffff'};
+  border: ${props => props.clicked? '2px solid #006aff': '1px solid #a7A7a7'};
+  border-radius: 3px;
+  cursor: pointer;
+  color: #006aff;
+
+  &:hover{
+    border: ${props => props.clicked? '2px solid #006aff': '1px solid #006aff'};
+  }
+`;
+
+export const DateButtonDay = styled.p`
+  font-size: 14px;
+  font-weight: bold;
+`;
+
+export const DateButtonDate = styled.p`
+  font-size: 12px;
+`;
+
+export const StyledSelect = styled.select`
+  margin-top: 20px;
+  margin-right: 10%;
+  margin-bottom: 20px;
+  margin-left: 10%;
+  width: 80%;
+  cursor: pointer;
 `;
 /*
   END: Style for Summary module
@@ -229,7 +372,7 @@ export const StyledNavBar = styled.div`
 export const StyledArrow = styled.i`
   position: absolute;
   left: ${props => props.left};
-  zIndex: 1;
+  z-index: 1;
   color: #006aff;
   background-color: white;
   padding-top: 17px;

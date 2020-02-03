@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { LineWrapper, Vdivider, Price, Bath, BathPopup } from './style.js'
+import { LineWrapper, Vdivider, Price, Bath, BathPopup } from './style.jsx'
 
 class SummaryLine1 extends React.Component {
   constructor(props){

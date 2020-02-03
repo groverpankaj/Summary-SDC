@@ -1,11 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { LineWrapper, Vdivider, SaleStatus, Zestimate } from './style.js'
+import { LineWrapper, Vdivider, SaleStatus, Zestimate } from './style.jsx'
 import Popup from './ZestimatePopup.jsx';
 
 class SummaryLine3 extends React.Component {
   constructor(props){
     super(props);
+    
+    this.state = {popup: false};
+
+    this.popupLeft = '';
+    this.popupWidth = '';
 
     // References
     this.zestRef = React.createRef();   // zestimate text
@@ -17,19 +22,14 @@ class SummaryLine3 extends React.Component {
 
   componentDidMount() {
     // compute left value where the popup appear
-    const popupPositionLeft = this.zestRef.current.offsetLeft + this.zestRef.current.offsetWidth + 15;
+    this.popupLeft = `${this.zestRef.current.offsetLeft + this.zestRef.current.offsetWidth + 15}px`;
     // compute width of popup, so it does not go over on the right
-    const popoupWidth = 500 - popupPositionLeft;
-
-    // set style of popup with computed value
-    this.popupRef.current.style.left = `${popupPositionLeft}px`;
-    this.popupRef.current.style.width = `${popoupWidth}px`;
-    
-    this.popupRef.current.hidden = true;
+    this.popupWidth = `${500 - this.popupLeft.substring(0,this.popupLeft.length-2)}px`;
   }
 
   showPopupOnClick() {
-    this.popupRef.current.hidden = false;
+    // show popup
+    this.setState({popup: true});
 
     // make other parts of app to close popup when clicked;
     const target = document.getElementById('app');
@@ -37,18 +37,22 @@ class SummaryLine3 extends React.Component {
   }
 
   hidePopupOnClick(e) {
-    if (e.target.id === "closeIcon") { // close button clicked
-      this.popupRef.current.hidden = true;  
-    } else if (this.popupRef.current.contains(e.target)) { // popup other than close button clicked
+    if (e.target.classList[3] === "closeIcon") { // close button clicked
+      this.setState({popup: false});
+    } else if (document.getElementById('zestimatePopup').contains(e.target)) { // popup other than close button clicked
       // do not hide, but make app part clickable again
       const target = document.getElementById('app');
       target.addEventListener('click', this.hidePopupOnClick, {once: true});
     } else { // outside of popup clicked
-      this.popupRef.current.hidden = true;  
-    }    
+      this.setState({popup: false});
+    }
   }
 
   render() {
+    let popup = this.state.popup ? 
+                <Popup popupLeft={this.popupLeft} popupWidth={this.popupWidth} hidePopupOnClick={this.hidePopupOnClick}/>
+                : '';
+
     return (
       <LineWrapper id="summaryLine3" fontsize='13px' ref={this.props.sl3Ref}>
         <SaleStatus id="summary_status" status={this.props.saleStatus}><b>{this.props.saleStatus}</b></SaleStatus>
@@ -59,7 +63,7 @@ class SummaryLine3 extends React.Component {
           </Zestimate>
           ${this.props.zestimate.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
         </span>
-        <Popup ref={this.popupRef} hidePopupOnClick={this.hidePopupOnClick}/>
+        {popup}
       </LineWrapper>
     );
   }

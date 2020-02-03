@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { DP } from './style.js'
+import { DP } from './style.jsx'
 
 // this react element is merely to provide panel in which user can scroll up and down
 // the position within this panel is referenced in other modules

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Container, ContainerToHideScroll, StyledNavBar, StyledArrow, NavTitle } from './style.js'
+import { Container, ContainerToHideScroll, StyledNavBar, StyledArrow, NavTitle } from './style.jsx'
 
 const navTitle = [ // array that holds string value of title, used to render titles on navigation bar with the use of map
       'Overview', 
@@ -19,7 +19,7 @@ const NavigationBar = React.forwardRef(
   function nv({ onview, showarrow, scrollOnClick, slideOnClick, showHideOnSlide }, ref) {
     // conditional rendering of arrows
     const letfArrow = showarrow.left ? (<StyledArrow id="leftarrow" className="material-icons" left="2px" onClick={slideOnClick}>chevron_left</StyledArrow>) : (<span></span>);
-    const rightArrow = showarrow.right ? (<StyledArrow id="leftarrow" className="material-icons" left="490px" onClick={slideOnClick}>chevron_rightt</StyledArrow>) : (<span></span>);
+    const rightArrow = showarrow.right ? (<StyledArrow id="rightarrow" className="material-icons" left="490px" onClick={slideOnClick}>chevron_rightt</StyledArrow>) : (<span></span>);
 
     return (
       <Container>
