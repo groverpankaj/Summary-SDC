@@ -15,7 +15,7 @@ class App extends React.Component {
 
     this.state = {
       house: { // initial house data
-        "id": 0,
+        "id": 1,
         "price": 0,
         "bd": 0,
         "ba": 0,
@@ -27,7 +27,7 @@ class App extends React.Component {
         "estPayment": 0
       },
       showarrow: {left: false, right: true},
-      onview: {
+      onview: { // state used for navigation bar rendering
         'ov': true,
         'ff': false,
         'hv': false,
@@ -62,16 +62,17 @@ class App extends React.Component {
   componentDidMount() {
     // save the max height value of summary line 3
     this.sl3Height = this.sl3Ref.current.scrollHeight;
-
     // get data from database
-    axios.get(`http://localhost:3002/api/data/${this.props.id}`)
+    this.requestDatafromDB(1);
+  }
+
+  requestDatafromDB(id) {
+    axios.get(`http://localhost:3002/api/data/${id}`)
       .then((res) => {
-        this.setState(
-          (state) => {
+        this.setState((state) => {
             state.house = Object.assign({}, res.data);
             return state;
-          }
-        );
+        });
       })
       .catch((err) => {
         console.log(err);
