@@ -49,12 +49,13 @@ class SummaryButtons extends React.Component {
                     <BlueButton type="button" tourButton onClick={this.showModalOnclick}>Take a tour</BlueButton>
                   </form>) :
                   (<form><BlueButton type="button" onClick={this.showModalOnclick}>Contact Agent</BlueButton></form>);
+    
     let modal;
     switch(this.state.modalType) {
       case 1: 
         modal = (<span>
                   <ModalCA hideModalOnclick={this.hideModalOnclick}/>
-                  <GreyOverlay id="greyOverlay"/>
+                  <GreyOverlay id="greyOverlay" style={{width: innerWidth, height: innerHeight}}/>
                 </span>);
         break;
       case 2:
@@ -64,7 +65,7 @@ class SummaryButtons extends React.Component {
                 </span>);
         break;
       default:
-        modal = <div></div>;
+        modal = '';
     }
 
     return (
