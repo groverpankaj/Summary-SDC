@@ -372,7 +372,7 @@ export const StyledNavBar = styled.div`
 export const StyledArrow = styled.i`
   position: absolute;
   left: ${props => props.left};
-  zIndex: 1;
+  z-index: 1;
   color: #006aff;
   background-color: white;
   padding-top: 17px;
