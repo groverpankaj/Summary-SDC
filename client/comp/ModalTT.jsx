@@ -70,9 +70,9 @@ class ModalTT extends React.Component {
     const clicked = e.target;
 
     if(this.state.index === 0 && clicked.innerHTML.includes('chevron_left')) {
-      /* do nothing when left arrow buton clicked even when it cannot go left */
+      /*  do nothing when left arrow buton is clicked even when it cannot go left  */
     } else if(this.state.index === 7 && clicked.innerHTML.includes('chevron_right')) {
-      /* do nothing when right arrow buton clicked even when it cannot go right */
+      /*  do nothing when right arrow buton is clicked even when it cannot go right  */
     } else {
       const newIndex = (clicked.innerHTML.includes('chevron_left')) ? (this.state.index - 1) : (this.state.index + 1);
       this.setState((state) => {
@@ -109,8 +109,11 @@ class ModalTT extends React.Component {
   render() {
     return (
       <Modal id='summaryModal' w='400px' h='280px'>
+
         <ModalCloseButton className='material-icons closeIcon' w='400px' onClick={this.props.hideModalOnclick}>close</ModalCloseButton>
+
         <ModalTitle>Visit this home</ModalTitle>
+
         <div style={{padding: '0px 20px 15px 20px'}}>
           <div style={{marginRight: '10%', marginLeft: '10%', width: '80%'}}>
             <ArrowButton canmove={this.state.leftArrow} onClick={this.newDatesOnClick}><i className='material-icons'>chevron_left</i></ArrowButton>
@@ -123,13 +126,16 @@ class ModalTT extends React.Component {
             
             <ArrowButton canmove={this.state.rightArrow} onClick={this.newDatesOnClick}><i className='material-icons'>chevron_right</i></ArrowButton>
           </div>
+
           <StyledSelect>
             {availableTime.map((ele, i) => {
               return (<option key={i} value={ele}>{ele}</option>);
             })}
           </StyledSelect>
+
           <BlueButton style={{marginRight: '10%', marginLeft: '10%', width: '80%'}}>Request this time</BlueButton>
         </div>
+
       </Modal>
     );
   }
