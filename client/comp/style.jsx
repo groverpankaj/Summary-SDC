@@ -287,7 +287,7 @@ export const ModalCheckboxWrapper = styled.div`
   font-weight: ${props => props.fontweight};
 `;
 
-/*  Modal: Take a Tour Modal  */
+/*  Modal: Take a Tour  */
 export const ArrowButton = styled.button`
   box-sizing: border-box;
   position: relative;

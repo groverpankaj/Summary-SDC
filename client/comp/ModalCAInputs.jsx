@@ -19,8 +19,7 @@ class ModalCAInputs extends React.Component {
 
   componentDidMount() {
     // get address from summary and add it to message
-    // const address = document.getElementById('summary_address') ? document.getElementById('summary_address').innerHTML: '(address)';
-    const address = '';
+    const address = document.getElementById('summary_address') ? document.getElementById('summary_address').innerHTML: '(address)';
     const newMsg = this.state.textInput.message + address;
     
     
@@ -35,7 +34,7 @@ class ModalCAInputs extends React.Component {
   }
 
 
-  handleOnChange(e) {
+  handleOnChange(e) { // handle changes within input text tags
     const className = e.target.name;
     const newValue = e.target.value;
 
@@ -45,7 +44,7 @@ class ModalCAInputs extends React.Component {
     });
   }
 
-  inputBoxOnFocus(e){
+  inputBoxOnFocus(e){ // highlight box that contains both icon and  input text not input text
     const className = e.target.name;
 
     this.setState((state) => {
@@ -54,7 +53,7 @@ class ModalCAInputs extends React.Component {
     });
   }
 
-  inputBoxOnBlur(e){
+  inputBoxOnBlur(e){ // unhighlight box that contains both icon and input text
     const className = e.target.name;
 
     this.setState((state) => {
@@ -63,7 +62,7 @@ class ModalCAInputs extends React.Component {
     });
   }
 
-  checkBoxOnClick(){
+  checkBoxOnClick(){ // make text next to checkbox also clickable
     const target = document.getElementsByName('modalCACheckbox');
     
     // check or uncheck the checkbox
