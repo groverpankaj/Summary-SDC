@@ -49,7 +49,9 @@ class SummaryLine3 extends React.Component {
   }
 
   render() {
-    let popup = this.state.popup ? <Popup popupLeft={this.popupLeft} popupWidth={this.popupWidth} hidePopupOnClick={this.hidePopupOnClick}/> : '';
+    let popup = this.state.popup ? 
+                <Popup popupLeft={this.popupLeft} popupWidth={this.popupWidth} hidePopupOnClick={this.hidePopupOnClick}/>
+                : '';
 
     return (
       <LineWrapper id="summaryLine3" fontsize='13px' ref={this.props.sl3Ref}>
