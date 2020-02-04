@@ -55,7 +55,7 @@ class SummaryLine3 extends React.Component {
 
     return (
       <LineWrapper id="summaryLine3" fontsize='13px' ref={this.props.sl3Ref}>
-        <SaleStatus id="summary_status" status={this.props.saleStatus}><b>{this.props.saleStatus}</b></SaleStatus>
+        <SaleStatus id="summary_salesStatus" status={this.props.saleStatus}><b>{this.props.saleStatus}</b></SaleStatus>
         <Vdivider/>
         <span id="summary_zestimate">
           <Zestimate ref={this.zestRef} onClick={this.showPopupOnClick}>

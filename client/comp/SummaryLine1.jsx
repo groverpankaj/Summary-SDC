@@ -23,8 +23,6 @@ class SummaryLine1 extends React.Component {
   }
 
   componentDidMount() {
-    console.log(this.bpW);
-
     // set location and deimension value of the bath popup, so it can referred by conditional rendering
     this.bpL = `${this.bathRef.current.offsetLeft + this.bathPopUpRef.current.clientWidth / 4}px`;
     this.bpT = `${this.bathRef.current.offsetTop + this.bathPopUpRef.current.clientHeight - 5}px`;
