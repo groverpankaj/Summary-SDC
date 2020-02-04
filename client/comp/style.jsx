@@ -206,9 +206,9 @@ export const WhiteButton = styled.button`
 /*  Common Parts of Modals of Summary Buttons  */
 export const Modal = styled.div`
   position: absolute;
-  z-index: ${AppZIndex+3};
-  left: ${props => ((innerWidth - props.w.substring(0,props.w.length-2)) / 2)}px;
-  top: ${props => ((innerHeight - props.h.substring(0,props.h.length-2)) / 2)}px;
+  z-index: ${AppZIndex + 3};
+  left: ${props => ((innerWidth - props.w.substring(0,props.w.length - 2)) / 2)}px;
+  top: ${props => ((innerHeight - props.h.substring(0,props.h.length - 2)) / 2)}px;
   width: ${props => props.w};
   height: ${props => props.h};
   padding: 8px 0px;
@@ -220,7 +220,7 @@ export const Modal = styled.div`
 export const ModalCloseButton = styled.i`
   position: relative;
   left: ${props => props.w ? 
-                  (props.w.substring(0, props.w.length-2)-24-8).toString()+'px'
+                  (props.w.substring(0, props.w.length - 2) - 24 - 8).toString()+'px'
                   : '276px'};
   font-size: 24px;
   color: #535353;
@@ -278,6 +278,7 @@ export const ModalMessageInput = styled.textarea`
   outline: none;
   border: none;
   resize: none;
+  overflow-y: scroll;
   font-size: 14px;
 `;
 
@@ -369,10 +370,9 @@ export const StyledNavBar = styled.div`
   font-size: 85%
 `;
 
-export const StyledArrow = styled.i`
+export const NavBarArrow = styled.i`
   position: absolute;
   left: ${props => props.left};
-  z-index: 1;
   color: #006aff;
   background-color: white;
   padding-top: 17px;
@@ -384,7 +384,7 @@ export const StyledArrow = styled.i`
 export const NavTitle = styled.span`
   flex-shrink: 0;
   margin: 0px;
-  padding: ${hControl/3}px 15px 3px 15px;
+  padding: ${hControl / 3}px 15px 3px 15px;
   text-align: center;
   cursor: pointer;
   ${props => (props.onview ? `color: #006aff;

@@ -23,8 +23,10 @@ class Summary extends React.Component {
 
         <LineWrapper id="summaryLine4" fontsize='14px' style={{position: 'relative', top: '-10px'}}>
           <span id="summary_estPayment"><b>Est. payment</b>: ${this.props.house.estPayment}/mo</span>
-          <DollarIconWrapper><i className="material-icons">monetization_on</i></DollarIconWrapper>
-          <PreQualLink href="https://www.zillow.com/pre-qualify/#/first-time">Get pre-qualified</PreQualLink>
+          <PreQualLink href="https://www.zillow.com/pre-qualify/#/first-time">
+            <DollarIconWrapper><i className="material-icons">monetization_on</i></DollarIconWrapper>
+            Get pre-qualified
+          </PreQualLink>
         </LineWrapper>
         
         <SummaryButtons tourButton={this.props.house.tourButton}/>

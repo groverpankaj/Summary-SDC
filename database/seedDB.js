@@ -29,15 +29,15 @@ var saveNData = (n) => { //helper function for seeding n data into database
       
       let property = new House({ // generate random information for each house(documnet)
         id: i+1,
-        price: faker.fake("{{commerce.price}}"),
-        bd: Math.ceil(Math.random()*6),
-        ba: Math.ceil(Math.random()*7)/2,
-        sqft: faker.fake("{{random.number}}"),
+        price: faker.fake("{{commerce.price}}") * (10 ** 4),
+        bd: Math.ceil(Math.random() * 6),
+        ba: Math.ceil(Math.random() * 7) / 2,
+        sqft: faker.fake("{{random.number}}") % 2000,
         address: faker.fake("{{address.streetAddress}} {{address.secondaryAddress}}, {{address.city}}, {{address.stateAbbr}}") + " " + faker.fake("{{address.zipCode}}").substring(0,5),
-        saleStatus: (randomVal < 5/6) ? 'For sale' :
-                    (randomVal < 11/12) ? 'For rent' : 'Sold',
+        saleStatus: (randomVal < 5 / 6) ? 'For sale' :
+                    (randomVal < 11 / 12) ? 'For rent' : 'Sold',
         tourButton: (Math.random() < 0.85),
-        zestimate : faker.fake("{{commerce.price}}"),   
+        zestimate : faker.fake("{{commerce.price}}") * (10 ** 4),   
         estPayment: faker.fake("{{commerce.price}}")    
       });  
       
