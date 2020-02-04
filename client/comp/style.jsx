@@ -370,7 +370,7 @@ export const StyledNavBar = styled.div`
   font-size: 85%
 `;
 
-export const StyledArrow = styled.i`
+export const NavBarArrow = styled.i`
   position: absolute;
   left: ${props => props.left};
   color: #006aff;

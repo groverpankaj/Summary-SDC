@@ -26,7 +26,7 @@ class App extends React.Component {
         "zestimate": 0,
         "estPayment": 0
       },
-      showarrow: {left: false, right: true}, // state used for navigation bar arrow button rendering
+      showArrow: {left: false, right: true}, // state used for navigation bar arrow button rendering
       onView: 'ov' // state used for navigation bar rendering, which one to undline
     }
 
@@ -97,10 +97,10 @@ class App extends React.Component {
     this.setState((state) => {
       const navbar = this.navbarRef.current;
       // left arrow
-      state.showarrow.left = (navbar.scrollLeft > navbar.firstChild.clientWidth/5)
+      state.showArrow.left = (navbar.scrollLeft > navbar.firstChild.clientWidth/5)
       // right arrow
       const maxScroll = navbar.scrollWidth - navbar.clientWidth;
-      state.showarrow.right = (navbar.scrollLeft < maxScroll - navbar.lastChild.clientWidth/5)
+      state.showArrow.right = (navbar.scrollLeft < maxScroll - navbar.lastChild.clientWidth/5)
 
       return state;
     })
@@ -165,7 +165,7 @@ class App extends React.Component {
         <Summary house={this.state.house} sl3Ref={this.sl3Ref}/>
         <NavigationBar ref={this.navbarRef}
                       onView={this.state.onView}
-                      showarrow={this.state.showarrow}
+                      showArrow={this.state.showArrow}
                       scrollOnClick={this.scrollOnClick}
                       slideOnClick={this.slideOnClick}
                       showHideOnSlide={this.showHideOnSlide} />

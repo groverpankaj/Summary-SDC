@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { ModalAgentInfoWrapper } from './style.jsx'
 
-const AgentInfo = ({agentType, groupname, star, reviews, sales, phonenumber}) => (
+const AgentInfo = ({ agentType, groupname, star, reviews, sales, phonenumber }) => (
   <div style={{paddingBottom: '10px'}}>
     <input type="radio" name='contactAgent' style={{display: 'inline-block', position: 'relative', top: '-30px'}}/>
 

@@ -101,6 +101,7 @@ class ModalCAInputs extends React.Component {
                           onChange={this.handleOnChange} onFocus={this.inputBoxOnFocus} onBlur={this.inputBoxOnBlur}
                           placeholder="Email" value={this.state.textInput.email}/>
         </ModalInputWrapper>
+
         <ModalInputWrapper focus={this.state.focus.message} style={{height:'60px'}}>
           <ModalMessageInput name='message' 
                             onChange={this.handleOnChange} onFocus={this.inputBoxOnFocus} onBlur={this.inputBoxOnBlur}
@@ -111,7 +112,6 @@ class ModalCAInputs extends React.Component {
           <input type="checkbox" name="modalCACheckbox"/>
           <label> I want financing information</label>
         </ModalCheckboxWrapper>
-        
         
         <BlueButton>Contact Agent</BlueButton>
 
