@@ -44,8 +44,13 @@ export const Bath = styled.span`
   border-bottom: 1px dashed #CCCCCC;
 `;
 
+  // width: ${props => props.bpW ? props.bpT : 'auto'};
+  // height: ${props => props.bpH ? props.bpH : 'auto'};
 export const BathPopup = styled.div`
+  box-sizing: border-box;
   position: absolute;
+  left: ${props => props.bpL === 0 ? '0px' : props.bpL};
+  top: ${props => props.bpT === 0 ? '0px' : props.bpT};
   z-index: ${AppZIndex+1};
   padding: 10px 15px;
   border-radius: 3px;
