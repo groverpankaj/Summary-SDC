@@ -2,9 +2,9 @@ import styled from 'styled-components';
 
 const AppZIndex = 0;  // index for app
                       // z-index value for some elements will be set based on this value
-
 /*  App  */
 export const StyledApp = styled.div`
+  width: 500px;
   font-family: 'Open Sans', sans-serif;
   overflow: hidden;
 `;
@@ -14,7 +14,6 @@ export const StyledApp = styled.div`
 */
 export const SummaryWrapper = styled.div`
   box-sizing: border-box;
-  width: 500px;
   padding: 10px 8px;
   border-top: 1px solid #D1D1D1;
   border-bottom: 1px solid #D1D1D1;
@@ -353,7 +352,6 @@ const hControl = 55; // variable to controll height of navigation bar
 export const Container = styled.div`
   box-sizing: border-box;
   border-bottom: 1px solid #D1D1D1;
-  width: 500px;
 `;
 
 // div to hide horizontal scroll bar of navigation bar
