@@ -31,9 +31,13 @@ const sample = [
 
 describe('Summary Module renders with correct value', () => {
   var wrapper = mount(<Summary house={sample[0]}/>); // mount/render/shallow when applicable
-  console.log(wrapper.find('summary').children());
+  // console.log(wrapper.find('summary').children().length);
 
-  xit('should have 4 lines of text and button(s)', () => {
+  it('should have elements', () => {
+    expect(wrapper).toContainMatchingElement('.summary');
+  });
+
+  xit('should have 5 children (4 lines of text and 1 line of buttons)', () => {
     expect(wrapper.find('.summary').children().length).toBe(5);
   });
   

@@ -15,7 +15,7 @@ app.use(express.urlencoded({'extended': true}));
 app.use('/', express.static(path.join(__dirname, '../client/dist')));
 
 // response to request
-app.get('/api/data/:id', (req, res) =>{
+app.get('/api/summary/data/:id', (req, res) =>{
   var {id} = req.params;
   retrieve(id, (err, data) =>{
     if (err) { // if error occures, send status code of 500
