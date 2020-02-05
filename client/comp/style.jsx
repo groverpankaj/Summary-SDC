@@ -168,7 +168,7 @@ export const PreQualLink = styled.a`
 
 /*  Summary Buttons  */
 export const GreyOverlay = styled.div`
-  position: absolute;
+  position: fixed;
   left: 0px;
   top: 0px;
   background-color: rgba(0,0,0,0.6);
@@ -209,7 +209,7 @@ export const WhiteButton = styled.button`
 
 /*  Common Parts of Modals of Summary Buttons  */
 export const Modal = styled.div`
-  position: absolute;
+  position: fixed;
   z-index: ${AppZIndex + 3};
   left: ${props => ((innerWidth - props.w.substring(0,props.w.length - 2)) / 2)}px;
   top: ${props => ((innerHeight - props.h.substring(0,props.h.length - 2)) / 2)}px;
