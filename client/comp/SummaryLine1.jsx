@@ -5,10 +5,17 @@ import { LineWrapper, Vdivider, Price, Bath, BathPopup } from './style.jsx'
 class SummaryLine1 extends React.Component {
   constructor(props){
     super(props);
+    this.state = {showPopup: true};
 
     // Refernces
     this.bathRef = React.createRef();       // bath text
     this.bathPopUpRef = React.createRef();  // popup 
+
+    // variables about dimension and position of popup
+    this.bpL=0;
+    this.bpT=0;
+    this.bpW=0;
+    this.bpH=0;
 
     // bind function about Popup
     this.showPopupOnMouseEnter = this.showPopupOnMouseEnter.bind(this);
@@ -16,27 +23,30 @@ class SummaryLine1 extends React.Component {
   }
 
   componentDidMount() {
-    // compute left, top value where the bath popup appear
-    const popupPositionLeft = this.bathRef.current.offsetLeft - this.bathPopUpRef.current.clientWidth / 2;
-    const popupPositionTop = this.bathRef.current.offsetTop + this.bathRef.current.offsetHeight + 10;
+    // set location and deimension value of the bath popup, so it can referred by conditional rendering
+    this.bpL = `${this.bathRef.current.offsetLeft + this.bathPopUpRef.current.clientWidth / 4}px`;
+    this.bpT = `${this.bathRef.current.offsetTop + this.bathPopUpRef.current.clientHeight - 5}px`;
+    this.bpW = `${this.bathPopUpRef.current.clientWidth}px`;
+    this.bpH = `${this.bathPopUpRef.current.clientHeight}px`;
 
-    // set location the bath popup by inline style
-    this.bathPopUpRef.current.style.left = `${popupPositionLeft}px`;
-    this.bathPopUpRef.current.style.top = `${popupPositionTop}px`;
-    
     // hide the bath popup
-    this.bathPopUpRef.current.hidden = true;
+    this.setState({showPopup: false});
   }
 
   showPopupOnMouseEnter() {
-    this.bathPopUpRef.current.hidden = false;
+    this.setState({showPopup: true});
   }
 
   hidePopuOnMouseLeave() {
-    this.bathPopUpRef.current.hidden = true;
+    this.setState({showPopup: false});
   }
 
   render() {
+    const bathPopup = !this.state.showPopup ? '' :
+                      (<BathPopup id="bathPopup" ref={this.bathPopUpRef} bpL={this.bpL} bpT={this.bpT} bpW={this.bpW} bpH={this.bpH}>
+                        {Number.isInteger(this.props.ba) ? `${this.props.ba} full bath` : `${this.props.ba - 0.5} full bath + 1 half bath `}
+                      </BathPopup>);
+
     return (
       <LineWrapper id="summaryLine1" fontsize='15px'>
         <Price id="summary_price">${this.props.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</Price>
@@ -48,10 +58,8 @@ class SummaryLine1 extends React.Component {
         <Bath id="summary_bath" ref={this.bathRef} onMouseEnter={this.showPopupOnMouseEnter} onMouseLeave={this.hidePopuOnMouseLeave}>
           <b>{Math.ceil(this.props.ba)}</b> ba
         </Bath>
-
-        <BathPopup ref={this.bathPopUpRef}>
-          {Number.isInteger(this.props.ba) ? `${this.props.ba} full bath` : `${this.props.ba - 0.5} full bath + 1 half bath `}
-        </BathPopup>
+        
+        {bathPopup}
 
         <Vdivider/>
 

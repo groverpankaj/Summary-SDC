@@ -15,7 +15,7 @@ class App extends React.Component {
 
     this.state = {
       house: { // initial house data
-        "id": 1,
+        "id": -1,
         "price": 0,
         "bd": 0,
         "ba": 0,
@@ -54,8 +54,8 @@ class App extends React.Component {
     this.requestDatafromDB(1);
   }
 
-  requestDatafromDB(id) {
-    axios.get(`http://localhost:3002/api/data/${id}`)
+  requestDatafromDB(id=1) {
+    axios.get(`/api/summary/data/${id}`)
       .then((res) => {
         this.setState((state) => {
             state.house = Object.assign({}, res.data);
