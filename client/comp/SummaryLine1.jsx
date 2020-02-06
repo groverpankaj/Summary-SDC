@@ -5,36 +5,36 @@ import { LineWrapper, Vdivider, Price, Bath, BathPopup } from './style.jsx'
 class SummaryLine1 extends React.Component {
   constructor(props){
     super(props);
-    this.state = {showPopup: true};
+    this.state = {
+      showPopup: false,
+      // bath popup location and dimension
+      bpL:0,
+      bpT:0,
+      bpW:0,
+      bpH:0
+    };
 
     // Refernces
     this.bathRef = React.createRef();       // bath text
     this.bathPopUpRef = React.createRef();  // popup 
-
-    // variables about dimension and position of popup
-    this.bpL=0;
-    this.bpT=0;
-    this.bpW=0;
-    this.bpH=0;
 
     // bind function about Popup
     this.showPopupOnMouseEnter = this.showPopupOnMouseEnter.bind(this);
     this.hidePopuOnMouseLeave = this.hidePopuOnMouseLeave.bind(this);
   }
 
-  componentDidMount() {
-    // set location and deimension value of the bath popup, so it can referred by conditional rendering
-    this.bpL = `${this.bathRef.current.offsetLeft + this.bathPopUpRef.current.clientWidth / 4}px`;
-    this.bpT = `${this.bathRef.current.offsetTop + this.bathPopUpRef.current.clientHeight - 5}px`;
-    this.bpW = `${this.bathPopUpRef.current.clientWidth}px`;
-    this.bpH = `${this.bathPopUpRef.current.clientHeight}px`;
-
-    // hide the bath popup
-    this.setState({showPopup: false});
-  }
-
   showPopupOnMouseEnter() {
-    this.setState({showPopup: true});
+    this.setState({showPopup: true}, () => {
+      this.setState((state) => {
+        // compute location and dimension of popup
+        state.bpL = `${this.bathRef.current.offsetLeft - 40}px`;
+        state.bpT = `${this.bathRef.current.offsetTop + this.bathPopUpRef.current.clientHeight - 5}px`;
+        state.bpW = `${this.bathPopUpRef.current.clientWidth}px`;
+        state.bpH = `${this.bathPopUpRef.current.clientHeight}px`;
+
+        return state;
+      });
+    })
   }
 
   hidePopuOnMouseLeave() {
@@ -42,8 +42,13 @@ class SummaryLine1 extends React.Component {
   }
 
   render() {
+    console.log(this.state.bpL);
+    console.log(this.state.bpT);
+    console.log(this.state.bpW);
+    console.log(this.state.bpH);
+
     const bathPopup = !this.state.showPopup ? '' :
-                      (<BathPopup id="bathPopup" ref={this.bathPopUpRef} bpL={this.bpL} bpT={this.bpT} bpW={this.bpW} bpH={this.bpH}>
+                      (<BathPopup id="bathPopup" ref={this.bathPopUpRef} bpL={this.state.bpL} bpT={this.state.bpT} bpW={this.state.bpW} bpH={this.state.bpH}>
                         {Number.isInteger(this.props.ba) ? `${this.props.ba} full bath` : `${this.props.ba - 0.5} full bath + 1 half bath `}
                       </BathPopup>);
 
