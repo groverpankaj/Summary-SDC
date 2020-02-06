@@ -42,6 +42,11 @@ class SummaryLine1 extends React.Component {
   }
 
   render() {
+    console.log(this.state.bpL);
+    console.log(this.state.bpT);
+    console.log(this.state.bpW);
+    console.log(this.state.bpH);
+
     const bathPopup = !this.state.showPopup ? '' :
                       (<BathPopup id="bathPopup" ref={this.bathPopUpRef} bpL={this.state.bpL} bpT={this.state.bpT} bpW={this.state.bpW} bpH={this.state.bpH}>
                         {Number.isInteger(this.props.ba) ? `${this.props.ba} full bath` : `${this.props.ba - 0.5} full bath + 1 half bath `}
