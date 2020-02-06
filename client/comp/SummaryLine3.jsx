@@ -23,6 +23,20 @@ class SummaryLine3 extends React.Component {
     this.hidePopupOnClick = this.hidePopupOnClick.bind(this);
   }
 
+  componentDidMount() {
+    window.addEventListener("resize", () => {
+      this.setState((state) => {
+        state.resizeFlag = !state.resizeFlag;
+        
+        if(!this.popupLeft) {
+          
+        }
+        
+      });
+      
+    });
+  }
+
   showPopupOnClick() {
     // compute left value where the popup appear
     this.popupLeft = this.zestRef.current.offsetLeft + this.zestRef.current.offsetWidth + 15;
@@ -38,8 +52,7 @@ class SummaryLine3 extends React.Component {
     this.setState({popup: true});
 
     // make other parts of app to close popup when clicked;
-    const target = document.getElementById('app');
-    target.addEventListener('click', this.hidePopupOnClick, {once: true});
+    document.addEventListener('click', this.hidePopupOnClick, {once: true});
   }
 
   hidePopupOnClick(e) {
@@ -47,8 +60,7 @@ class SummaryLine3 extends React.Component {
       this.setState({popup: false});
     } else if (document.getElementById('zestimatePopup').contains(e.target)) { // popup other than close button clicked
       // do not hide, but make app part clickable again
-      const target = document.getElementById('app');
-      target.addEventListener('click', this.hidePopupOnClick, {once: true});
+      document.addEventListener('click', this.hidePopupOnClick, {once: true});
     } else { // outside of popup clicked
       this.setState({popup: false});
     }
