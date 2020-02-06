@@ -14,6 +14,7 @@ class App extends React.Component {
     super(props);
 
     this.state = {
+      resizeFlag: true,
       house: { // initial house data
         "id": -1,
         "price": 0,
@@ -52,6 +53,10 @@ class App extends React.Component {
     this.sl3Height = this.sl3Ref.current.scrollHeight;
     // get data from database
     this.requestDatafromDB();
+
+    window.onresize = () => {
+      this.setState({resizeFlag: !this.state.resizeFlag});
+    }
   }
 
   requestDatafromDB() {
@@ -103,6 +108,7 @@ class App extends React.Component {
       state.showArrow.left = (navbar.scrollLeft > navbar.firstChild.clientWidth/5)
       // right arrow
       const maxScroll = navbar.scrollWidth - navbar.clientWidth;
+      console.log(maxScroll);
       state.showArrow.right = (navbar.scrollLeft < maxScroll - navbar.lastChild.clientWidth/5)
 
       return state;

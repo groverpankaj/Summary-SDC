@@ -94,7 +94,7 @@ export const ZestimatePopup = styled.div`
   position: absolute;
   left: ${props => props.left};
   top: 0px;
-  z-index: ${AppZIndex+1};
+  z-index: ${AppZIndex+2};
   width: ${props => props.width};
   padding: 0px 8px 5px 6px;
   border-radius: 6px;
@@ -346,7 +346,7 @@ export const StyledSelect = styled.select`
   START: Style for Navigation Bar
 */
 
-const hControl = 55; // variable to controll height of navigation bar
+const hControl = 45; // variable to controll height of navigation bar
 
 //  Container for all subparts of Navigation Bar
 export const Container = styled.div`
@@ -358,27 +358,33 @@ export const Container = styled.div`
 export const ContainerToHideScroll = styled.div`
   height: ${hControl}px;
   overflow: hidden;
-  margin: 0px 10px;
 `;
 
 // div that has scroll bar and contain contents' tiles
-export const StyledNavBar = styled.div`
+export const StyledNavBar = styled.span`
   display: flex;
+  position: relative;
+  top: -28px;
   overflow-x: auto;
   overflow-y: hidden;
-  width: 100%;
+  width: 452px;
   height: ${hControl+15}px;
-  margin: 0px;
+  padding-left: 12px;
+  padding-right: 24px;
   scroll-behavior: smooth;
   font-size: 85%
 `;
 
 export const NavBarArrow = styled.i`
-  position: absolute;
+  position: relative;
   left: ${props => props.left};
-  color: #006aff;
+  top: ${props => props.top};
+  z-index: ${AppZIndex+1};
+  width: 24px;
+  color: #006aff; 
   background-color: white;
-  padding-top: 17px;
+  visibility: ${props => props.showArrow ? 'visible': 'hidden'};
+  background-size: auto;
   font-size: 24px;
   cursor: pointer;
 `;
@@ -387,7 +393,7 @@ export const NavBarArrow = styled.i`
 export const NavTitle = styled.span`
   flex-shrink: 0;
   margin: 0px;
-  padding: ${hControl / 3}px 15px 3px 15px;
+  padding: 10px 15px 0px 15px;
   text-align: center;
   cursor: pointer;
   ${props => (props.onview ? `color: #006aff;

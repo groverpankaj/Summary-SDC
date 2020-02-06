@@ -6,8 +6,11 @@ import Popup from './ZestimatePopup.jsx';
 class SummaryLine3 extends React.Component {
   constructor(props){
     super(props);
-    
-    this.state = {popup: false};
+
+    this.state = {
+      resizeFlag: true,
+      popup: false
+    };
 
     this.popupLeft = '';
     this.popupWidth = '';
@@ -20,14 +23,17 @@ class SummaryLine3 extends React.Component {
     this.hidePopupOnClick = this.hidePopupOnClick.bind(this);
   }
 
-  componentDidMount() {
-    // compute left value where the popup appear
-    this.popupLeft = `${this.zestRef.current.offsetLeft + this.zestRef.current.offsetWidth + 15}px`;
-    // compute width of popup, so it does not go over on the right
-    this.popupWidth = `${500 - this.popupLeft.substring(0,this.popupLeft.length-2)}px`;
-  }
-
   showPopupOnClick() {
+    // compute left value where the popup appear
+    this.popupLeft = this.zestRef.current.offsetLeft + this.zestRef.current.offsetWidth + 15;
+    
+    // compute width of popup, so it does not go over on the right
+    this.popupWidth = document.getElementById('summary').offsetLeft + document.getElementById('summary').clientWidth - 15 - this.popupLeft;
+
+    // change to string
+    this.popupLeft = this.popupLeft.toString() + 'px';
+    this.popupWidth = this.popupWidth.toString() + 'px';
+    
     // show popup
     this.setState({popup: true});
 

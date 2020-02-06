@@ -18,20 +18,16 @@ const navTitle = [ // array that holds string value of title, used to render tit
 
 const NavigationBar = React.forwardRef(
   function nv({ onView, showArrow, scrollOnClick, slideOnClick, showHideOnSlide }, ref) {
-    // conditional rendering of arrows
-    const letfArrow = showArrow.left ? (<NavBarArrow id="leftarrow" className="material-icons" left="0px" onClick={slideOnClick}>chevron_left</NavBarArrow>) : (<span></span>);
-    const rightArrow = showArrow.right ? (<NavBarArrow id="rightarrow" className="material-icons" left="476px" onClick={slideOnClick}>chevron_rightt</NavBarArrow>) : (<span></span>);
-
     return (
       <Container>
         <ContainerToHideScroll>
-          {letfArrow}
-          {rightArrow}
+          <NavBarArrow id="leftarrow" showArrow={showArrow.left} className="material-icons" top='10px' onClick={slideOnClick}>chevron_left</NavBarArrow>
           <StyledNavBar id="navbar" onScroll={showHideOnSlide} ref={ref}>
             {navClassNames.map((navClassName, ind) => {
               return <NavTitle key={ind} className={navClassName} onClick={scrollOnClick} onview={navClassName === onView}>{navTitle[ind]}</NavTitle>
             })}
           </StyledNavBar>
+          <NavBarArrow id="rightarrow" showArrow={showArrow.right} className="material-icons" left='476px' top='-80px' onClick={slideOnClick}>chevron_rightt</NavBarArrow>
         </ContainerToHideScroll>
       </Container>
     );
