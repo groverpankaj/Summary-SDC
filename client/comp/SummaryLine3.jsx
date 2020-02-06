@@ -23,19 +23,13 @@ class SummaryLine3 extends React.Component {
     this.hidePopupOnClick = this.hidePopupOnClick.bind(this);
   }
 
-  componentDidMount() {
-    window.addEventListener("resize", () => {
-      this.setState((state) => {
-        state.resizeFlag = !state.resizeFlag;
-        
-        if(!this.popupLeft) {
-          
-        }
-        
-      });
-      
-    });
-  }
+  // componentDidMount() {
+  //   window.addEventListener("resize", () => {
+  //     this.setState((state) => {
+  //       state.resizeFlag = !state.resizeFlag;
+  //     });
+  //   });
+  // }
 
   showPopupOnClick() {
     // compute left value where the popup appear
