@@ -14,6 +14,7 @@ class App extends React.Component {
     super(props);
 
     this.state = {
+      resizeFlag: true,
       house: { // initial house data
         "id": -1,
         "price": 0,
@@ -51,10 +52,17 @@ class App extends React.Component {
     // save the max height value of summary line 3
     this.sl3Height = this.sl3Ref.current.scrollHeight;
     // get data from database
-    this.requestDatafromDB(1);
+    this.requestDatafromDB();
+
+    window.addEventListener("resize", () => {
+      this.setState({resizeFlag: !this.state.resizeFlag})
+    });
   }
 
-  requestDatafromDB(id=1) {
+  requestDatafromDB() {
+    const id = (window.location.href).match(/\d+$/) | 1;  // get id value from the link
+                                                          // if does not exist, get the data with id=1
+
     axios.get(`/api/summary/data/${id}`)
       .then((res) => {
         this.setState((state) => {
@@ -100,6 +108,7 @@ class App extends React.Component {
       state.showArrow.left = (navbar.scrollLeft > navbar.firstChild.clientWidth/5)
       // right arrow
       const maxScroll = navbar.scrollWidth - navbar.clientWidth;
+      console.log(maxScroll);
       state.showArrow.right = (navbar.scrollLeft < maxScroll - navbar.lastChild.clientWidth/5)
 
       return state;

@@ -2,9 +2,9 @@ import styled from 'styled-components';
 
 const AppZIndex = 0;  // index for app
                       // z-index value for some elements will be set based on this value
-
 /*  App  */
 export const StyledApp = styled.div`
+  width: 500px;
   font-family: 'Open Sans', sans-serif;
   overflow: hidden;
 `;
@@ -14,7 +14,6 @@ export const StyledApp = styled.div`
 */
 export const SummaryWrapper = styled.div`
   box-sizing: border-box;
-  width: 500px;
   padding: 10px 8px;
   border-top: 1px solid #D1D1D1;
   border-bottom: 1px solid #D1D1D1;
@@ -95,7 +94,7 @@ export const ZestimatePopup = styled.div`
   position: absolute;
   left: ${props => props.left};
   top: 0px;
-  z-index: ${AppZIndex+1};
+  z-index: ${AppZIndex+2};
   width: ${props => props.width};
   padding: 0px 8px 5px 6px;
   border-radius: 6px;
@@ -169,7 +168,7 @@ export const PreQualLink = styled.a`
 
 /*  Summary Buttons  */
 export const GreyOverlay = styled.div`
-  position: absolute;
+  position: fixed;
   left: 0px;
   top: 0px;
   background-color: rgba(0,0,0,0.6);
@@ -210,7 +209,7 @@ export const WhiteButton = styled.button`
 
 /*  Common Parts of Modals of Summary Buttons  */
 export const Modal = styled.div`
-  position: absolute;
+  position: fixed;
   z-index: ${AppZIndex + 3};
   left: ${props => ((innerWidth - props.w.substring(0,props.w.length - 2)) / 2)}px;
   top: ${props => ((innerHeight - props.h.substring(0,props.h.length - 2)) / 2)}px;
@@ -347,40 +346,45 @@ export const StyledSelect = styled.select`
   START: Style for Navigation Bar
 */
 
-const hControl = 55; // variable to controll height of navigation bar
+const hControl = 45; // variable to controll height of navigation bar
 
 //  Container for all subparts of Navigation Bar
 export const Container = styled.div`
   box-sizing: border-box;
   border-bottom: 1px solid #D1D1D1;
-  width: 500px;
 `;
 
 // div to hide horizontal scroll bar of navigation bar
 export const ContainerToHideScroll = styled.div`
   height: ${hControl}px;
   overflow: hidden;
-  margin: 0px 10px;
 `;
 
 // div that has scroll bar and contain contents' tiles
-export const StyledNavBar = styled.div`
+export const StyledNavBar = styled.span`
   display: flex;
+  position: relative;
+  top: -28px;
   overflow-x: auto;
   overflow-y: hidden;
-  width: 100%;
+  width: 452px;
   height: ${hControl+15}px;
-  margin: 0px;
+  padding-left: 12px;
+  padding-right: 24px;
   scroll-behavior: smooth;
   font-size: 85%
 `;
 
 export const NavBarArrow = styled.i`
-  position: absolute;
+  position: relative;
   left: ${props => props.left};
-  color: #006aff;
+  top: ${props => props.top};
+  z-index: ${AppZIndex+1};
+  width: 24px;
+  color: #006aff; 
   background-color: white;
-  padding-top: 17px;
+  visibility: ${props => props.showArrow ? 'visible': 'hidden'};
+  background-size: auto;
   font-size: 24px;
   cursor: pointer;
 `;
@@ -389,7 +393,7 @@ export const NavBarArrow = styled.i`
 export const NavTitle = styled.span`
   flex-shrink: 0;
   margin: 0px;
-  padding: ${hControl / 3}px 15px 3px 15px;
+  padding: 10px 15px 0px 15px;
   text-align: center;
   cursor: pointer;
   ${props => (props.onview ? `color: #006aff;
