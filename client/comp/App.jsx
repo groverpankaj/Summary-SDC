@@ -54,6 +54,7 @@ class App extends React.Component {
     // get data from database
 //     this.requestDatafromDB();
 
+
     window.addEventListener("resize", () => {
       this.setState({resizeFlag: !this.state.resizeFlag})
     });
