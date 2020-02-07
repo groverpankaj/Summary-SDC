@@ -8,7 +8,7 @@
     "watchbuild": "webpack --watch",
     "devServer": "nodemon server/index.js",
     "seedDB": "node database/seedDB.js",
-    "start": "node database/seedDB.js && node server/index.js", 
+    "start": "npm run seedDB && node server/index.js", 
     "test": "jest"
   },
   "repository": {
