@@ -31,21 +31,6 @@ class SummaryLine3 extends React.Component {
   //   });
   // }
 
-  componentDidMount() {
-    window.addEventListener("resize", () => {
-      this.setState((state) => {
-        state.resizeFlag = !state.resizeFlag;
-        
-        if(!this.popupLeft) {
-          
-        }
-        
-      });
-      
-    });
-  }
->>>>>>> update few more module integration
-
   showPopupOnClick() {
     // compute left value where the popup appear
     this.popupLeft = this.zestRef.current.offsetLeft + this.zestRef.current.offsetWidth + 15;
