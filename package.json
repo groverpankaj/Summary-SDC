@@ -6,9 +6,9 @@
   "scripts": {
     "build": "webpack",
     "watchbuild": "webpack --watch",
-    "server": "nodemon server/index.js",
+    "devServer": "nodemon server/index.js",
     "seedDB": "node database/seedDB.js",
-    "start": "webpack && node database/seedDB.js && node server/index.js", 
+    "start": "node database/seedDB.js && node server/index.js", 
     "test": "jest"
   },
   "repository": {
