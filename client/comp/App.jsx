@@ -62,6 +62,7 @@ class App extends React.Component {
   requestDatafromDB() {
     const id = (window.location.href).match(/\d+$/) | 1;  // get id value from the link
                                                           // if does not exist, get the data with id=1
+
     axios.get(`/api/summary/data/${id}`)
       .then((res) => {
         this.setState((state) => {
