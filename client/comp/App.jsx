@@ -108,7 +108,7 @@ class App extends React.Component {
       state.showArrow.left = (navbar.scrollLeft > navbar.firstChild.clientWidth/5)
       // right arrow
       const maxScroll = navbar.scrollWidth - navbar.clientWidth;
-      console.log(maxScroll);
+
       state.showArrow.right = (navbar.scrollLeft < maxScroll - navbar.lastChild.clientWidth/5)
 
       return state;
