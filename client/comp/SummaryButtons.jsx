@@ -26,8 +26,7 @@ class SummaryButtons extends React.Component {
     this.setState ({ modalType: whichModal });
 
     // make other parts of the app clickable
-    const target = document.getElementById('app');
-    target.addEventListener('click', this.hideModalOnclick, {once: true});
+    document.addEventListener('click', this.hideModalOnclick, {once: true});
   }
 
   hideModalOnclick(e) {
