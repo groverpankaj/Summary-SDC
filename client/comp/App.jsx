@@ -52,7 +52,7 @@ class App extends React.Component {
     // save the max height value of summary line 3
     this.sl3Height = this.sl3Ref.current.scrollHeight;
     // get data from database
-//     this.requestDatafromDB();
+    this.requestDatafromDB();
 
     window.addEventListener("resize", () => {
       this.setState({resizeFlag: !this.state.resizeFlag})
