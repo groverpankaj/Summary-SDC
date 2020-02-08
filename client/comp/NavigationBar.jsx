@@ -6,7 +6,8 @@ const navClassNames = ['ov', 'ff', 'hv', 'pth', 'mc', 'rv', 'ns', 'ct', 'nh', 'h
 const navTitle = [ // array that holds string value of title, used to render titles on navigation bar with the use of map
       'Overview', 
       'Facts and features',
-      'Home value', 'Price and tax history',
+      'Home value',
+      'Price and tax history',
       'Monthly Cost',
       'Rental Value',
       'Nearby schools',
@@ -27,7 +28,7 @@ const NavigationBar = React.forwardRef(
               return <NavTitle key={ind} className={navClassName} onClick={scrollOnClick} onview={navClassName === onView}>{navTitle[ind]}</NavTitle>
             })}
           </StyledNavBar>
-          <NavBarArrow id="rightarrow" showArrow={showArrow.right} className="material-icons" left='476px' top='-80px' onClick={slideOnClick}>chevron_rightt</NavBarArrow>
+          <NavBarArrow id="rightarrow" showArrow={showArrow.right} className="material-icons" left='476px' top='-79px' onClick={slideOnClick}>chevron_rightt</NavBarArrow>
         </ContainerToHideScroll>
       </Container>
     );

@@ -11,6 +11,7 @@ class SummaryLine3 extends React.Component {
       resizeFlag: true,
       popup: false,
       popupLeft: '',
+      popupTop: '',
       popupWidth: ''
     };
 
@@ -36,8 +37,9 @@ class SummaryLine3 extends React.Component {
     // show popup
     this.setState({popup: true}, () => {
       this.setState((state) => {
-        // compute left value where the popup appear
+        // compute left and top value where the popup appear
         state.popupLeft = this.zestRef.current.offsetLeft + this.zestRef.current.offsetWidth + 15;
+        state.popupTop = document.getElementsByClassName('summary')[0].offsetTop;
         // state.popupLeft = this.zestRef.current.offsetRight - 15
 
         // compute width of popup, so it does not go over on the right
@@ -45,6 +47,7 @@ class SummaryLine3 extends React.Component {
 
         // change to string
         state.popupLeft = state.popupLeft.toString() + 'px';
+        state.popupTop = state.popupTop.toString() + 'px';
         state.popupWidth = state.popupWidth.toString() + 'px';
 
         return state;
@@ -68,7 +71,7 @@ class SummaryLine3 extends React.Component {
 
   render() {
     let popup = this.state.popup ? 
-                <Popup popupLeft={this.state.popupLeft} popupWidth={this.state.popupWidth} hidePopupOnClick={this.hidePopupOnClick}/>
+                <Popup popupLeft={this.state.popupLeft} popupTop={this.state.popupTop} popupWidth={this.state.popupWidth} hidePopupOnClick={this.hidePopupOnClick}/>
                 : '';
 
     return (
