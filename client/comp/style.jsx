@@ -5,6 +5,7 @@ const AppZIndex = 0;  // index for app
 /*  App  */
 export const StyledApp = styled.div`
   width: 500px;
+  height: ${innerHeight};
   font-family: 'Open Sans', sans-serif;
   overflow: hidden;
 `;
@@ -93,7 +94,6 @@ export const Zestimate = styled.span`
 export const ZestimatePopup = styled.div`
   position: absolute;
   left: ${props => props.left};
-  top: 0px;
   z-index: ${AppZIndex+2};
   width: ${props => props.width};
   padding: 0px 8px 5px 6px;
@@ -409,7 +409,7 @@ export const NavTitle = styled.span`
 
 /*  Detail Panel  */
 export const DP = styled.div`
-  height: 300px;
+  height: ${innerHeight - 45 - 187 - 30}px;
   overflow-y: scroll;
   scroll-behavior: smooth;
 `;

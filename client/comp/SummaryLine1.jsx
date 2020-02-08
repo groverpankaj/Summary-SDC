@@ -27,7 +27,7 @@ class SummaryLine1 extends React.Component {
     this.setState({showPopup: true}, () => {
       this.setState((state) => {
         // compute location and dimension of popup
-        state.bpL = `${this.bathRef.current.offsetLeft - 40}px`;
+        state.bpL = `${this.bathRef.current.offsetLeft - this.bathPopUpRef.current.clientWidth / 2}px`;
         state.bpT = `${this.bathRef.current.offsetTop + this.bathPopUpRef.current.clientHeight - 5}px`;
         state.bpW = `${this.bathPopUpRef.current.clientWidth}px`;
         state.bpH = `${this.bathPopUpRef.current.clientHeight}px`;

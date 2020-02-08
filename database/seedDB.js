@@ -4,8 +4,10 @@ const faker = require('faker');       // module to generate fake information
 
 const dbName = '7-xillow'       // database name
 const nData = 100;              // number of data(document) to be seeded
+const url = process.env.NODE_ENV === 'production' ? 'database' : 'localhost';
 
-mongoose.connect(`mongodb://database:27017/${dbName}`, {useNewUrlParser: true, useUnifiedTopology: true})
+
+mongoose.connect(`mongodb://${url}:27017/${dbName}`, {useNewUrlParser: true, useUnifiedTopology: true})
   .then(() => { return House.countDocuments() })
   .then((number) => {
     if(number > 0) { // check if there is any previously seeded data
