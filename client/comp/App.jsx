@@ -37,7 +37,8 @@ class App extends React.Component {
     this.dpRef = React.createRef();       // detail panel
 
     // Variable
-    this.sl3Height = 0; // max height of summary line 3
+    this.sl3Height = 0;                             // max height of summary line 3
+    this.dpHeight = (innerHeight - 45 - 189 -45 - 20);  // min height of detail panel
     
     // bind functions
     this.scrollOnClick = this.scrollOnClick.bind(this);
@@ -49,8 +50,12 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    // save the max height value of summary line 3
+    // save the max height value of summary line 3 and detail panel
     this.sl3Height = this.sl3Ref.current.scrollHeight;
+
+    // set the size of detail panel
+    this.dpRef.current.style.height = `${this.dpHeight}px`;
+
     // get data from database
     this.requestDatafromDB();
 
@@ -163,6 +168,9 @@ class App extends React.Component {
     // where = scrollTop at standard or more => 0 height & 1 opacity
     this.sl3Ref.current.style.height = `${this.sl3Height * (1 - p)}px`;
     this.sl3Ref.current.style.opacity = (1 - p);
+
+    // resize detail panel
+    this.dpRef.current.style.height = `${this.dpHeight +this.sl3Height * p}px`;
   }
   /*
     END: Define Event Listner
@@ -171,6 +179,8 @@ class App extends React.Component {
   render() {
     return (
       <StyledApp>
+        <img src="https://zillowclone.s3-us-west-1.amazonaws.com/1.png" width="100%" height="45"/>
+    
         <Summary house={this.state.house} sl3Ref={this.sl3Ref}/>
         <NavigationBar ref={this.navbarRef}
                       onView={this.state.onView}

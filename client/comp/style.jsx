@@ -94,6 +94,7 @@ export const Zestimate = styled.span`
 export const ZestimatePopup = styled.div`
   position: absolute;
   left: ${props => props.left};
+  top: ${props => props.top};
   z-index: ${AppZIndex+2};
   width: ${props => props.width};
   padding: 0px 8px 5px 6px;
@@ -409,7 +410,6 @@ export const NavTitle = styled.span`
 
 /*  Detail Panel  */
 export const DP = styled.div`
-  height: ${innerHeight - 45 - 187 - 30}px;
   overflow-y: scroll;
   scroll-behavior: smooth;
 `;
