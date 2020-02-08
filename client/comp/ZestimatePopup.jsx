@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { ZestimatePopup, LinkInPopup, PopupCloseButton, PopupIconLineI, PopupIconLineT } from './style.jsx';
 
-const Popup = ({ popupLeft, popupWidth, hidePopupOnClick }) => (
-  <ZestimatePopup id="zestimatePopup" left={popupLeft} width={popupWidth} >
+const Popup = ({ popupLeft, popupTop, popupWidth, hidePopupOnClick }) => (
+  <ZestimatePopup id="zestimatePopup" left={popupLeft} top={popupTop} width={popupWidth} >
     <PopupCloseButton className="material-icons closeIcon" onClick={hidePopupOnClick}>close</PopupCloseButton>
 
     <p>The Zestimate is Zillow&apos;s best estimate of this home&apos;s market value. It is not an appraisal and it should be used as a starting point. <LinkInPopup href="https://www.zillow.com/zestimate/">Learn more</LinkInPopup>.</p>
