@@ -9,11 +9,10 @@ class SummaryLine3 extends React.Component {
 
     this.state = {
       resizeFlag: true,
-      popup: false
+      popup: false,
+      popupLeft: '',
+      popupWidth: ''
     };
-
-    this.popupLeft = '';
-    this.popupWidth = '';
 
     // References
     this.zestRef = React.createRef();   // zestimate text
@@ -23,28 +22,34 @@ class SummaryLine3 extends React.Component {
     this.hidePopupOnClick = this.hidePopupOnClick.bind(this);
   }
 
-
   // componentDidMount() {
-  //   window.addEventListener("resize", () => {
-  //     this.setState((state) => {
-  //       state.resizeFlag = !state.resizeFlag;
-  //     });
+  //   this.setState((state) => {
+
+
+  //     state.popup = false;
+
+  //     return state;
   //   });
   // }
 
-  showPopupOnClick() {
-    // compute left value where the popup appear
-    this.popupLeft = this.zestRef.current.offsetLeft + this.zestRef.current.offsetWidth + 15;
-    
-    // compute width of popup, so it does not go over on the right
-    this.popupWidth = document.getElementById('summary').offsetLeft + document.getElementById('summary').clientWidth - 15 - this.popupLeft;
-
-    // change to string
-    this.popupLeft = this.popupLeft.toString() + 'px';
-    this.popupWidth = this.popupWidth.toString() + 'px';
-    
+  showPopupOnClick() {    
     // show popup
-    this.setState({popup: true});
+    this.setState({popup: true}, () => {
+      this.setState((state) => {
+        // compute left value where the popup appear
+        state.popupLeft = this.zestRef.current.offsetLeft + this.zestRef.current.offsetWidth + 15;
+        // state.popupLeft = this.zestRef.current.offsetRight - 15
+
+        // compute width of popup, so it does not go over on the right
+        state.popupWidth = document.getElementsByClassName('summary')[0].offsetLeft + document.getElementsByClassName('summary')[0].clientWidth - 15 - state.popupLeft;
+
+        // change to string
+        state.popupLeft = state.popupLeft.toString() + 'px';
+        state.popupWidth = state.popupWidth.toString() + 'px';
+
+        return state;
+      });
+    });
 
     // make other parts of app to close popup when clicked;
     document.addEventListener('click', this.hidePopupOnClick, {once: true});
@@ -63,7 +68,7 @@ class SummaryLine3 extends React.Component {
 
   render() {
     let popup = this.state.popup ? 
-                <Popup popupLeft={this.popupLeft} popupWidth={this.popupWidth} hidePopupOnClick={this.hidePopupOnClick}/>
+                <Popup popupLeft={this.state.popupLeft} popupWidth={this.state.popupWidth} hidePopupOnClick={this.hidePopupOnClick}/>
                 : '';
 
     return (
