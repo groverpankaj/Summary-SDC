@@ -30,7 +30,7 @@ CREATE TABLE property (
 
 #### Request
 <pre>
-axios({
+({
   method: 'post',
   url: '/property',
   data: {
@@ -59,7 +59,7 @@ Error: ResponseCode 404
  Example => ?property=45
 
 #### Request
-axios.get(`/property:${property_id}`)
+get(`/property:${property_id}`)
 
 ##### Response
 
@@ -93,7 +93,7 @@ Return an Array with following elements
   
   #### Request
   <pre>
-  axios({
+  ({
   method: 'put',
   url: '/property',
   data: {
