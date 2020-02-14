@@ -28,9 +28,7 @@ CREATE TABLE property (
 
 ## Create - POST Request
 
-# Request
-
-
+#### Request
 <pre>
 axios({
   method: 'post',
@@ -50,7 +48,7 @@ axios({
 });
 </pre>
 
-# Response 
+#### Response 
 Pass : ResponseCode 200
 Error: ResponseCode 404
 
@@ -58,10 +56,10 @@ Error: ResponseCode 404
 
  Example => ?property=45
 
-# Request
+#### Request
 axios.get(`/property:${property_id}`)
 
-# Response
+##### Response
 
 Pass
 
@@ -91,7 +89,7 @@ Return an Array with following elements
   
   ## PUT Update
   
-  # Request
+  #### Request
   <pre>
   axios({
   method: 'put',
@@ -112,7 +110,7 @@ Return an Array with following elements
 </pre>
 UPDATE ALL fields where (given)id = (database)id
 
-# Response 
+##### Response 
 Pass : ResponseCode 200
 Error: ResponseCode 404
 
