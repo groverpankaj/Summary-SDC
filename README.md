@@ -117,5 +117,19 @@ UPDATE ALL fields where (given)id = (database)id
 Pass : ResponseCode 200
 Error: ResponseCode 404
 </pre>
+
+<pre>
+CREATE TABLE agents (
+  id integer PRIMARY KEY,           
+  firstName text  NOT NULL,        
+  lastName text  NOT NULL,          
+  review decimal,          
+  reviewCount integer,         
+  recentSale integer,      
+  phoneNo text 
+)`;
+</pre>
+
+
   
 
