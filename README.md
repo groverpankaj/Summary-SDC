@@ -48,9 +48,11 @@ axios({
 });
 </pre>
 
-#### Response 
+#### Response
+<pre>
 Pass : ResponseCode 200
 Error: ResponseCode 404
+</pre>
 
 ## Read - GET Request
 
@@ -110,9 +112,10 @@ Return an Array with following elements
 </pre>
 UPDATE ALL fields where (given)id = (database)id
 
-##### Response 
+##### Response
+<pre>
 Pass : ResponseCode 200
 Error: ResponseCode 404
-
+</pre>
   
 
