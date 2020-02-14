@@ -118,6 +118,8 @@ Pass : ResponseCode 200
 Error: ResponseCode 404
 </pre>
 
+# Agents Table
+
 <pre>
 CREATE TABLE agents (
   id integer PRIMARY KEY,           
@@ -130,6 +132,13 @@ CREATE TABLE agents (
 )`;
 </pre>
 
+# Property Agents Relationship Table
 
-  
+<pre>
+CREATE TABLE propertyAgents (
+  propertyId integer REFERENCES properties(id),           
+  agentId integer  REFERENCES agents(id),        
+  listingAgent boolean
+)`;
+</pre>
 
