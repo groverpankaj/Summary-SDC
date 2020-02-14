@@ -11,7 +11,7 @@ database/index.js
 
 
 ### Schema
-
+<pre>
 CREATE TABLE property(
   id integer PRIMARY KEY,           
   price integer  NOT NULL,        
@@ -24,7 +24,7 @@ CREATE TABLE property(
   zestimate  decimal,   
   estPayment decimal   
 )`;
-
+</pre>
 
 ## Create - POST Request
 
