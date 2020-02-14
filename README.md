@@ -12,7 +12,7 @@ database/index.js
 
 ### Schema
 <pre>
-CREATE TABLE property(
+CREATE TABLE property (
   id integer PRIMARY KEY,           
   price integer  NOT NULL,        
   bd decimal,           
@@ -29,6 +29,7 @@ CREATE TABLE property(
 ## Create - POST Request
 
 # Request
+<pre>
 axios({
   method: 'post',
   url: '/property',
@@ -45,6 +46,7 @@ axios({
     estPayment decimal   
   }
 });
+</pre>
 
 # Response 
 Pass : ResponseCode 200
@@ -61,7 +63,9 @@ Pass
 
 if found
 Return an Array with following elements
-[          
+ <pre>
+  [
+    id,           
     price,        
     bd,           
     ba,          
@@ -70,11 +74,12 @@ Return an Array with following elements
     saleStatus,   
     tourButton, 
     zestimate,   
-    estPayment   
- ]
+    estPayment
+   ]
+</pre>
  
  if not found
- Return empty array []
+ Return empty array <pre>[]</pre>
   
   Error
   Returns a string with error message
