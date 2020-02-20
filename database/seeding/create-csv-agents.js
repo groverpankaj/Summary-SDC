@@ -24,8 +24,6 @@ const makeCSV = () => {
       ]
   });
 
-  var randomVal = Math.random(); // will be used to determine status value
-
   var dataArray = [];
 
   for(let i = 1; i <= noOfRecordsPerFile; i++) {
@@ -52,13 +50,12 @@ const makeCSV = () => {
         console.log(`Created a CSV file with ${dataArray.length} records in ${timeTaken}s`);
         fno++;
         dataArray = null;
-        // console.log(dataArray.length)
         if(fno <= noOfFiles) {
-          makeCSV();
+          makeCSV(); // subsequent call
         }
       })
 }
 
-makeCSV();
+makeCSV();   // initial call
 
 

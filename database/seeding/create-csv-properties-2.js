@@ -16,8 +16,8 @@ const makeCSV = () => {
       header: [
           {id: 'id', title: 'id'},
           {id: 'price', title: 'price'},
-          {id: 'bd', title: 'bd'},
-          {id: 'ba', title: 'ba'},
+          {id: 'bedroom', title: 'bedroom'},
+          {id: 'bathroom', title: 'bathroom'},
           {id: 'sqft', title: 'sqft'},
           {id: 'address', title: 'address'},
           {id: 'city', title: 'city'},
@@ -43,8 +43,8 @@ const makeCSV = () => {
     let property = { // generate random information for each house(documnet)
       id: ( (fileNumber-1) * noOfRecordsPerFile) +  i,
       price: currentPrice,
-      bd: Math.ceil(Math.random() * 6),
-      ba: Math.ceil(Math.random() * 7) / 2,
+      bedroom: Math.ceil(Math.random() * 6),
+      bathroom: Math.ceil(Math.random() * 7) / 2,
       sqft: faker.fake("{{random.number}}") % 2000,
       address: faker.fake("{{address.streetAddress}} {{address.secondaryAddress}}"),
       city: faker.fake("{{address.city}}"),

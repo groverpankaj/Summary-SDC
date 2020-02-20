@@ -1,40 +1,44 @@
 var fs = require('fs');
 const path = require('path');
-var {Pool} = require('pg');
+// var { Pool } = require('pg');
 var copyFrom = require('pg-copy-streams').from;
 
-const pool = new Pool({
-  user: 'postgres',
-  host: 'localhost',
-  database: 'zillowsummary',
-  password: 'postgres',
-  port: 5432
-});
+// const pool = new Pool({
+//   user: 'postgres',
+//   host: 'localhost',
+//   database: 'zillowsummary',
+//   password: 'postgres',
+//   port: 5432
+// });
+
+const poolConfig = require('./pool-config.js');
+const pool = poolConfig.pool;
 
 var tableName = 'properties';
 
 const createTableQuery = `
-CREATE TABLE ${tableName} (
-  id integer PRIMARY KEY,           
-  price integer  NOT NULL,        
-  bd decimal,           
-  ba decimal,          
-  sqft decimal,         
-  address text,
-  city text,
-  state text,
-  zipCode text,      
-  saleStatus varchar(8),   
-  tourButton boolean, 
-  zestimate  decimal,   
-  estPayment decimal   
-)`;
+  CREATE TABLE ${tableName} (
+    id serial PRIMARY KEY,           
+    price integer  NOT NULL,        
+    bedroom decimal,           
+    bathroom decimal,          
+    sqft decimal,         
+    address text,
+    city text,
+    state text,
+    zipCode text,      
+    saleStatus varchar(8),   
+    tourButton boolean, 
+    zestimate  decimal,   
+    estPayment decimal   
+  )`;
 
 const dropTableQuery = `
   DROP TABLE IF EXISTS ${tableName}
 `;
 
 let noOfFiles = 10;
+
 
 pool.connect(function(err, client, done) {
   client.query(dropTableQuery)
@@ -60,7 +64,7 @@ pool.connect(function(err, client, done) {
         stream.on('end', () => {
           console.log(`Completed loading data from file: ${i}`);
           if(i === noOfFiles) {
-            client.end()
+            client.end();
           }
         })
         fileStream.pipe(stream);

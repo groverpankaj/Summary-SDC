@@ -1,30 +1,31 @@
 var fs = require('fs');
 const path = require('path');
-var {Pool} = require('pg');
+// var {Pool} = require('pg');
 var copyFrom = require('pg-copy-streams').from;
 
-const startTime = Date.now();
+// const pool = new Pool({
+//   user: 'postgres',
+//   host: 'localhost',
+//   database: 'zillowsummary',
+//   password: 'postgres',
+//   port: 5432
+// });
 
-const pool = new Pool({
-  user: 'postgres',
-  host: 'localhost',
-  database: 'zillowsummary',
-  password: 'postgres',
-  port: 5432
-});
+const poolConfig = require('./pool-config.js');
+const pool = poolConfig.pool;
 
 var tableName = 'agents';
 
 const createTableQuery = `
-CREATE TABLE ${tableName} (
-  id integer PRIMARY KEY,           
-  firstName text  NOT NULL,        
-  lastName text  NOT NULL,          
-  review decimal,          
-  reviewCount integer,         
-  recentSale integer,      
-  phoneNo text 
-)`;
+  CREATE TABLE ${tableName} (
+    id integer PRIMARY KEY,           
+    firstName text  NOT NULL,        
+    lastName text  NOT NULL,          
+    review decimal,          
+    reviewCount integer,         
+    recentSale integer,      
+    phoneNo text 
+  )`;
 
 const dropTableQuery = `
   DROP TABLE IF EXISTS ${tableName}
@@ -32,7 +33,7 @@ const dropTableQuery = `
 
 let noOfFiles = 10;
 
-pool.connect(function(err, client, done) {
+pool.connect(function(err, client) {
   client.query(dropTableQuery)
     .then(() => console.log('Success in droping table'))
     .then(() => client.query(createTableQuery))
@@ -64,7 +65,7 @@ pool.connect(function(err, client, done) {
         }
 
       })
-      .catch()
+      .catch((error) => console.log('error in uploading data', error))
   
 });
 
