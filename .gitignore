@@ -5,4 +5,4 @@ client/dist/bundle.js
 
 database/seeding/data
 
-database/seeding/pool-conig.js
+database/seeding/pool-config.js
