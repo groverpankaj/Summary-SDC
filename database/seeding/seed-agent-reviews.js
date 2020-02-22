@@ -1,31 +1,24 @@
 var fs = require('fs');
 const path = require('path');
-// var {Pool} = require('pg');
 var copyFrom = require('pg-copy-streams').from;
-
-// const pool = new Pool({
-//   user: 'postgres',
-//   host: 'localhost',
-//   database: 'zillowsummary',
-//   password: 'postgres',
-//   port: 5432
-// });
 
 const poolConfig = require('./pool-config.js');
 const pool = poolConfig.pool;
 
-var tableName = 'agents';
+var tableName = 'agentreviews';
 
 const createTableQuery = `
   CREATE TABLE ${tableName} (
-    id integer PRIMARY KEY,           
-    firstName text  NOT NULL,        
-    lastName text  NOT NULL,                   
-    recentSale integer,      
-    phoneNo text,
-    image integer,
-    url text
+    agentid integer,           
+    reviewtext text,               
+    review decimal         
   )`;
+
+// ALTER TABLE agentreviews
+// ADD CONSTRAINT fk_agents_propertyreviews FOREIGN KEY (agentid) REFERENCES agents(id);
+
+// CREATE INDEX arId
+// ON agentreviews(agentid);
 
 const dropTableQuery = `
   DROP TABLE IF EXISTS ${tableName}
@@ -42,7 +35,7 @@ pool.connect(function(err, client) {
 
       for(let i = 1; i <= noOfFiles; i++) {
 
-        var inputFile = path.join(__dirname, `./data/agents/datafile-agents-${i}.csv`);
+        var inputFile = path.join(__dirname, `./data/agent-reviews/datafile-agents-reviews-${i}.csv`);
 
         var stream = client.query(copyFrom(`COPY ${tableName} FROM STDIN CSV HEADER`))
 

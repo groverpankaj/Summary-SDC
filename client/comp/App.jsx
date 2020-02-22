@@ -9,6 +9,8 @@ import DetailPanel from './DetailPanel.jsx';
 // module: styled-components
 import { StyledApp } from './style.jsx'
 
+
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -67,13 +69,27 @@ class App extends React.Component {
   requestDatafromDB() {
     const id = (window.location.href).match(/\d+$/) | 1;  // get id value from the link
                                                         // if does not exist, get the data with id=1
-
+    
     axios.get(`/api/summary/data/${id}`)
       .then((res) => {
-        this.setState((state) => {
-            state.house = Object.assign({}, res.data);
-            return state;
-        });
+        let propertySummary = res.data[0];
+
+        this.setState({
+          house: {
+            "id": propertySummary.id,
+            "price": propertySummary.price,
+            "bd": parseFloat(propertySummary.bedroom),
+            "ba": parseFloat(propertySummary.bathroom),
+            "sqft": propertySummary.sqft,
+            "address": propertySummary.address,
+            "saleStatus": (propertySummary.saleStatus === 'A') ? "For sale": (propertySummary.saleStatus === 'R') ? "For Rent" : "Sold",
+            "tourButton": propertySummary.tourbutton,
+            "zestimate": propertySummary.zestimate,
+            "estPayment": propertySummary.estPayment
+          }
+        }
+        // , () => console.log(this.state)
+        );
       })
       .catch((err) => {
         console.log(err);
@@ -179,7 +195,8 @@ class App extends React.Component {
   render() {
     return (
       <StyledApp>
-        <img src="https://zillowclone.s3-us-west-1.amazonaws.com/1.png" width="100%" height="45"/>
+        {/* <img src="https://zillowclone.s3-us-west-1.amazonaws.com/1.png" width="100%" height="45"/> */}
+        <img src="" width="100%" height="45"/>
     
         <Summary house={this.state.house} sl3Ref={this.sl3Ref}/>
         <NavigationBar ref={this.navbarRef}

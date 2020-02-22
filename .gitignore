@@ -6,3 +6,7 @@ client/dist/bundle.js
 database/seeding/data
 
 database/seeding/pool-config.js
+
+newrelic_agent.log
+
+newrelic.js

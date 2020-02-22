@@ -3,13 +3,6 @@ const path = require('path');
 // var {Pool} = require('pg');
 var copyFrom = require('pg-copy-streams').from;
 
-// const pool = new Pool({
-//   user: 'postgres',
-//   host: 'localhost',
-//   database: 'zillowsummary',
-//   password: 'postgres',
-//   port: 5432
-// });
 
 const poolConfig = require('./pool-config.js');
 const pool = poolConfig.pool;
@@ -38,6 +31,8 @@ const createTableQuery = `
   // ALTER TABLE propertyagents 
   // ADD CONSTRAINT fk_propertyagents_agentss FOREIGN KEY (agentid) REFERENCES agents(id);
   
+// CREATE INDEX pId
+// ON propertyAgents(propertyId);
 
 const dropTableQuery = `
   DROP TABLE IF EXISTS ${tableName}
@@ -47,7 +42,7 @@ let noOfFiles = 10;
 
 pool.connect(function(err, client) {
   client.query(dropTableQuery)
-    .then(() => console.log('Success in droping table'))
+    .then(() => console.log('Success in dropping table'))
     .then(() => client.query(createTableQuery))
     .then(() => console.log('Success in creating table'))
     .then(() => {     

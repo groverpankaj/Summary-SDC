@@ -1,15 +1,6 @@
 var fs = require('fs');
 const path = require('path');
-// var { Pool } = require('pg');
 var copyFrom = require('pg-copy-streams').from;
-
-// const pool = new Pool({
-//   user: 'postgres',
-//   host: 'localhost',
-//   database: 'zillowsummary',
-//   password: 'postgres',
-//   port: 5432
-// });
 
 const poolConfig = require('./pool-config.js');
 const pool = poolConfig.pool;
@@ -22,15 +13,15 @@ const createTableQuery = `
     price integer  NOT NULL,        
     bedroom decimal,           
     bathroom decimal,          
-    sqft decimal,         
+    sqft integer,         
     address text,
     city text,
     state text,
     zipCode text,      
     saleStatus varchar(8),   
     tourButton boolean, 
-    zestimate  decimal,   
-    estPayment decimal   
+    zestimate  integer,   
+    estPayment integer   
   )`;
 
 const dropTableQuery = `

@@ -19,18 +19,9 @@
  
 // module.exports = retrieve;
 
-// var { Pool } = require('pg');
 
 const poolConfig = require('./seeding/pool-config.js');
 const pool = poolConfig.pool;
-
-// const pool = new Pool({
-//   user: 'postgres',
-//   host: 'localhost',
-//   database: 'zillowsummary',
-//   password: 'postgres',
-//   port: 5432
-// });
 
 
 module.exports.property = (id, callback) =>{
@@ -41,10 +32,11 @@ module.exports.property = (id, callback) =>{
 
     client.query(query)
     .then((data) => {
-    
+      client.release();
       callback(null, data.rows); // invoke callback with data as argument if retrieved
     })
     .catch((err) => {
+      client.release();
       callback(err, null); // invoke callback with with error as argument if error occurs
     });
   })
@@ -54,18 +46,22 @@ module.exports.property = (id, callback) =>{
 module.exports.agents = (id, callback) =>{
   pool.connect(function(err, client, done) {
     
-    let query = `SELECT ps.propertyid, ps.agentid, ps.listingagent, a.firstname, a.lastname, a.review, a.reviewcount, a.recentsale, a.phoneno 
-      FROM propertyAgents AS ps
-      INNER JOIN agents AS a
-      ON ps.agentid = a.id
-      WHERE ps.propertyId=${id}`;
+    let query = `SELECT pa.propertyid, pa.agentid, pa.listingAgent, a.firstname, a.lastname, a.recentsale, a.phoneno, a.image, a.url, AVG(ar.review) AS review, COUNT(ar.review) as reviewcount
+      FROM propertyagents pa
+      JOIN agents a
+      ON pa.agentid = a.id
+      JOIN agentreviews ar ON a.id = ar.agentid  
+      WHERE pa.propertyid=${id}
+      GROUP BY pa.propertyid, pa.agentid, pa.listingAgent, a.firstname, a.lastname, a.recentsale, a.phoneno, a.image, a.url
+    `;  
 
     client.query(query)
     .then((data) => {
-      console.log(data)
+      client.release();
       callback(null, data.rows); // invoke callback with data as argument if retrieved
     })
     .catch((err) => {
+      client.release();
       callback(err, null); // invoke callback with with error as argument if error occurs
     });
   })
